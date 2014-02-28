@@ -30,7 +30,7 @@ class CreateBaseModels < ActiveRecord::Migration
       t.integer :loyalty # 4
       t.integer :multiverseid # 2479
       t.string :variations # "78968, 85106"
-      t.string :image_name # "ajani goldmane"
+      t.string :image_url # "https://image.deckbrew.com/mtg/multiverseid/179597.jpg"
       t.string :watermark # "Selesnya"
       t.string :border # "black"
       t.integer :hand # -3 Maximum hand size modifier. Only exists for Vanguard cards.
