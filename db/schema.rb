@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20140228234326) do
   enable_extension "plpgsql"
 
   create_table "cards", force: true do |t|
+    t.integer  "set_id"
     t.string   "layout"
     t.string   "name"
     t.string   "mana_cost"
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20140228234326) do
 
   add_index "cards", ["multiverseid"], name: "index_cards_on_multiverseid", unique: true, using: :btree
   add_index "cards", ["name"], name: "index_cards_on_name", using: :btree
+  add_index "cards", ["set_id"], name: "index_cards_on_set_id", using: :btree
 
   create_table "draft_sets", force: true do |t|
     t.integer  "draft_id"
@@ -90,10 +92,14 @@ ActiveRecord::Schema.define(version: 20140228234326) do
 
   create_table "packs", force: true do |t|
     t.integer  "set_id"
+    t.integer  "user_id"
     t.integer  "order_received"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "packs", ["set_id"], name: "index_packs_on_set_id", using: :btree
+  add_index "packs", ["user_id"], name: "index_packs_on_user_id", using: :btree
 
   create_table "sets", force: true do |t|
     t.string   "short_name"
@@ -118,16 +124,6 @@ ActiveRecord::Schema.define(version: 20140228234326) do
 
   add_index "user_cards", ["card_id"], name: "index_user_cards_on_card_id", using: :btree
   add_index "user_cards", ["user_id"], name: "index_user_cards_on_user_id", using: :btree
-
-  create_table "user_packs", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "pack_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_packs", ["pack_id"], name: "index_user_packs_on_pack_id", using: :btree
-  add_index "user_packs", ["user_id"], name: "index_user_packs_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

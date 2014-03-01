@@ -11,6 +11,7 @@ class CreateBaseModels < ActiveRecord::Migration
     end
 
     create_table :cards do |t|
+      t.integer :set_id
       t.string :layout # "Normal"
       t.string :name # "Research // Development"
       t.string :mana_cost # "{G}{U}"
@@ -48,6 +49,7 @@ class CreateBaseModels < ActiveRecord::Migration
 
     create_table :packs do |t|
       t.integer :set_id
+      t.integer :user_id
       t.integer :order_received # Order user received the pack in
       # has_one_set
       # has_and_belongs_to_many_cards
@@ -79,12 +81,6 @@ class CreateBaseModels < ActiveRecord::Migration
     create_table :user_cards do |t|
       t.integer :user_id
       t.integer :card_id
-      t.timestamps
-    end
-
-    create_table :user_packs do |t|
-      t.integer :user_id
-      t.integer :pack_id
       t.timestamps
     end
 
