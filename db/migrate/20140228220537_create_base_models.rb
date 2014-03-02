@@ -11,15 +11,15 @@ class CreateBaseModels < ActiveRecord::Migration
     end
 
     create_table :cards do |t|
-      t.integer :set_id
+      t.integer :card_set_id
       t.string :layout # "Normal"
       t.string :name # "Research // Development"
       t.string :mana_cost # "{G}{U}"
       t.integer :cmc # 2 Converted Mana Cost
       t.string :colors # "Blue, Red"
-      t.string :type # "Legendary Creature - Angel"
+      t.string :card_type # "Legendary Creature - Angel"
       t.string :supertypes # "Legendary"
-      t.string :types # "Creature"
+      t.string :card_types # "Creature"
       t.string :subtypes # "Angel"
       t.string :rarity # "Rare"
       t.text :text # "{T}: You gain 1 life."
@@ -43,32 +43,32 @@ class CreateBaseModels < ActiveRecord::Migration
       t.string :name
       t.integer :user_count
       # has_many_users
-      # has_many_sets
+      # has_many_card_sets
       t.timestamps
     end
 
     create_table :packs do |t|
-      t.integer :set_id
+      t.integer :card_set_id
       t.integer :user_id
       t.integer :order_received # Order user received the pack in
-      # has_one_set
+      # has_one_card_set
       # has_and_belongs_to_many_cards
       t.timestamps
     end
 
-    create_table :sets do |t|
+    create_table :card_sets do |t|
       t.string :short_name # "ARB"
       t.string :name # "Alara Reborn"
       t.string :border # "black"
-      t.string :type # "expansion"
+      t.string :set_type # "expansion"
       t.string :url # "https://api.deckbrew.com/mtg/sets/ARB"
       t.string :cards_url # "https://api.deckbrew.com/mtg/cards?set=ARB"
       t.timestamps
     end
 
-    create_table :draft_sets do |t|
+    create_table :draft_card_sets do |t|
       t.integer :draft_id
-      t.integer :set_id
+      t.integer :card_set_id
       t.timestamps
     end
 
