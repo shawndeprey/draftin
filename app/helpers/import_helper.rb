@@ -23,4 +23,8 @@ module ImportHelper
 
     puts "\e[32m#{APP_NAME} has \e[33m#{CardSet.count}\e[32m sets and \e[33m#{sets.length}\e[32m sets were just imported from deckbrew...\e[0m"
   end
+
+  def self.import_page_of_cards
+
+  end
 end
