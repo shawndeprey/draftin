@@ -2,4 +2,7 @@
 APP_NAME = "Draftin'"
 
 # External Resources
-SETS_SOURCE = "https://api.deckbrew.com/mtg/sets"
+DECKBREW_BASE = "https://api.deckbrew.com"
+SETS_SOURCE = "#{DECKBREW_BASE}/mtg/sets"
+CARDS_SOURCE = "#{DECKBREW_BASE}/mtg/cards"
+PAGES_OF_CARDS = 150

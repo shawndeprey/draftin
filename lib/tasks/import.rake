@@ -3,4 +3,9 @@ namespace :import do
   task :sets => :environment do
     ImportHelper::import_sets
   end
+
+  desc "Pull card data from deckbrew"
+  task :cards => :environment do
+    ImportHelper::queue_card_importers
+  end
 end
