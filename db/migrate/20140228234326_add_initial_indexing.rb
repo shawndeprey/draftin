@@ -3,19 +3,19 @@ class AddInitialIndexing < ActiveRecord::Migration
     add_index :users, :username, :unique => true
 
     add_index :cards, :name
-    add_index :cards, :set_id
+    add_index :cards, :card_set_id
     add_index :cards, :multiverseid, :unique => true
 
     add_index :drafts, :name
 
-    add_index :packs, :set_id
+    add_index :packs, :card_set_id
     add_index :packs, :user_id
 
-    add_index :sets, :short_name, :unique => true
-    add_index :sets, :name, :unique => true
+    add_index :card_sets, :short_name, :unique => true
+    add_index :card_sets, :name, :unique => true
 
-    add_index :draft_sets, :draft_id
-    add_index :draft_sets, :set_id
+    add_index :draft_card_sets, :draft_id
+    add_index :draft_card_sets, :card_set_id
 
     add_index :draft_users, :draft_id
     add_index :draft_users, :user_id
@@ -32,19 +32,19 @@ class AddInitialIndexing < ActiveRecord::Migration
     remove_index :users, :username
 
     remove_index :cards, :name
-    remove_index :cards, :set_id
+    remove_index :cards, :card_set_id
     remove_index :cards, :multiverseid
 
     remove_index :drafts, :name
 
-    remove_index :packs, :set_id
+    remove_index :packs, :card_set_id
     remove_index :packs, :user_id
 
-    remove_index :sets, :short_name
-    remove_index :sets, :name
+    remove_index :card_sets, :short_name
+    remove_index :card_sets, :name
 
-    remove_index :draft_sets, :draft_id
-    remove_index :draft_sets, :set_id
+    remove_index :draft_card_sets, :draft_id
+    remove_index :draft_card_sets, :card_set_id
 
     remove_index :draft_users, :draft_id
     remove_index :draft_users, :user_id
