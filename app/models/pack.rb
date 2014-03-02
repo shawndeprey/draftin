@@ -1,4 +1,6 @@
+# encoding: utf-8
 class Pack < ActiveRecord::Base
+  nilify_blanks
   # attributes: set_id, user_id, order_received, created_at, updated_at
   belongs_to :set
   belongs_to :user

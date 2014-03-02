@@ -1,4 +1,6 @@
+# encoding: utf-8
 class User < ActiveRecord::Base
+  nilify_blanks
   # attributes: username, password, position, created_at, updated_at
   has_many :draft_users
   has_many :drafts, :through => :draft_users
