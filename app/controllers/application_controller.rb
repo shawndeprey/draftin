@@ -25,4 +25,12 @@ class ApplicationController < ActionController::Base
   def logout
     session[:user_id] = nil
   end
+
+  def render_not_found
+    redirect_to root_path, alert: "Dude! We couldn't find the page you were looking for. Sorry about that!"
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new("Dude! We couldn't find the page you were looking for. Sorry about that!")
+  end
 end

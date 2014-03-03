@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20140228234326) do
   create_table "drafts", force: true do |t|
     t.string   "name"
     t.integer  "user_count"
+    t.integer  "stage",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
