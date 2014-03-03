@@ -8,6 +8,17 @@
         <span class="icon-bar"></span>
       </button>
     </div>
+
+    <% if @session_user %>
+      <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to @session_user.username, @session_user %></li>
+          <li><%= link_to "Logout", "/session", method: :delete %></li>
+        </ul>
+      </div>
+    <% end %>
+
+    <!--
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li class="dropdown">
@@ -55,5 +66,7 @@
       </ul>
 
     </div>
+    -->
+
   </div>
 </div>

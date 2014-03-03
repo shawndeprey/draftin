@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row-fluid">
   <div class="col-lg-12">
     <div class="bs-example">
       <div class="jumbotron">
@@ -9,3 +9,65 @@
     </div>
   </div>
 </div>
+
+<% unless @session_user %>
+  <div class="row-fluid">
+    <div class="col-lg-6">
+      <div class="well">
+        <form class="bs-example form-horizontal" method="POST" action="<%= session_path %>">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+          <fieldset>
+            <legend>Login</legend>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Username</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="Username" name="username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+              <div class="col-lg-10">
+                <input type="password" class="form-control" placeholder="Password" name="password">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button class="btn btn-default">Cancel</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="well">
+        <form class="bs-example form-horizontal" method="POST" action="<%= users_path %>">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+          <fieldset>
+            <legend>Create Account</legend>
+            <div class="form-group">
+              <label for="inputEmail" class="col-lg-2 control-label">Username</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="Username" name="user[username]">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+              <div class="col-lg-10">
+                <input type="password" class="form-control" placeholder="Password" name="user[password]">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <button class="btn btn-default">Cancel</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+<% end %>
