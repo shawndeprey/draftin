@@ -7,4 +7,7 @@ Draftin::Application.routes.draw do
   # constraints admin_constraint do
     mount Sidekiq::Web => '/admin/sidekiq'
   # end
+  post '/session' => 'session#create', as: :session
+  delete '/session' => 'session#destroy'
+  resources :users
 end

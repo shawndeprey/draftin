@@ -7,4 +7,14 @@ class User < ActiveRecord::Base
   has_many :user_cards
   has_many :cards, :through => :user_cards
   has_many :packs
+
+  before_save :encrypt_password
+
+  def encrypt_password
+    unless self.password.blank?
+      unless self.password.length == 32
+        self.password = ApplicationHelper::md5(self.password)
+      end
+    end
+  end
 end

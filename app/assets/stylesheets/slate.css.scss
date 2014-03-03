@@ -4450,6 +4450,17 @@ a.thumbnail.active {
   right: -21px;
   color: inherit;
 }
+.alert-error {
+  background-color: #BC3535;
+  border-color: #FB4E4E;
+  color: #ffffff;
+}
+.alert-error hr {
+  border-top-color: #FB4E4E;
+}
+.alert-error .alert-link {
+  color: #e6e6e6;
+}
 .alert-success {
   background-color: #62c462;
   border-color: #62bd4f;
