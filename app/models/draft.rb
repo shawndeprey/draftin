@@ -35,7 +35,7 @@ class Draft < ActiveRecord::Base
   end
 
   def remove_set!(set)
-    self.card_sets.delete(set)
-    self.save
+    card_set = DraftCardSet.where('draft_id = :draft_id AND card_set_id = :set_id', :draft_id => self.id, :set_id => set.id).limit(1)
+    card_set.first.destroy unless card_set.blank?
   end
 end

@@ -11,11 +11,10 @@
       <div id="draft_users">
         <ul class="list-group">
           <li class="list-group-item" style="background-color:#49515a;">
-            <span class="badge"><%= @draft.user_count %></span>
             Users
           </li>
           <% @draft.users.each do |user| %>
-            <li class="list-group-item"><%= user.username %></li>
+            <li class="list-group-item user"><%= user.username %></li>
           <% end %>
         </ul>
       </div>
@@ -25,12 +24,17 @@
       <div id="draft_sets">
         <ul class="list-group">
           <li class="list-group-item" style="background-color:#49515a;">
-            <span class="badge"><%= @draft.card_sets.length %></span>
             Sets
           </li>
-          <% @draft.card_sets.each do |set| %>
-            <li class="list-group-item"><%= set.name %></li>
-          <% end %>
+          <div id="set_container">
+            <% @draft.card_sets.each do |set| %>
+              <li class="list-group-item"><%= set.name %><button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet(<%= set.id %>);">Remove</button></li>
+            <% end %>
+          </div>
+          <li class="list-group-item" id="add_set_container">
+            <%= select_tag :set_id, options_for_select(CardSet.all.map{|s| [s.name,s.id]}.unshift(["Sets",""])) %>
+            <button type="button" class="btn btn-info btn-xs" style="float:right;" onclick="draftin.draft.lobby.addSet();">Add Set</button>
+          </li>
         </ul>
       </div>
     </div>
@@ -43,7 +47,10 @@
           </li>
           <li class="list-group-item">
             <button type="button" class="btn btn-success">Start Draft</button>
-            <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow">
+            <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?">
+              <button type="button" class="btn btn-info">Leave Draft</button>
+            </a>
+            <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?">
               <button type="button" class="btn btn-danger">Destroy Draft</button>
             </a>
           </li>
@@ -57,3 +64,9 @@
 <% else %>
   <p>Draft is OVER! Display cards!</p>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  draftin.draft.init(<%= @draft.id %>, <%= @draft.stage %>);
+});
+</script>

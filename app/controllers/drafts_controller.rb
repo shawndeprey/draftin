@@ -23,7 +23,7 @@ class DraftsController < ApplicationController
     redirect_to root_path, notice: "Successfully annihilated draft!"
   end
 
-  # POST /drafts/:id/users
+  # POST /drafts/join
   def add_user
     if @draft.stage == CREATE_STAGE
       @draft.add_user!(@session_user)
@@ -33,24 +33,25 @@ class DraftsController < ApplicationController
     end
   end
 
-  # DELETE /drafts/:id/users/:user_id
+  # DELETE /drafts/:id/leave
   def remove_user
     if @draft.stage == CREATE_STAGE
-      @user = User.find_by_id(params[:user_id])
-      @draft.remove_user!(@user)
+      @draft.remove_user!(@session_user)
+      redirect_to root_path, notice: "Successfully quit draft."
+    else
+      redirect_to root_path, alert: "Draft has already started. Stop trolling people."
     end
-    render nothing: true
   end
 
-  # POST /drafts/:id/draft_sets/:set_id
+  # POST /drafts/:id/card_sets?set_id=123
   def add_set
     @draft.add_set!(@set) if @draft.stage == CREATE_STAGE
     render nothing: true
   end
 
-  # DELETE /drafts/:id/draft_sets/:set_id
+  # DELETE /drafts/:id/card_sets?set_id=123
   def remove_set
-    @draft.add_set!(@set) if @draft.stage == CREATE_STAGE
+    @draft.remove_set!(@set) if @draft.stage == CREATE_STAGE
     render nothing: true
   end
 
