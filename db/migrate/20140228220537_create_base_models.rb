@@ -42,6 +42,7 @@ class CreateBaseModels < ActiveRecord::Migration
     create_table :drafts do |t|
       t.string :name
       t.integer :user_count
+      t.integer :stage, :default => 0
       # has_many_users
       # has_many_card_sets
       t.timestamps
