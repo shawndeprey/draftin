@@ -51,7 +51,7 @@ class CreateBaseModels < ActiveRecord::Migration
     create_table :packs do |t|
       t.integer :card_set_id
       t.integer :user_id
-      t.integer :order_received # Order user received the pack in
+      t.integer :order_received, :default => 0 # Order user received the pack in
       # has_one_card_set
       # has_and_belongs_to_many_cards
       t.timestamps

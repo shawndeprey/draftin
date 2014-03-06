@@ -38,4 +38,17 @@ class Draft < ActiveRecord::Base
     card_set = DraftCardSet.where('draft_id = :draft_id AND card_set_id = :set_id', :draft_id => self.id, :set_id => set.id).limit(1)
     card_set.first.destroy unless card_set.blank?
   end
+
+  def start_draft!
+    ActiveRecord::Base.transaction do
+      set = self.card_sets.first
+      self.users.each_with_index do |user,position|
+        user.prepare_for_draft!(position)
+        set.generate_pack_for_user!(user)
+      end
+      self.remove_set!(set)
+      self.stage = DRAFT_STAGE
+      self.save
+    end
+  end
 end

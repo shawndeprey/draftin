@@ -1,10 +1,21 @@
-<% if @draft.stage == CREATE_STAGE %>
-  <div class="row">
-    <div class="col-lg-12">
-      <h2><%= @draft.name %></h2>
-    </div>
+<div class="row">
+  <div class="col-lg-8">
+    <h2>#<%= @draft.id %> - <%= @draft.name %></h2>
   </div>
+  <% if @draft.stage == DRAFT_STAGE %>
+    <div class="col-lg-4">
+      <button type="button" class="btn btn-success disabled" onclick="console.log('Next Pack Starting...');">Next Pack</button>
+      <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?">
+        <button type="button" class="btn btn-info">Leave Draft</button>
+      </a>
+      <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?">
+        <button type="button" class="btn btn-danger">Destroy Draft</button>
+      </a>
+    </div>
+  <% end %>
+</div>
 
+<% if @draft.stage == CREATE_STAGE %>
   <div class="row">
 
     <div class="col-lg-4">
@@ -46,7 +57,7 @@
             Options
           </li>
           <li class="list-group-item">
-            <button type="button" class="btn btn-success">Start Draft</button>
+            <button type="button" class="btn btn-success start_button" onclick="$('button.start_button').addClass('disabled');draftin.draft.lobby.startDraft();">Start Draft</button>
             <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?">
               <button type="button" class="btn btn-info">Leave Draft</button>
             </a>
@@ -60,7 +71,7 @@
 
   </div>
 <% elsif @draft.stage == DRAFT_STAGE %>
-  <p>Drafting Stage!</p>
+  <p>Drafting Stage sucka!</p>
 <% else %>
   <p>Draft is OVER! Display cards!</p>
 <% end %>

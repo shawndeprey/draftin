@@ -1,6 +1,5 @@
 class DraftsController < ApplicationController
   before_filter :load_draft, :except => [:create]
-  before_filter :load_set, :only => [:add_set, :remove_set]
 
   # GET /drafts/:id
   def show
@@ -43,27 +42,10 @@ class DraftsController < ApplicationController
     end
   end
 
-  # POST /drafts/:id/card_sets?set_id=123
-  def add_set
-    @draft.add_set!(@set) if @draft.stage == CREATE_STAGE
-    render nothing: true
-  end
-
-  # DELETE /drafts/:id/card_sets?set_id=123
-  def remove_set
-    @draft.remove_set!(@set) if @draft.stage == CREATE_STAGE
-    render nothing: true
-  end
-
   protected
   def load_draft
     @draft = Draft.find_by_id(params[:id])
     return render_not_found unless @draft
-  end
-
-  def load_set
-    @set = CardSet.find_by_id(params[:set_id])
-    return render_not_found unless @set
   end
 
   private

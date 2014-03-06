@@ -5,7 +5,7 @@ draftin.draft = {
       draftin.draft.lobby.init();
     } else
     if(draftStage == 1){
-      console.log("Draft is in progress busta!");
+      draftin.draft.table.init();
     } else {
       console.log("Draft is over busta!");
     }
@@ -19,8 +19,12 @@ draftin.draft = {
     polling: function(){
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'.json',
         success: function(result){
-          draftin.draft.lobby.checkUsers(result.draft.users);
-          draftin.draft.lobby.checkSets(result.draft.card_sets);
+          if(result.draft.stage == 0){
+            draftin.draft.lobby.checkUsers(result.draft.users);
+            draftin.draft.lobby.checkSets(result.draft.card_sets);
+          } else {
+            location.reload();
+          }
         }
       });
     },
@@ -47,10 +51,18 @@ draftin.draft = {
     addSet: function(){
       setContainer = $('li#add_set_container');
       setId = $(setContainer).find('select').val();
-      $.ajax({type:"POST", url:'/drafts/'+draftin.draft.id+'/card_sets/'+setId});
+      $.ajax({type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json'});
     },
     removeSet: function(setId){
-      $.ajax({type:"DELETE", url:'/drafts/'+draftin.draft.id+'/card_sets/'+setId});
+      $.ajax({type:"DELETE", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json'});
+    },
+    startDraft: function(){
+      $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/start.json'});
+    }
+  },
+  table: { // Like you're at the table...shutup...
+    init: function(){
+      console.log("Draft is in progress busta brown!");
     }
   }
 }

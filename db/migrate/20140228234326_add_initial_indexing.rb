@@ -4,6 +4,7 @@ class AddInitialIndexing < ActiveRecord::Migration
 
     add_index :cards, :name
     add_index :cards, :card_set_id
+    add_index :cards, :rarity
     add_index :cards, :multiverseid, :unique => true
 
     add_index :drafts, :name
@@ -33,6 +34,7 @@ class AddInitialIndexing < ActiveRecord::Migration
 
     remove_index :cards, :name
     remove_index :cards, :card_set_id
+    remove_index :cards, :rarity
     remove_index :cards, :multiverseid
 
     remove_index :drafts, :name

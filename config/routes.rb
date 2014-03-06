@@ -6,6 +6,10 @@ Draftin::Application.routes.draw do
   # The API. Only JSON is allowed here.
   namespace :api, :constraints => {:format => 'json'} do
     namespace :v1 do
+      post '/drafts/:id/card_sets/:set_id' => 'drafts#add_set'
+      delete '/drafts/:id/card_sets/:set_id' => 'drafts#remove_set'
+      get '/drafts/:id/start' => 'drafts#start'
+      get '/drafts/:id/status' => 'drafts#status'
       resources :drafts
     end
   end
@@ -23,8 +27,6 @@ Draftin::Application.routes.draw do
   # Drafts
   post '/drafts/join' => 'drafts#add_user', as: :join_draft
   delete '/drafts/:id/leave' => 'drafts#remove_user'
-  post '/drafts/:id/card_sets/:set_id' => 'drafts#add_set'
-  delete '/drafts/:id/card_sets/:set_id' => 'drafts#remove_set'
 
   resources :users
   resources :drafts
