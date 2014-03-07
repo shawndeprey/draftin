@@ -62,7 +62,37 @@ draftin.draft = {
   },
   table: { // Like you're at the table...shutup...
     init: function(){
-      console.log("Draft is in progress busta brown!");
+      setInterval(function(){ draftin.draft.table.polling(); }, 2000);
+    },
+    polling: function(){
+      $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/status.json',
+        success: function(result){
+          if(result.draft.stage == 1){
+            // $($('div#current_pack_container').children()[0]).data('mid');
+            draftin.draft.table.updateUserPackCounts(result.draft.users);
+          } else {
+            location.reload();
+          }
+        }
+      });
+    },
+    updateUserPackCounts: function(users){
+      allCountsZero = true;
+      $.each(users, function(){
+        if(this.pack_count != 0){
+          allCountsZero = false;
+        }
+        counter = $('span.user_'+this.id+'_packs');
+        if(counter){
+          $(counter).html(this.pack_count);
+        }
+      });
+      if(allCountsZero){
+        $('button.next_button').removeClass('disabled');
+      }
+    },
+    nextPack: function(){
+      console.log("Gettin' dat next pack!");
     }
   }
 }

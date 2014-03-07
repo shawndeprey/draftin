@@ -3,6 +3,7 @@ class DraftsController < ApplicationController
 
   # GET /drafts/:id
   def show
+    @current_pack = @session_user.current_pack
   end
 
   # POST /drafts
