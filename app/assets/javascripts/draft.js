@@ -18,6 +18,7 @@ draftin.draft = {
     },
     polling: function(){
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'.json',
+        statusCode:{404: function(response){location.reload();}},
         success: function(result){
           if(result.draft.stage == 0){
             draftin.draft.lobby.checkUsers(result.draft.users);
@@ -62,22 +63,29 @@ draftin.draft = {
   },
   table: { // Like you're at the table...shutup...
     init: function(){
-      setInterval(function(){ draftin.draft.table.polling(); }, 2000);
+      draftin.draft.cardTemplate = '<div class="col-sm-3 card_box" data-mid="{{mid}}"><img src="{{image_url}}" class="card"></div>';
+      draftin.draft.table.setClickEvents();
+      setInterval(function(){ draftin.draft.table.polling(); }, 1000);
     },
     polling: function(){
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/status.json',
+        statusCode:{404: function(response){location.reload();}},
         success: function(result){
           if(result.draft.stage == 1){
-            // $($('div#current_pack_container').children()[0]).data('mid');
-            draftin.draft.table.updateUserPackCounts(result.draft.users);
+            draftin.draft.table.updateUserPackCounts(result.draft.users, result.draft.card_sets);
+            draftin.draft.table.updateCurrentPack(result.draft.current_pack);
           } else {
             location.reload();
           }
         }
       });
     },
-    updateUserPackCounts: function(users){
+    nextPack: function(){
+      $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/next_pack.json'});
+    },
+    updateUserPackCounts: function(users, card_sets){
       allCountsZero = true;
+      nextButton = $('button.next_button');
       $.each(users, function(){
         if(this.pack_count != 0){
           allCountsZero = false;
@@ -87,12 +95,53 @@ draftin.draft = {
           $(counter).html(this.pack_count);
         }
       });
-      if(allCountsZero){
-        $('button.next_button').removeClass('disabled');
+      if(allCountsZero && card_sets.length != 0){
+        $(nextButton).removeClass('disabled');
+      } else {
+        if(!$(nextButton).hasClass('disabled')){
+          $(nextButton).addClass('disabled');
+        }
       }
     },
-    nextPack: function(){
-      console.log("Gettin' dat next pack!");
+    updateCurrentPack: function(currentPack){
+      currentPackContainer = $('div#current_pack_container');
+      if(currentPack != null && $(currentPackContainer).children().length == 0){
+        $.each(currentPack.cards, function(){
+          $(currentPackContainer).append(draftin.draft.cardTemplate.replace(/\{\{mid\}\}/i,this.multiverseid).replace(/\{\{image_url\}\}/i,this.image_url));
+        });
+        draftin.draft.table.setClickEvents();
+      }
+    },
+    setClickEvents: function(){
+      $('div#current_pack_container').children().off('click').on('click', function(){
+        draftin.draft.table.selectCard(this);
+      });
+    },
+    removeSelectedStatusFromAll: function(){
+      $('div#current_pack_container').children().removeClass('selected');
+    },
+    clearCurrentPack: function(){
+      $('div#current_pack_container').children().remove();
+    },
+    selectCard: function(card){
+      if($(card).hasClass('selected')){
+        draftin.draft.table.selectMultiverseIdFromCurrentPack(card);
+      } else {
+        draftin.draft.table.removeSelectedStatusFromAll();
+        $(card).addClass('selected');
+      }
+    },
+    selectMultiverseIdFromCurrentPack: function(card){
+      $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/select_card.json?multiverse_id='+$(card).data('mid'),
+        success: function(result){
+          if(result && result.success){
+            draftin.draft.table.removeSelectedStatusFromAll();
+            $(card).off('click').removeClass('card_box');
+            draftin.draft.table.clearCurrentPack();
+            $('div#cards_container').prepend(card);
+          }
+        }
+      });
     }
   }
 }

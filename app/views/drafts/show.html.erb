@@ -74,12 +74,12 @@
 
     <div class="col-lg-12">
       <div class="well well-sm">
-        <h3>Current Pack</h3>
+        <h3>Current Pack<span>(Click to select a card, click card again to confirm...)</span></h3>
         <div id="pack_loading_message" class="loading_message">Waiting For Pack...</div>
         <div id="current_pack_container" class="row">
           <% if @current_pack %>
             <% @current_pack.cards.each do |card| %>
-              <div class="col-sm-3" data-mid="<%= card.multiverseid %>">
+              <div class="col-sm-3 card_box" data-mid="<%= card.multiverseid %>">
                 <img src="<%= card.image_url %>" class="card">
               </div>
             <% end %>

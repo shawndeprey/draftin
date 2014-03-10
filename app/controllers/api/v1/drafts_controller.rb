@@ -30,6 +30,20 @@ class Api::V1::DraftsController < Api::V1::BaseController
     render json: @draft, session_user: @session_user, root: :draft, serializer: DraftStatusSerializer
   end
 
+  # GET /drafts/:id/select_card.json?multiverse_id=12345
+  def select_card
+    return not_found if params[:multiverse_id].blank? || params[:multiverse_id] == 'undefined'
+    @session_user.select_multiverseid_from_current_pack!(params[:multiverse_id])
+    next_user = @draft.next_user(@session_user)
+    @session_user.give_current_pack_to_user!(next_user)
+    render json: {success:true}
+  end
+
+  # GET /drafts/:id/next_pack.json
+  def next_pack
+    @draft.next_pack!
+  end
+
   protected
   def load_draft
     @draft = Draft.find_by_id(params[:id]) || not_found

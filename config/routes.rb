@@ -10,6 +10,8 @@ Draftin::Application.routes.draw do
       delete '/drafts/:id/card_sets/:set_id' => 'drafts#remove_set'
       get '/drafts/:id/start' => 'drafts#start'
       get '/drafts/:id/status' => 'drafts#status'
+      get '/drafts/:id/select_card' => 'drafts#select_card'
+      get '/drafts/:id/next_pack' => 'drafts#next_pack'
       resources :drafts
     end
   end

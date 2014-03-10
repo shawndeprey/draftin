@@ -10,4 +10,9 @@ class Pack < ActiveRecord::Base
   def add_card(card)
     self.cards << card unless card.blank?
   end
+
+  def remove_card!(card)
+    self.cards.delete(card)
+    self.save
+  end
 end
