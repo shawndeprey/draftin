@@ -10,6 +10,11 @@
 - Add Export functionality for users cards, add button to show
 - Add Auto Detect End of Draft and Draft Ended View
 - Make pack generation super realistic
+- Deny draft starting with less than 2 people
+- Add Submit a Bug button
+- Add Legal Page
+- Add Terms of Service
+- Add Footer
 
 --- Alpha Testing ---
 
