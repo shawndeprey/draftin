@@ -1,13 +1,26 @@
+<div class="row">
+  <div class="col-lg-8">
+    <h2>#<%= @draft.id %> - <%= @draft.name %></h2>
+  </div>
+  <div class="col-lg-4">
+    <% if @draft.stage == CREATE_STAGE %>
+      <button type="button" class="btn btn-success start_button" onclick="$('button.start_button').addClass('disabled');draftin.draft.lobby.startDraft();">Start Draft</button>
+    <% elsif @draft.stage == DRAFT_STAGE %>
+      <button type="button" class="btn btn-success next_button disabled" onclick="$('button.next_button').addClass('disabled');draftin.draft.table.nextPack();">Next Pack</button>
+    <% end %>
+    <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?">
+      <button type="button" class="btn btn-info">Leave Draft</button>
+    </a>
+    <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?">
+      <button type="button" class="btn btn-danger">Destroy Draft</button>
+    </a>
+  </div>
+</div>
+
 <% if @draft.stage == CREATE_STAGE %>
   <div class="row">
-    <div class="col-lg-12">
-      <h2><%= @draft.name %></h2>
-    </div>
-  </div>
 
-  <div class="row">
-
-    <div class="col-lg-4">
+    <div class="col-lg-6">
       <div id="draft_users">
         <ul class="list-group">
           <li class="list-group-item" style="background-color:#49515a;">
@@ -20,7 +33,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-lg-6">
       <div id="draft_sets">
         <ul class="list-group">
           <li class="list-group-item" style="background-color:#49515a;">
@@ -39,28 +52,59 @@
       </div>
     </div>
 
-    <div class="col-lg-4">
-      <div class="bs-example">
-        <ul class="list-group">
-          <li class="list-group-item" style="background-color:#49515a;">
-            Options
-          </li>
-          <li class="list-group-item">
-            <button type="button" class="btn btn-success">Start Draft</button>
-            <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?">
-              <button type="button" class="btn btn-info">Leave Draft</button>
-            </a>
-            <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?">
-              <button type="button" class="btn btn-danger">Destroy Draft</button>
-            </a>
-          </li>
-        </ul>
+  </div>
+<% elsif @draft.stage == DRAFT_STAGE %>
+  <div class="row draft_stage_2">
+
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <h3>Users</h3>
+        <div id="user_container" class="row">
+          <% @draft.users.each do |user| %>
+          <div class="col-lg-2">
+            <ul class="list-group">
+              <li class="list-group-item user_header"><%= user.username %></li>
+              <li class="list-group-item">Packs <span class="badge user_<%=user.id%>_packs"><%= user.packs.count %></span></li>
+            </ul>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <h3>Current Pack<span>(Click to select a card, click card again to confirm...)</span></h3>
+        <div id="pack_loading_message" class="loading_message">Waiting For Pack...</div>
+        <div id="current_pack_container" class="row">
+          <% if @current_pack %>
+            <% @current_pack.cards.each do |card| %>
+              <div class="col-sm-3 card_box" data-mid="<%= card.multiverseid %>">
+                <img src="<%= card.image_url %>" class="card">
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="well well-sm">
+        <h3>My Cards</h3>
+        <div id="cards_loading_message" class="loading_message">Loading Cards...</div>
+        <div id="cards_container" class="row">
+          <% unless @session_user.cards.blank? %>
+            <% @session_user.cards.each do |card| %>
+              <div class="col-sm-3">
+                <img src="<%= card.image_url %>" class="card">
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
 
   </div>
-<% elsif @draft.stage == DRAFT_STAGE %>
-  <p>Drafting Stage!</p>
 <% else %>
   <p>Draft is OVER! Display cards!</p>
 <% end %>

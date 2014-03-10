@@ -29,6 +29,11 @@ class Draft < ActiveRecord::Base
     self.save
   end
 
+  def next_user(user)
+    return self.users.where(position: 0).first if user.position == self.users.length - 1
+    return self.users.where(position: user.position + 1).first
+  end
+
   def add_set!(set)
     self.card_sets << set
     self.save
@@ -37,5 +42,31 @@ class Draft < ActiveRecord::Base
   def remove_set!(set)
     card_set = DraftCardSet.where('draft_id = :draft_id AND card_set_id = :set_id', :draft_id => self.id, :set_id => set.id).limit(1)
     card_set.first.destroy unless card_set.blank?
+  end
+
+  def start_draft!
+    ActiveRecord::Base.transaction do
+      set = self.card_sets.first
+      return unless set
+      self.users.each_with_index do |user,position|
+        user.prepare_for_draft!(position)
+        set.generate_pack_for_user!(user)
+      end
+      self.remove_set!(set)
+      self.stage = DRAFT_STAGE
+      self.save
+    end
+  end
+
+  def next_pack!
+    ActiveRecord::Base.transaction do
+      set = self.card_sets.first
+      return unless set
+      self.users.each do |user|
+        set.generate_pack_for_user!(user)
+      end
+      self.remove_set!(set)
+      self.save
+    end
   end
 end

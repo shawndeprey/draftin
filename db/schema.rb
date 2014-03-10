@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140228234326) do
   add_index "cards", ["card_set_id"], name: "index_cards_on_card_set_id", using: :btree
   add_index "cards", ["multiverseid"], name: "index_cards_on_multiverseid", unique: true, using: :btree
   add_index "cards", ["name"], name: "index_cards_on_name", using: :btree
+  add_index "cards", ["rarity"], name: "index_cards_on_rarity", using: :btree
 
   create_table "draft_card_sets", force: true do |t|
     t.integer  "draft_id"
@@ -108,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140228234326) do
   create_table "packs", force: true do |t|
     t.integer  "card_set_id"
     t.integer  "user_id"
-    t.integer  "order_received"
+    t.integer  "order_received", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
