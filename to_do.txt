@@ -1,3 +1,4 @@
+--- v0.1 Development ---
 - Create How To Video and put it on the home page
 - Add text chat infrastructure
 - Add Metrics
@@ -8,3 +9,16 @@
 - Add Feedback model and form, add form to footer
 - Add Export functionality for users cards, add button to show
 - Add Auto Detect End of Draft and Draft Ended View
+- Make pack generation super realistic
+
+--- Alpha Testing ---
+
+--- v0.2 Development ---
+
+--- Beta(1, 2, 3, 4, ...etc.) Testing ---
+
+--- v0.3, 0.4, 0.5, ...etc. Development ---
+
+--- Decision: Do we need a Beta 2, 3, 4? ---
+
+--- v1.0 Release ---
