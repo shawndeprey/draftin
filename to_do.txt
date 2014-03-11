@@ -1,20 +1,18 @@
 --- v0.1 Development ---
-- Create How To Video and put it on the home page
-- Add text chat infrastructure
-- Add Metrics
+- Deny draft starting with less than 2 people
 - Add Google Analytics
+- Add Metrics
 - Condense front page down into 1 small template
 - When scrolling over cards, pop-up a larger view
 - Clear all click events instantly if user has confirmed a card selection
 - Add Feedback model and form, add form to footer
 - Add Export functionality for users cards, add button to show
-- Add Auto Detect End of Draft and Draft Ended View
 - Make pack generation super realistic
-- Deny draft starting with less than 2 people
 - Add Submit a Bug button
 - Add Legal Page
 - Add Terms of Service
 - Add Footer
+- Create How To Video and put it on the home page
 
 --- Alpha Testing ---
 
@@ -27,3 +25,7 @@
 --- Decision: Do we need a Beta 2, 3, 4? ---
 
 --- v1.0 Release ---
+
+--- Nice to Haves ---
+- Web Sockets
+- Add text chat infrastructure
