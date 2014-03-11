@@ -2,7 +2,13 @@
 class CardSet < ActiveRecord::Base
   nilify_blanks
   # attributes: short_name, name, border, set_type, url, cards_url, created_at, updated_at
+  # has_mythics, has_rares, has_foils, pack_size, card_count
   has_many :cards
+  before_save :denormalize_data
+
+  def denormalize_data
+    self.card_count = self.cards.length
+  end
 
   def generate_pack_for_user!(user)
     pack = Pack.new({card_set_id: self.id})

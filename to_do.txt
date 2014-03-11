@@ -1,4 +1,5 @@
 --- v0.1 Development ---
+- Add Metrics
 - Condense front page down into 1 small template
 - Add Feedback model and form, add form to footer
 - Add Export functionality for users cards, add button to show
@@ -24,5 +25,4 @@
 --- Later Versions ---
 - Web Sockets
 - Add text chat infrastructure
-- Add Metrics
 - When scrolling over cards, pop-up a larger view

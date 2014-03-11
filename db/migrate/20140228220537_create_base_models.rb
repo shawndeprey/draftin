@@ -4,6 +4,7 @@ class CreateBaseModels < ActiveRecord::Migration
       t.string :username
       t.string :password
       t.integer :position
+      t.boolean :admin
       # has_many_drafts
       # has_many_cards
       # has_many_packs
@@ -64,6 +65,11 @@ class CreateBaseModels < ActiveRecord::Migration
       t.string :set_type # "expansion"
       t.string :url # "https://api.deckbrew.com/mtg/sets/ARB"
       t.string :cards_url # "https://api.deckbrew.com/mtg/cards?set=ARB"
+      t.boolean :has_mythics
+      t.boolean :has_rares
+      t.boolean :has_foils
+      t.integer :pack_size
+      t.integer :card_count
       t.timestamps
     end
 

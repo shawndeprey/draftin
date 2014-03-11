@@ -1,6 +1,7 @@
 class AddInitialIndexing < ActiveRecord::Migration
   def self.up
     add_index :users, :username, :unique => true
+    add_index :users, :admin
 
     add_index :cards, :name
     add_index :cards, :card_set_id
@@ -31,6 +32,7 @@ class AddInitialIndexing < ActiveRecord::Migration
 
   def self.down
     remove_index :users, :username
+    remove_index :users, :admin
 
     remove_index :cards, :name
     remove_index :cards, :card_set_id
