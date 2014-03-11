@@ -1,5 +1,4 @@
 --- v0.1 Development ---
-- Deny draft starting with less than 2 people
 - Condense front page down into 1 small template
 - When scrolling over cards, pop-up a larger view
 - Clear all click events instantly if user has confirmed a card selection
