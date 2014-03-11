@@ -6,8 +6,6 @@ draftin.draft = {
     } else
     if(draftStage == 1){
       draftin.draft.table.init();
-    } else {
-      console.log("Draft is over busta!");
     }
   },
   lobby: {
@@ -23,11 +21,22 @@ draftin.draft = {
           if(result.draft.stage == 0){
             draftin.draft.lobby.checkUsers(result.draft.users);
             draftin.draft.lobby.checkSets(result.draft.card_sets);
+            draftin.draft.lobby.checkStartConditions(result.draft.users);
           } else {
             location.reload();
           }
         }
       });
+    },
+    checkStartConditions: function(users){
+      startButton = $('button.start_button');
+      if(users.length > 1){
+        $(startButton).removeClass('disabled');
+      } else {
+        if(!$(startButton).hasClass('disabled')){
+          $(startButton).addClass('disabled');
+        }
+      }
     },
     checkUsers: function(users){
       userContainer = $('div#draft_users ul.list-group');
