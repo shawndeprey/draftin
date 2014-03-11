@@ -1,6 +1,5 @@
 --- v0.1 Development ---
 - Condense front page down into 1 small template
-- Clear all click events instantly if user has confirmed a card selection
 - Add Feedback model and form, add form to footer
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
