@@ -1,104 +1,86 @@
-<div class="row">
-  <div class="col-lg-12">
-    <div class="bs-example">
-      <div class="jumbotron">
-        <h1>Draftin'</h1>
-        <p>A simple drafting tool for Magic the Gathering.</p>
-        <% unless @session_user %>
-          <p>Login or create an account below to start Draftin'.</p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
 <% if @session_user %>
   <div class="row">
-    <div class="col-lg-6">
-      <div class="well">
-        <form class="bs-example form-horizontal" method="POST" action="<%= drafts_path %>">
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-          <fieldset>
-            <legend>Create Draft</legend>
-            <div class="form-group">
-              <label for="inputEmail" class="col-lg-3 control-label">Draft Name</label>
-              <div class="col-lg-9">
-                <input type="text" class="form-control" placeholder="Draft Name" name="draft[name]">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-1">
-                <button type="submit" class="btn btn-primary btn-success">Create</button>
-                <button class="btn btn-default btn-danger">Cancel</button>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
 
     <div class="col-lg-6">
-      <div class="well">
-        <form class="bs-example form-horizontal" method="POST" action="<%= join_draft_path %>">
-          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-          <fieldset>
-            <legend>Join Draft</legend>
-            <div class="form-group">
-              <label for="inputEmail" class="col-lg-3 control-label">Draft ID</label>
-              <div class="col-lg-9">
-                <input type="text" class="form-control" placeholder="Draft ID" name="id">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-lg-10 col-lg-offset-1">
-                <button type="submit" class="btn btn-primary btn-success">Join</button>
-                <button class="btn btn-default btn-danger">Cancel</button>
-              </div>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="page-header">
-        <h1 id="tables">My Drafts</h1>
-      </div>
-
-      <div class="bs-example table-responsive">
-        <table class="table table-striped table-hover ">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Draft Name</th>
-              <th>Draft Status</th>
-              <th>Draft Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @drafts.each do |draft| %>
-              <tr>
-                <td style="line-height:40px;"><%= draft.id %></td>
-                <td style="line-height:40px;"><%= draft.name %></td>
-                <td style="line-height:40px;">
-                  <button type="button" class="btn btn-info disabled"><%= draft.status %></button>
-                </td>
-                <td style="line-height:40px;">
-                  <a href="<%= draft_path(draft) %>">
-                    <button type="button" class="btn btn-success">Draft Lounge</button>
-                  </a>
-                </td>
-              </tr>
+      <div class="list-group">
+        <span class="list-group-item" style="background-color: #3e444c;">My Drafts</span>
+        <% 5.times do |x| %>
+          <% if @drafts[x] %>
+            <a href="<%= draft_path(@drafts[x]) %>" class="list-group-item">
+              <%= @drafts[x].name %><span class="label label-info" style="float:right;"><%= @drafts[x].status %></span>
+            </a>
+          <% else %>
+            <span class="list-group-item" style="min-height:42px;"></span>
+          <% end %>
+        <% end %>
+        <span class="list-group-item" style="background-color: #3e444c;">
+          <ul class="pagination pagination-sm" style="margin: -4px 0px -8px 0px;">
+            <li <%if !@drafts.previous_page%>class="disabled"<%end%>><a href="<%=@drafts.previous_page ? "/?page=#{@drafts.previous_page}" : "#"%>">«</a></li>
+            <% if @drafts.current_page > 1 %>
+              <li><a href="/?page=<%=@drafts.current_page - 1%>"><%=@drafts.current_page - 1%></a></li>
             <% end %>
-          </tbody>
-        </table>
-        <%= will_paginate @drafts %>
+            <li class="active"><a href="#"><%= @drafts.current_page %></a></li>
+            <% if @drafts.next_page %>
+              <li><a href="/?page=<%=@drafts.current_page + 1%>"><%=@drafts.current_page + 1%></a></li>
+            <% end %>
+            <li <%if !@drafts.next_page%>class="disabled"<%end%>><a href="<%=@drafts.next_page ? "/?page=#{@drafts.next_page}" : "#"%>">»</a></li>
+        </span>
       </div>
     </div>
+
+    <div class="col-lg-6">
+
+      <form class="bs-example form-horizontal" method="POST" action="<%= drafts_path %>">
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+        <h3>Create Draft</h3>
+        <div class="input-group">
+          <!--<span class="input-group-addon">Create Draft</span>-->
+          <input type="text" class="form-control" placeholder="Draft Name" name="draft[name]">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-success" type="submit">Create</button>
+          </span>
+        </div>
+      </form>
+
+      <div class="special_hr" style="margin: 20px 0px -5px 0px;"></div>
+
+      <form class="bs-example form-horizontal" method="POST" action="<%= join_draft_path %>">
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+        <h3>Join Draft</h3>
+        <div class="input-group">
+          <!--<span class="input-group-addon">Join Draft</span>-->
+          <input type="text" class="form-control" placeholder="Draft ID" name="id">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-success" type="submit">Join</button>
+          </span>
+        </div>
+      </form>
+    </div>
+
   </div>
 <% else %>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-lg-6" style="padding-top:20px;">
+            <div style="display:none;"><h1>Draftin'</h1></div>
+            <center><%= image_tag "logo-large.png", :class => "large_logo" %></center>
+            <div style="margin: 35px 0px 35px 0px;"></div>
+            <p style="text-align:center;">A simple drafting tool for Magic the Gathering.</p>
+            <p style="text-align:center;">Login or create an account below to start Draftin'.</p>
+          </div>
+          <div class="col-lg-6">
+            <center>
+              <iframe style="width:100%;height:255px;" src="//www.youtube.com/embed/9bZkp7q19f0" frameborder="0" allowfullscreen></iframe>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-lg-6">
       <div class="well">
@@ -121,7 +103,6 @@
             <div class="form-group">
               <div class="col-lg-9 col-lg-offset-1">
                 <button type="submit" class="btn btn-primary btn-success">Login</button>
-                <button class="btn btn-default btn-danger">Cancel</button>
               </div>
             </div>
           </fieldset>
@@ -150,7 +131,6 @@
             <div class="form-group">
               <div class="col-lg-9 col-lg-offset-1">
                 <button type="submit" class="btn btn-primary btn-success">Create</button>
-                <button class="btn btn-default btn-danger">Cancel</button>
               </div>
             </div>
           </fieldset>

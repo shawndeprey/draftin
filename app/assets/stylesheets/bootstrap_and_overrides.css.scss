@@ -2,10 +2,36 @@
 body { padding-top: 60px; }
 
 body.v1 { 
+  input.form_input {
+    position: absolute;
+    width: 383px;
+  }
+  button.btn_confirm {
+    float: right;
+    position: relative;
+  }
+
+  div.special_hr {
+    width: 100%;
+    height: 1px;
+    margin: 10px 0px;
+    opacity: 0.5;
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,0.5)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(0,0,0,0) 100%); /* Opera 12+ */
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,255,0.5) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+    background: radial-gradient(ellipse at center,  rgba(255,255,255,0.5) 0%,rgba(0,0,0,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ffffff', endColorstr='#00000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  }
+
   img.header_logo {
     width: 50%;
     top: -7px;
     position: relative;
+  }
+  img.large_logo {
+    width: 250px;
   }
   div.beta_ribbon {
     position: fixed;
