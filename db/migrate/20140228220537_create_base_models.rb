@@ -4,7 +4,7 @@ class CreateBaseModels < ActiveRecord::Migration
       t.string :username
       t.string :password
       t.integer :position
-      t.boolean :admin
+      t.boolean :admin, :default => false
       # has_many_drafts
       # has_many_cards
       # has_many_packs

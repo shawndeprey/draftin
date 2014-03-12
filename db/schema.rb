@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20140228234326) do
     t.string   "set_type"
     t.string   "url"
     t.string   "cards_url"
+    t.boolean  "has_mythics"
+    t.boolean  "has_rares"
+    t.boolean  "has_foils"
+    t.integer  "pack_size"
+    t.integer  "card_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,10 +136,12 @@ ActiveRecord::Schema.define(version: 20140228234326) do
     t.string   "username"
     t.string   "password"
     t.integer  "position"
+    t.boolean  "admin",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "users", ["admin"], name: "index_users_on_admin", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
