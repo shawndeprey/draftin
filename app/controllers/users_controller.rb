@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       login @user
       redirect_to root_path, notice: "User #{@user.username} successfully created and logged in."
     else
-      redirect_to root_path, alert: "Error creating user: #{@user.errors.full_messages.join(" ")}"
+      redirect_to root_path, alert: @user.errors.full_messages.join(" ")}
     end
   end
 
