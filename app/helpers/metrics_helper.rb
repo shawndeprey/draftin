@@ -9,6 +9,7 @@ module MetricsHelper
   LOGIN         = "login"
   LOGOUT        = "logout"
   CREATE_USER   = "create user"
+  SELECT_CARD   = "select card"
 
   def self.track(event, properties, user)
     return unless Rails.env.production?

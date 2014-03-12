@@ -22,6 +22,7 @@ class Api::V1::DraftsController < Api::V1::BaseController
   # GET /drafts/:id/start.json
   def start
     @draft.start_draft!
+    MetricsHelper::track(MetricsHelper::START_DRAFT, {sets:@draft.card_sets.length,users:@draft.users.length}, @session_user)
     render nothing: true
   end
 
@@ -36,6 +37,7 @@ class Api::V1::DraftsController < Api::V1::BaseController
     @session_user.select_multiverseid_from_current_pack!(params[:multiverse_id])
     next_user = @draft.next_user(@session_user)
     @session_user.give_current_pack_to_user!(next_user)
+    MetricsHelper::track(MetricsHelper::SELECT_CARD, {multiverse_id:params[:multiverse_id]}, @session_user)
     render json: {success:true}
   end
 
