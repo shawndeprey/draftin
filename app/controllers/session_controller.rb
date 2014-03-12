@@ -4,6 +4,7 @@ class SessionController < ApplicationController
   def create
     @user = User.find_by_username(params[:username])
     if @user && @user.password == ApplicationHelper::md5(params[:password])
+      MetricsHelper::track(MetricsHelper::LOGIN, {}, @user)
       login @user
       redirect_to root_path, notice: "You have successfully logged as #{@user.username}."
     else
@@ -13,6 +14,7 @@ class SessionController < ApplicationController
 
   # DELETE /session
   def destroy
+    MetricsHelper::track(MetricsHelper::LOGOUT, {}, @session_user)
     logout
     redirect_to root_path, notice: "You have successfully logged out."
   end

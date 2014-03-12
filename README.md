@@ -15,7 +15,7 @@ In order to make this easy, Vagrant is used on top of Virtualbox.
 So, install both Virtualbox and Vagrant by following their automated
 installers.
 
-- [Vagrant Download](http://downloads.vagrantup.com/)
+- [Vagrant Download](http://www.vagrantup.com/downloads.html)
 - [Virtualbox Download](https://www.virtualbox.org/wiki/Downloads)
 
 ### Launching the Virtual Machine

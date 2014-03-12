@@ -10,6 +10,8 @@ class UsersController < ApplicationController
     @user = User.find_by_username(params[:user][:username]) || User.new(user_params)
     return redirect_to root_path, alert: "Username '#{@user.username}' already exists." if @user.id
     if @user.save
+      MetricsHelper::track(MetricsHelper::CREATE_USER, {}, @user)
+      MetricsHelper::send_user_to_mixpanel(@user)
       login @user
       redirect_to root_path, notice: "User #{@user.username} successfully created and logged in."
     else
