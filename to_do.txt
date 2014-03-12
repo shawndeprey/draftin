@@ -1,5 +1,4 @@
 --- v0.1 Development ---
-- Condense front page down into 1 small template
 - Add Feedback model and form, add form to footer
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
@@ -7,6 +6,7 @@
 - Add Legal Page
 - Add Terms of Service
 - Add Footer
+- Add Donation Page
 - Create How To Video and put it on the home page
 
 --- Alpha Testing ---
