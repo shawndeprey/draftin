@@ -1,11 +1,7 @@
 --- v0.1 Development ---
-- Add Feedback model and form, add form to footer
+- Add Feedback model and form, add form to footer. To be used for bugs as well.
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
-- Add Submit a Bug button
-- Add Legal Page
-- Add Terms of Service
-- Add Donation Page
 - Create How To Video and put it on the home page
 - Add Footer
 - Follow Dev Section in footer
@@ -26,3 +22,4 @@
 - Web Sockets
 - Add text chat infrastructure
 - When scrolling over cards, pop-up a larger view
+- Add Donation Page
