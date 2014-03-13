@@ -37,6 +37,15 @@ body.v1 {
     width: 50px;
     img { width: 100%; }
   }
+
+  div#set_container {
+    li {
+      border-radius: 0px;
+      &:last-child {
+        margin-bottom: -1px;
+      }
+    }
+  }
   div.draft_stage_2 {
     h3 { 
       margin: 0px 0px 10px 0px;

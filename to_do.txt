@@ -8,9 +8,7 @@
 - Add Footer
 - Add Donation Page
 - Create How To Video and put it on the home page
-- Fix add sets gui on show draft
 - Follow Dev Section in footer
-- Ensure long usernames don't break UI around the app
 
 --- Alpha Testing ---
 
