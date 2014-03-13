@@ -2,6 +2,10 @@
 body { padding-top: 60px; }
 
 body.v1 { 
+  footer {
+    margin-top: 50px;
+  }
+
   a.alert_close_button {
     top: -9px;
     right: -7px;
