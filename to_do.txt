@@ -5,9 +5,9 @@
 - Add Submit a Bug button
 - Add Legal Page
 - Add Terms of Service
-- Add Footer
 - Add Donation Page
 - Create How To Video and put it on the home page
+- Add Footer
 - Follow Dev Section in footer
 
 --- Alpha Testing ---
