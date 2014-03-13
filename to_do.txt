@@ -2,8 +2,11 @@
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
 - Add email to user accounts and signup
+- Send email with metrics
 - Add account recovery
-- Add Instructions on the draft view pages
+- Add Instructions on the draft view pages (Tooltips)
+- Waiting for next pack on Current Pack Tile
+- Use callback polling instead of interval polling (Polling scales with network speed.)
 
 --- Alpha Testing ---
 
@@ -25,6 +28,8 @@
 - Web Sockets
 - Official Draft Setups When Picking Packs
 - When scrolling over cards, pop-up a larger view
+- Online Users
+- Public Drafts
 
 --- Closed Alpha Testers ---
 - Jon Su
