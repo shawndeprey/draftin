@@ -1,14 +1,17 @@
 --- v0.1 Development ---
-- Add Feedback model and form, add form to footer. To be used for bugs as well.
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
-- Create How To Video and put it on the home page
-- Add Footer
-- Follow Dev Section in footer
+- Add email to user accounts and signup
+- Add account recovery
+- Add Instructions on the draft view pages
 
 --- Alpha Testing ---
 
 --- v0.2 Development ---
+- Add text chat infrastructure
+- Add Donation Page
+- Add Feedback model and form, add form to footer. To be used for bugs as well.
+- Create How To Video and put it on the home page
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
@@ -20,6 +23,18 @@
 
 --- Later Versions ---
 - Web Sockets
-- Add text chat infrastructure
+- Official Draft Setups When Picking Packs
 - When scrolling over cards, pop-up a larger view
-- Add Donation Page
+
+--- Closed Alpha Testers ---
+- Jon Su
+- Mike Silva
+- Bodhi Silva
+- Gerry Edwards
+- Drew Muller
+- Justin Hammond
+- Shawn Deprey
+
+--- Development Help ---
+- Drew Muller
+- Justin Hammond
