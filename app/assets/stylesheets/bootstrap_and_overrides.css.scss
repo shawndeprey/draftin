@@ -2,13 +2,11 @@
 body { padding-top: 60px; }
 
 body.v1 { 
-  input.form_input {
-    position: absolute;
-    width: 383px;
-  }
-  button.btn_confirm {
-    float: right;
+  a.alert_close_button {
+    top: -9px;
+    right: -7px;
     position: relative;
+    opacity: 0.5;
   }
 
   div.special_hr {
@@ -58,6 +56,10 @@ body.v1 {
     }
     li.user_header {
       background-color: #49515a;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 5px 10px 5px 15px;
     }
     img.card {
       width: 100%; margin-bottom: 10px;

@@ -6,7 +6,7 @@ class SessionController < ApplicationController
     if @user && @user.password == ApplicationHelper::md5(params[:password])
       MetricsHelper::track(MetricsHelper::LOGIN, {}, @user)
       login @user
-      redirect_to root_path, notice: "You have successfully logged as #{@user.username}."
+      redirect_to root_path
     else
       redirect_to root_path, alert: "Username or password incorrect."
     end
@@ -16,7 +16,7 @@ class SessionController < ApplicationController
   def destroy
     MetricsHelper::track(MetricsHelper::LOGOUT, {}, @session_user)
     logout
-    redirect_to root_path, notice: "You have successfully logged out."
+    redirect_to root_path
   end
 
 end

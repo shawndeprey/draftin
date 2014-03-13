@@ -6,7 +6,7 @@ development:
   username: draftin_development
   password: draftin_development
   host: localhost
-  port: 5433
+  port: 5432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -19,5 +19,5 @@ test:
   username: draftin_development
   password: draftin_development
   host: localhost
-  port: 5433
+  port: 5432
   min_messages: warning

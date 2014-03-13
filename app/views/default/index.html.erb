@@ -30,12 +30,10 @@
     </div>
 
     <div class="col-lg-6">
-
       <form class="bs-example form-horizontal" method="POST" action="<%= drafts_path %>">
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
         <h3>Create Draft</h3>
         <div class="input-group">
-          <!--<span class="input-group-addon">Create Draft</span>-->
           <input type="text" class="form-control" placeholder="Draft Name" name="draft[name]">
           <span class="input-group-btn">
             <button class="btn btn-default btn-success" type="submit">Create</button>
@@ -43,13 +41,13 @@
         </div>
       </form>
 
-      <div class="special_hr" style="margin: 20px 0px -5px 0px;"></div>
+      <!--<div class="special_hr" style="margin: 20px 0px -5px 0px;"></div>-->
+      <div style="margin: 35px 0px 0px 0px;"></div>
 
       <form class="bs-example form-horizontal" method="POST" action="<%= join_draft_path %>">
         <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
         <h3>Join Draft</h3>
         <div class="input-group">
-          <!--<span class="input-group-addon">Join Draft</span>-->
           <input type="text" class="form-control" placeholder="Draft ID" name="id">
           <span class="input-group-btn">
             <button class="btn btn-default btn-success" type="submit">Join</button>

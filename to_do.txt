@@ -8,10 +8,9 @@
 - Add Footer
 - Add Donation Page
 - Create How To Video and put it on the home page
-- Disallow the @ symbol in usernames
-- Remove successful login notice
-- Remove successful logout notice
 - Fix add sets gui on show draft
+- Follow Dev Section in footer
+- Ensure long usernames don't break UI around the app
 
 --- Alpha Testing ---
 

@@ -3,15 +3,16 @@
     <h2>#<%= @draft.id %> - <%= @draft.name %></h2>
   </div>
   <div class="col-lg-4">
+    <div style="margin: 12px 0px 0px 0px;"></div>
     <% if @draft.stage == CREATE_STAGE %>
-      <button type="button" class="btn btn-success start_button disabled" onclick="$('button.start_button').addClass('disabled');draftin.draft.lobby.startDraft();">Start Draft</button>
+      <button type="button" class="btn btn-success start_button disabled" onclick="$('button.start_button').addClass('disabled');draftin.draft.lobby.startDraft();" style="float:right;">Start Draft</button>
     <% elsif @draft.stage == DRAFT_STAGE %>
-      <button type="button" class="btn btn-success next_button disabled" onclick="$('button.next_button').addClass('disabled');draftin.draft.table.nextPack();">Next Pack</button>
+      <button type="button" class="btn btn-success next_button disabled" onclick="$('button.next_button').addClass('disabled');draftin.draft.table.nextPack();" style="float:right;">Next Pack</button>
     <% end %>
-    <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?">
+    <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?" style="float:right;padding:0px 5px;">
       <button type="button" class="btn btn-info">Leave Draft</button>
     </a>
-    <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?">
+    <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?" style="float:right;">
       <button type="button" class="btn btn-danger">Destroy Draft</button>
     </a>
   </div>
