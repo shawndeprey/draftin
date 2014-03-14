@@ -116,11 +116,17 @@ draftin.draft = {
     },
     updateCurrentPack: function(currentPack){
       currentPackContainer = $('div#current_pack_container');
+      loadingMessage = $('div#pack_loading_message');
       if(currentPack != null && $(currentPackContainer).children().length == 0){
+        $(loadingMessage).hide();
         $.each(currentPack.cards, function(){
           $(currentPackContainer).append(draftin.draft.cardTemplate.replace(/\{\{mid\}\}/i,this.multiverseid).replace(/\{\{image_url\}\}/i,this.image_url));
         });
         draftin.draft.table.setClickEvents();
+      } else {
+        if($(currentPackContainer).children().length == 0 && !$(loadingMessage).is(":visible")){
+          $(loadingMessage).show();
+        }
       }
     },
     setClickEvents: function(){
@@ -133,6 +139,7 @@ draftin.draft = {
     },
     clearCurrentPack: function(){
       $('div#current_pack_container').children().remove();
+      $('div#pack_loading_message').show();
     },
     selectCard: function(card){
       if($(card).hasClass('selected')){

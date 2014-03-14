@@ -5,7 +5,6 @@
 - Send email with metrics
 - Add account recovery
 - Add Instructions on the draft view pages (Tooltips)
-- Waiting for next pack on Current Pack Tile
 
 --- Alpha Testing ---
 
