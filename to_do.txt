@@ -19,6 +19,8 @@
 --- Decision: Do we need a Beta 2, 3, 4? ---
 
 --- v1.0 Release ---
+- Advertise on Reddit
+- Advertise on Hacker News
 
 --- Later Versions ---
 - Web Sockets
