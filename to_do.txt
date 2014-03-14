@@ -1,6 +1,7 @@
 --- v0.1 Development ---
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
+- Create Admin Panel
 
 --- Alpha Testing ---
 
@@ -9,6 +10,7 @@
 - Add Donation Page
 - Add Feedback model and form, add form to footer. To be used for bugs as well.
 - Create How To Video and put it on the home page
+- Add News Section on index
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
