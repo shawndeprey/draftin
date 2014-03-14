@@ -61,45 +61,43 @@
 <% elsif @draft.stage == DRAFT_STAGE %>
   <div class="row draft_stage_2">
 
-    <div class="col-sm-12 finish_col" <%if @draft.card_sets.length != 0%>style="display:none;"<%end%>>
+    <div class="col-sm-12 finish_col" style="display:none;">
       <div class="well well-sm finish_message">
         Draft is over. Export your cards below.
       </div>
     </div>
 
-    <% if @draft.card_sets.length != 0 %>
-      <div class="col-sm-12 user_col">
-        <div class="well well-sm">
-          <h3>Users</h3>
-          <div id="user_container" class="row">
-            <% @draft.users.each do |user| %>
-            <div class="col-sm-2">
-              <ul class="list-group">
-                <li class="list-group-item user_header"><%= user.username %></li>
-                <li class="list-group-item" style="padding:10px 8px;">Packs <span class="badge user_<%=user.id%>_packs"><%= user.packs.count %></span></li>
-              </ul>
-            </div>
-            <% end %>
+    <div class="col-sm-12 user_col">
+      <div class="well well-sm">
+        <h3>Users</h3>
+        <div id="user_container" class="row">
+          <% @draft.users.each do |user| %>
+          <div class="col-sm-2">
+            <ul class="list-group">
+              <li class="list-group-item user_header"><%= user.username %></li>
+              <li class="list-group-item" style="padding:10px 8px;">Packs <span class="badge user_<%=user.id%>_packs"><%= user.packs.count %></span></li>
+            </ul>
           </div>
+          <% end %>
         </div>
       </div>
+    </div>
 
-      <div class="col-sm-12 current_pack_col">
-        <div class="well well-sm">
-          <h3>Current Pack<span>(Click to select a card, click card again to confirm...)</span></h3>
-          <div id="pack_loading_message" class="loading_message">Waiting For Pack...</div>
-          <div id="current_pack_container" class="row">
-            <% if @current_pack %>
-              <% @current_pack.cards.each do |card| %>
-                <div class="col-sm-3 card_box" data-mid="<%= card.multiverseid %>">
-                  <img src="<%= card.image_url %>" class="card">
-                </div>
-              <% end %>
+    <div class="col-sm-12 current_pack_col">
+      <div class="well well-sm">
+        <h3>Current Pack<span>(Click to select a card, click card again to confirm...)</span></h3>
+        <div id="pack_loading_message" class="loading_message">Waiting For Pack...</div>
+        <div id="current_pack_container" class="row">
+          <% if @current_pack %>
+            <% @current_pack.cards.each do |card| %>
+              <div class="col-sm-3 card_box" data-mid="<%= card.multiverseid %>">
+                <img src="<%= card.image_url %>" class="card">
+              </div>
             <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
 
     <div class="col-sm-12">
       <div class="well well-sm">
@@ -120,10 +118,8 @@
   </div>
 <% end %>
 
-<% unless @draft.stage == DRAFT_STAGE && @draft.card_sets.length <= 0 %>
 <script type="text/javascript">
 $(document).ready(function(){
   draftin.draft.init(<%= @draft.id %>, <%= @draft.stage %>);
 });
 </script>
-<% end %>
