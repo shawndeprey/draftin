@@ -30,6 +30,9 @@ Draftin::Application.routes.draw do
   post '/drafts/join' => 'drafts#add_user', as: :join_draft
   delete '/drafts/:id/leave' => 'drafts#remove_user'
 
+  # Users
+  get '/users/:id/my_cards' => 'users#export_cards'
+
   resources :users
   resources :drafts
 end

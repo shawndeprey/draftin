@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/:id/my_cards.cod
+  def export_cards
+    
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :password)

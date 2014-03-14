@@ -76,4 +76,13 @@ class User < ActiveRecord::Base
       pack.save
     end
   end
+
+  def cards_by_name
+    cards = {}
+    self.cards.each do |card|
+      cards[card.name] = 0 unless cards[card.name]
+      cards[card.name] += 1
+    end
+    return cards
+  end
 end
