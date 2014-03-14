@@ -6,7 +6,6 @@
 - Add account recovery
 - Add Instructions on the draft view pages (Tooltips)
 - Waiting for next pack on Current Pack Tile
-- Use callback polling instead of interval polling (Polling scales with network speed.)
 
 --- Alpha Testing ---
 

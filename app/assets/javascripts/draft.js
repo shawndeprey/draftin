@@ -12,7 +12,7 @@ draftin.draft = {
     init: function(){
       draftin.draft.userTemplate = '<li class="list-group-item user">{{username}}</li>';
       draftin.draft.setTemplate = '<li class="list-group-item">{{name}}<button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet({{id}});">Remove</button></li>';
-      setInterval(function(){ draftin.draft.lobby.polling(); }, 1000);
+      setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
     },
     polling: function(){
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'.json',
@@ -22,6 +22,7 @@ draftin.draft = {
             draftin.draft.lobby.checkUsers(result.draft.users);
             draftin.draft.lobby.checkSets(result.draft.card_sets);
             draftin.draft.lobby.checkStartConditions(result.draft.users);
+            setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
           } else {
             location.reload();
           }
@@ -74,7 +75,7 @@ draftin.draft = {
     init: function(){
       draftin.draft.cardTemplate = '<div class="col-sm-3 card_box" data-mid="{{mid}}"><img src="{{image_url}}" class="card"></div>';
       draftin.draft.table.setClickEvents();
-      setInterval(function(){ draftin.draft.table.polling(); }, 1000);
+      setTimeout(function(){ draftin.draft.table.polling(); }, 750);
     },
     polling: function(){
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/status.json',
@@ -83,6 +84,7 @@ draftin.draft = {
           if(result.draft.stage == 1){
             draftin.draft.table.updateUserPackCounts(result.draft.users, result.draft.card_sets);
             draftin.draft.table.updateCurrentPack(result.draft.current_pack);
+            setTimeout(function(){ draftin.draft.table.polling(); }, 750);
           } else {
             location.reload();
           }
