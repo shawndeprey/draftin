@@ -120,7 +120,7 @@
   </div>
 <% end %>
 
-<% if @draft.card_sets.length != 0 %>
+<% unless @draft.stage == DRAFT_STAGE && @draft.card_sets.length <= 0 %>
 <script type="text/javascript">
 $(document).ready(function(){
   draftin.draft.init(<%= @draft.id %>, <%= @draft.stage %>);
