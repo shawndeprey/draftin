@@ -1,9 +1,6 @@
 --- v0.1 Development ---
 - Add Export functionality for users cards, add button to show
 - Make pack generation super realistic
-- Add email to user accounts and signup
-- Send email with metrics
-- Add account recovery
 - Add Instructions on the draft view pages (Tooltips)
 
 --- Alpha Testing ---
@@ -28,6 +25,9 @@
 - When scrolling over cards, pop-up a larger view
 - Online Users
 - Public Drafts
+- Add email to user accounts and signup
+- Send email with metrics
+- Add account recovery
 
 --- Closed Alpha Testers ---
 - Jon Su
