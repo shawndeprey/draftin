@@ -9,13 +9,17 @@ class DraftsController < ApplicationController
 
   # POST /drafts
   def create
-    @draft = Draft.new(draft_params)
-    if @draft.save
-      @draft.add_user!(@session_user)
-      MetricsHelper::track(MetricsHelper::CREATE_DRAFT, {}, @session_user)
-      redirect_to @draft
+    if @session_user.can_join_draft?
+      @draft = Draft.new(draft_params)
+      if @draft.save
+        @draft.add_user!(@session_user)
+        MetricsHelper::track(MetricsHelper::CREATE_DRAFT, {}, @session_user)
+        redirect_to @draft
+      else
+        redirect_to root_path, alert: "Error creating draft. Please try again."
+      end
     else
-      redirect_to root_path, alert: "Error creating draft. Please try again."
+      redirect_to root_path, alert: "You are already in an active draft. Go finish it!"
     end
   end
 
@@ -29,9 +33,13 @@ class DraftsController < ApplicationController
   # POST /drafts/join
   def add_user
     if @draft.stage == CREATE_STAGE
-      @draft.add_user!(@session_user)
-      MetricsHelper::track(MetricsHelper::JOIN_DRAFT, {}, @session_user)
-      redirect_to @draft
+      if @session_user.can_join_draft?
+        @draft.add_user!(@session_user)
+        MetricsHelper::track(MetricsHelper::JOIN_DRAFT, {}, @session_user)
+        redirect_to @draft
+      else
+        redirect_to root_path, alert: "You are already in an active draft. Go finish it!"
+      end
     else
       redirect_to root_path, alert: "Draft is no longer available for newbies."
     end

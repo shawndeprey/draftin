@@ -12,8 +12,9 @@ class CardSet < ActiveRecord::Base
 
   def generate_pack_for_user!(user)
     pack = Pack.new({card_set_id: self.id})
-    pack_layout = ["common", "common", "common", "common", "common", "common", "common", "common", "common", "common",
-     "uncommon", "uncommon", "uncommon", self.get_rare_card]
+    #pack_layout = ["common", "common", "common", "common", "common", "common", "common", "common", "common", "common",
+    # "uncommon", "uncommon", "uncommon", self.get_rare_card]
+    pack_layout = ["common"]
 
     pack_layout.each do |rarity|
       # Grab the possible choices for spot in pack

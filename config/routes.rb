@@ -12,6 +12,7 @@ Draftin::Application.routes.draw do
       get '/drafts/:id/status' => 'drafts#status'
       get '/drafts/:id/select_card' => 'drafts#select_card'
       get '/drafts/:id/next_pack' => 'drafts#next_pack'
+      get '/drafts/:id/end_draft' => 'drafts#end_draft'
       resources :drafts
     end
   end

@@ -58,6 +58,11 @@ class Draft < ActiveRecord::Base
     end
   end
 
+  def end_draft!
+    self.stage = END_STAGE
+    self.save
+  end
+
   def next_pack!
     ActiveRecord::Base.transaction do
       set = self.card_sets.first

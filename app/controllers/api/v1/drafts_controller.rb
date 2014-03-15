@@ -46,6 +46,11 @@ class Api::V1::DraftsController < Api::V1::BaseController
     @draft.next_pack!
   end
 
+  # GET /drafts/:id/end_draft.json
+  def end_draft
+    @draft.end_draft! if @draft.stage != END_STAGE
+  end
+
   protected
   def load_draft
     @draft = Draft.find_by_id(params[:id]) || not_found

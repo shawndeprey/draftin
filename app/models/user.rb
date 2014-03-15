@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_join_draft?
+    active_drafts = Draft.joins(:users).where('"users"."id" = :id AND "drafts"."stage" = :stage', id: self.id, stage: DRAFT_STAGE)
+    return active_drafts.blank?
+  end
+
   def add_card!(card)
     self.cards << card unless card.blank?
     self.save

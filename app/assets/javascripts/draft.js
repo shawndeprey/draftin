@@ -1,7 +1,7 @@
 draftin.draft = {
-  init: function(draftId, draftStage){
+  init: function(draftId, draftStage, sessionUserId){
     draftin.draft.id = draftId;
-    draftin.draft.poll = true;
+    draftin.draft.user_id = sessionUserId;
     if(draftStage == 0){ // Lobby/Setup Stage
       draftin.draft.lobby.init();
     } else
@@ -82,8 +82,7 @@ draftin.draft = {
       draftin.draft.cardTemplate = '<div class="col-sm-3 card_box" data-mid="{{mid}}"><img src="{{image_url}}" class="card"></div>';
       draftin.draft.table.setClickEvents();
       $('button.next_button').parent().tooltip();
-      
-        setTimeout(function(){ draftin.draft.table.polling(); }, 750);
+      setTimeout(function(){ draftin.draft.table.polling(); }, 750);
     },
     polling: function(){
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/status.json',
@@ -92,13 +91,7 @@ draftin.draft = {
           if(result.draft.stage == 1){
             draftin.draft.table.updateUserPackCounts(result.draft.users, result.draft.card_sets);
             draftin.draft.table.updateCurrentPack(result.draft.current_pack);
-            if(draftin.draft.poll){
-              setTimeout(function(){ draftin.draft.table.polling(); }, 750);
-            } else {
-              $('div.finish_col').show();
-              $('div.user_col').hide();
-              $('div.current_pack_col').hide();
-            }
+            setTimeout(function(){ draftin.draft.table.polling(); }, 750);
           } else {
             location.reload();
           }
@@ -134,7 +127,9 @@ draftin.draft = {
 
       // End The Draft
       if(allCountsZero && card_sets.length == 0){
-        draftin.draft.poll = false;
+        if(users[0].id == draftin.draft.user_id){
+          $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/end_draft.json'});
+        }
       }
     },
     updateCurrentPack: function(currentPack){
