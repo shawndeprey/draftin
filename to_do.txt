@@ -1,6 +1,5 @@
 --- v0.1 Development ---
 - Make pack generation super realistic
-- Ensure users can only join a draft if they are not already in an in_progress draft
 - Split HTML into partials
 
 --- Alpha Testing ---
