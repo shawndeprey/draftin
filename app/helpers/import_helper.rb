@@ -16,12 +16,32 @@ module ImportHelper
       set.set_type = s["type"]
       set.url = s["url"]
       set.cards_url = s["cards_url"]
+      set.layout_type = ImportHelper::get_set_layout_type(set.short_name)
+      set.has_foils = SETS_WITH_FOILS.include?(set.short_name)
       set.save
 
       puts "\e[32mSet \e[33m'#{set.short_name}'\e[32m - \e[33m'#{set.name}'\e[32m imported successfully...\e[0m"
     end
 
     puts "\e[32m#{APP_NAME} has \e[33m#{CardSet.count}\e[32m sets and \e[33m#{sets.length}\e[32m sets were just imported from deckbrew...\e[0m"
+  end
+
+  def self.get_set_layout_type(short_name)
+    if PACK_LAYOUT_1.include?(short_name)
+      return 1
+    elsif PACK_LAYOUT_2.include?(short_name)
+      return 2
+    elsif PACK_LAYOUT_3.include?(short_name)
+      return 3
+    elsif PACK_LAYOUT_4.include?(short_name)
+      return 4
+    elsif PACK_LAYOUT_5.include?(short_name)
+      return 5
+    elsif PACK_LAYOUT_6.include?(short_name)
+      return 6
+    else
+      return 0
+    end
   end
 
   def self.queue_card_importers

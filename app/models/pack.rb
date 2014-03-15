@@ -15,4 +15,8 @@ class Pack < ActiveRecord::Base
     pack_card = PackCard.where("pack_id = :pack_id AND card_id = :card_id", pack_id: self.id, card_id: card.id).limit(1).first
     pack_card.destroy if pack_card
   end
+
+  def has_card?(card)
+    return self.cards.include?(card)
+  end
 end

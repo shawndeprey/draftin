@@ -1,8 +1,4 @@
---- v0.1 Development ---
-- Make pack generation super realistic
-
---- Alpha Testing 1 ---
-
+--- Alpha Testing v0.1 ---
 --- v0.2 Development ---
 - Create Admin Panel
 - Add News Section on index (Use github markdown)
@@ -10,6 +6,7 @@
 - Add Donation Page
 - Add Feedback model and form, add form to footer. To be used for bugs as well.
 - Create How To Video and put it on the home page
+- Add About page describing pack generation, current ignored sets, the future of draftin, etc.
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
@@ -30,6 +27,7 @@
 - Add email to user accounts and signup
 - Send email with metrics
 - Add account recovery
+- Global Chat Room
 
 --- Closed Alpha Testers ---
 - Jon Su
