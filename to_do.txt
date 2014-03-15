@@ -1,11 +1,11 @@
 --- v0.1 Development ---
 - Make pack generation super realistic
-- Create Admin Panel
-- Add News Section on index (Use github markdown)
 
---- Alpha Testing ---
+--- Alpha Testing 1 ---
 
 --- v0.2 Development ---
+- Create Admin Panel
+- Add News Section on index (Use github markdown)
 - Add text chat infrastructure
 - Add Donation Page
 - Add Feedback model and form, add form to footer. To be used for bugs as well.
