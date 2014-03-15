@@ -1,8 +1,7 @@
 --- v0.1 Development ---
 - Make pack generation super realistic
-- Split HTML into partials
 - Create Admin Panel
-- Add News Section on index
+- Add News Section on index (Use github markdown)
 
 --- Alpha Testing ---
 
