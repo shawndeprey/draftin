@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-6" style="padding-top:20px;">
+          <div style="display:none;"><h1>Draftin'</h1></div>
+          <center><%= image_tag "logo-large.png", :class => "large_logo" %></center>
+          <div style="margin: 35px 0px 35px 0px;"></div>
+          <p style="text-align:center;">A draft simulator for Magic the Gathering.</p>
+          <p style="text-align:center;">Login or create an account below to start Draftin'.</p>
+        </div>
+        <div class="col-sm-6">
+          <center>
+            <iframe style="width:100%;height:255px;" src="//www.youtube.com/embed/9bZkp7q19f0" frameborder="0" allowfullscreen></iframe>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="well">
+      <form class="bs-example form-horizontal" method="POST" action="<%= session_path %>">
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+        <fieldset>
+          <legend>Login</legend>
+          <div class="form-group">
+            <label for="inputEmail" class="col-sm-3 control-label">Username</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Username" name="username">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control" placeholder="Password" name="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-1">
+              <button type="submit" class="btn btn-primary btn-success">Login</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="well">
+      <form class="bs-example form-horizontal" method="POST" action="<%= users_path %>">
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+        <fieldset>
+          <legend>Create Account</legend>
+          <div class="form-group">
+            <label for="inputEmail" class="col-sm-3 control-label">Username</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" placeholder="Username" name="user[username]">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+            <div class="col-sm-9">
+              <input type="password" class="form-control" placeholder="Password" name="user[password]">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-9 col-sm-offset-1">
+              <button type="submit" class="btn btn-primary btn-success">Create</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

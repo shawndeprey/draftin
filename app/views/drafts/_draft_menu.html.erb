@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-6">
+    <h2>#<%= @draft.id %> - <%= @draft.name %></h2>
+  </div>
+  <div class="col-sm-6">
+    <div style="margin: 12px 0px 0px 0px;"></div>
+    <% if @draft.stage == CREATE_STAGE %>
+      <div data-toggle="tooltip" data-placement="top" title="Need at least 2 players." style="float:right;">
+        <button type="button" class="btn btn-success start_button disabled" onclick="$('button.start_button').addClass('disabled');draftin.draft.lobby.startDraft();">Start Draft</button>
+      </div>
+      <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?" style="float:right;padding:0px 5px;">
+        <button type="button" class="btn btn-info">Leave Draft</button>
+      </a>
+    <% elsif @draft.stage == DRAFT_STAGE %>
+      <div data-toggle="tooltip" data-placement="top" title="Finish current pack first." style="float:right;">
+        <button type="button" class="btn btn-success next_button disabled" onclick="$('button.next_button').addClass('disabled');draftin.draft.table.nextPack();" style="float:right;">Next Pack</button>
+      </div>
+    <% end %>
+    <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?" style="float:right; <%if @draft.stage == DRAFT_STAGE%>padding:0px 5px;<%end%>">
+      <button type="button" class="btn btn-danger">Destroy Draft</button>
+    </a>
+  </div>
+</div>

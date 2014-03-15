@@ -1,0 +1,18 @@
+<div class="col-sm-12">
+  <div class="well well-sm">
+    <a href="/users/<%= @session_user.id %>/my_cards.cod" class="export_button">
+      <button type="button" class="btn btn-sm btn-success">Export for Cockatrice</button>
+    </a>
+    <h3>My Cards<span>(Always shows most recent draft's cards...)</span></h3>
+    <div id="cards_loading_message" class="loading_message">Loading Cards...</div>
+    <div id="cards_container" class="row">
+      <% unless @session_user.cards.blank? %>
+        <% @session_user.cards.each do |card| %>
+          <div class="col-sm-3">
+            <img src="<%= card.image_url %>" class="card">
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

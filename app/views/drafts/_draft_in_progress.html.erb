@@ -1,0 +1,37 @@
+<div class="row draft_stage_2">
+
+  <div class="col-sm-12 user_col">
+    <div class="well well-sm">
+      <h3>Users</h3>
+      <div id="user_container" class="row">
+        <% @draft.users.each do |user| %>
+        <div class="col-sm-2">
+          <ul class="list-group">
+            <li class="list-group-item user_header"><%= user.username %></li>
+            <li class="list-group-item" style="padding:10px 8px;">Packs <span class="badge user_<%=user.id%>_packs"><%= user.packs.count %></span></li>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 current_pack_col">
+    <div class="well well-sm">
+      <h3>Current Pack<span>(Click to select a card, click card again to confirm...)</span></h3>
+      <div id="pack_loading_message" class="loading_message">Waiting For Pack...</div>
+      <div id="current_pack_container" class="row">
+        <% if @current_pack %>
+          <% @current_pack.cards.each do |card| %>
+            <div class="col-sm-3 card_box" data-mid="<%= card.multiverseid %>">
+              <img src="<%= card.image_url %>" class="card">
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "drafts/my_cards" %>
+
+</div>

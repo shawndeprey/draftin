@@ -1,0 +1,58 @@
+<div class="row">
+
+  <div class="col-sm-6">
+
+    <div class="list-group">
+      <span class="list-group-item" style="background-color: #3e444c;">My Drafts</span>
+      <% 5.times do |x| %>
+        <% if @drafts[x] %>
+          <a href="<%= draft_path(@drafts[x]) %>" class="list-group-item">
+            <%= @drafts[x].name %><span class="label label-<%= (@drafts[x].stage == CREATE_STAGE ? "info" : @drafts[x].stage == DRAFT_STAGE ? "success" : "danger" ) %>" style="float:right;"><%= @drafts[x].status %></span>
+          </a>
+        <% else %>
+          <span class="list-group-item" style="min-height:42px;"></span>
+        <% end %>
+      <% end %>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <ul class="pagination pagination-sm" style="margin: -4px 0px -8px 0px;">
+          <li <%if !@drafts.previous_page%>class="disabled"<%end%>><a href="<%=@drafts.previous_page ? "/?page=#{@drafts.previous_page}" : "#"%>">«</a></li>
+          <% if @drafts.current_page > 1 %>
+            <li><a href="/?page=<%=@drafts.current_page - 1%>"><%=@drafts.current_page - 1%></a></li>
+          <% end %>
+          <li class="active"><a href="#"><%= @drafts.current_page %></a></li>
+          <% if @drafts.next_page %>
+            <li><a href="/?page=<%=@drafts.current_page + 1%>"><%=@drafts.current_page + 1%></a></li>
+          <% end %>
+          <li <%if !@drafts.next_page%>class="disabled"<%end%>><a href="<%=@drafts.next_page ? "/?page=#{@drafts.next_page}" : "#"%>">»</a></li>
+      </span>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <form class="bs-example form-horizontal" method="POST" action="<%= drafts_path %>">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <h3>Create Draft</h3>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Draft Name" name="draft[name]">
+        <span class="input-group-btn">
+          <button class="btn btn-default btn-success" type="submit">Create</button>
+        </span>
+      </div>
+    </form>
+
+    <!--<div class="special_hr" style="margin: 20px 0px -5px 0px;"></div>-->
+    <div style="margin: 35px 0px 0px 0px;"></div>
+
+    <form class="bs-example form-horizontal" method="POST" action="<%= join_draft_path %>">
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+      <h3>Join Draft</h3>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Draft ID" name="id">
+        <span class="input-group-btn">
+          <button class="btn btn-default btn-success" type="submit">Join</button>
+        </span>
+      </div>
+    </form>
+  </div>
+
+</div>
