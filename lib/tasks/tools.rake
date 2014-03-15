@@ -7,4 +7,13 @@ namespace :tool do
     user.update_attributes({admin:true})
     puts "\e[32mSuccessfully made \e[33m#{args[:username]}\e[32m an admin...\e[0m"
   end
+
+  desc "send all users to mixpanel"
+  task :user_mixpanel => :environment do
+    User.where("id >= 0").find_in_batches do |users|
+      users.each do |user|
+        MetricsHelper::send_user_to_mixpanel(user)
+      end
+    end
+  end
 end
