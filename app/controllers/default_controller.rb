@@ -6,7 +6,7 @@ class DefaultController < ApplicationController
       @drafts = Draft.joins(:users).where('"users"."id" = :user_id', :user_id => @session_user.id)
                                     .order('updated_at desc')
                                     .paginate(:page => params[:page] || 1, :per_page => 5)
-      MetricsHelper::track(MetricsHelper::VIEW_INDEX, {user_id:@session_user.id}, @session_user)
+      MetricsHelper::track(MetricsHelper::VIEW_INDEX, {}, @session_user)
     end
   end
 

@@ -15,6 +15,7 @@ module MetricsHelper
     return if !Rails.env.production? || user.blank?
     # Track using mixpanel's specification for tracking specific users
     properties["distinct_id"] = user.id
+    properties["user_id"] = user.id
     mp = MetricsHelper::mixpanel(user)
     mp.track(properties["distinct_id"], event, properties)
   end
