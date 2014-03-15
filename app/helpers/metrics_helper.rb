@@ -12,9 +12,9 @@ module MetricsHelper
   SELECT_CARD   = "select card"
 
   def self.track(event, properties, user)
-    return unless Rails.env.production?
+    return if !Rails.env.production? || user.blank?
     # Track using mixpanel's specification for tracking specific users
-    properties["distinct_id"] = user.blank? ? "visitor" : user.id
+    properties["distinct_id"] = user.id
     mp = MetricsHelper::mixpanel(user)
     mp.track(properties["distinct_id"], event, properties)
   end
