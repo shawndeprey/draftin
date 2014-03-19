@@ -1,7 +1,8 @@
 # encoding: utf-8
 class Draft < ActiveRecord::Base
   nilify_blanks
-  # attributes: name, user_count, stage, created_at, updated_at
+  # attributes: user_id, password, name, user_count, stage, created_at, updated_at
+  belongs_to :user
   has_many :draft_users
   has_many :users, :through => :draft_users
   has_many :draft_card_sets
@@ -19,6 +20,11 @@ class Draft < ActiveRecord::Base
     return "Ended"
   end
 
+  def set_draft_organizer!(user)
+    self.user = user
+    self.save
+  end
+
   def add_user!(user)
     self.users << user
     self.save
@@ -26,6 +32,7 @@ class Draft < ActiveRecord::Base
 
   def remove_user!(user)
     self.users.delete(user)
+    return self.destroy if user == self.user # If the organizer leaves a draft, delete the draft
     self.save
   end
 

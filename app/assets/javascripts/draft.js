@@ -13,7 +13,10 @@ draftin.draft = {
     init: function(){
       draftin.draft.userTemplate = '<li class="list-group-item user">{{username}}</li>';
       draftin.draft.setTemplate = '<li class="list-group-item">{{name}}<button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet({{id}});">Remove</button></li>';
-      $('button.start_button').parent().tooltip();
+      startButton = $('button.start_button');
+      if(startButton.length > 0){
+        $(startButton).parent().tooltip();
+      }
       setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
     },
     polling: function(){
@@ -33,15 +36,17 @@ draftin.draft = {
     },
     checkStartConditions: function(users){
       startButton = $('button.start_button');
-      if(users.length > 1){
-        if($(startButton).hasClass('disabled')){
-          $(startButton).removeClass('disabled');
-          $(startButton).parent().tooltip('disable');
-        }
-      } else {
-        if(!$(startButton).hasClass('disabled')){
-          $(startButton).addClass('disabled');
-          $(startButton).parent().tooltip('enable');
+      if(startButton.length > 0){
+        if(users.length > 1){
+          if($(startButton).hasClass('disabled')){
+            $(startButton).removeClass('disabled');
+            $(startButton).parent().tooltip('disable');
+          }
+        } else {
+          if(!$(startButton).hasClass('disabled')){
+            $(startButton).addClass('disabled');
+            $(startButton).parent().tooltip('enable');
+          }
         }
       }
     },
@@ -81,7 +86,10 @@ draftin.draft = {
     init: function(){
       draftin.draft.cardTemplate = '<div class="col-sm-3 card_box" data-mid="{{mid}}"><img src="{{image_url}}" class="card"></div>';
       draftin.draft.table.setClickEvents();
-      $('button.next_button').parent().tooltip();
+      nextButton = $('button.next_button');
+      if(nextButton.length > 0){
+        $(nextButton).parent().tooltip();
+      }
       setTimeout(function(){ draftin.draft.table.polling(); }, 750);
     },
     polling: function(){
@@ -113,15 +121,17 @@ draftin.draft = {
           $(counter).html(this.pack_count);
         }
       });
-      if(allCountsZero && card_sets.length != 0){
-        if($(nextButton).hasClass('disabled')){
-          $(nextButton).removeClass('disabled');
-          $(nextButton).parent().tooltip('disable');
-        }
-      } else {
-        if(!$(nextButton).hasClass('disabled')){
-          $(nextButton).addClass('disabled');
-          $(nextButton).parent().tooltip('enable');
+      if(nextButton.length > 0){
+        if(allCountsZero && card_sets.length != 0){
+          if($(nextButton).hasClass('disabled')){
+            $(nextButton).removeClass('disabled');
+            $(nextButton).parent().tooltip('disable');
+          }
+        } else {
+          if(!$(nextButton).hasClass('disabled')){
+            $(nextButton).addClass('disabled');
+            $(nextButton).parent().tooltip('enable');
+          }
         }
       }
 

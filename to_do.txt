@@ -1,14 +1,12 @@
 --- Alpha Testing v0.1 ---
 --- Bugs ---
-- 2 Packs given on next pack with 3 players
-- Draft Host Permissions for starting, deleting and clicking next pack.
 - Need loading screen for start draft
-- Hide export button until draft is over
 - Password protected rooms
-- Make export buttin just say export
-- Draft Selections object which is specific to draft
+- Draft specific card selections (Deck Object)
 
---- v0.2 Development ---
+--- Alpha Testing v0.2.1 ---
+
+--- v0.3 Development ---
 - Create Admin Panel
 - If we keep the foils, we need to mark the gard as a foil
 - Add News Section on index (Use github markdown)

@@ -13,6 +13,7 @@ class DraftsController < ApplicationController
       @draft = Draft.new(draft_params)
       if @draft.save
         @draft.add_user!(@session_user)
+        @draft.set_draft_organizer!(@session_user)
         MetricsHelper::track(MetricsHelper::CREATE_DRAFT, {}, @session_user)
         redirect_to @draft
       else

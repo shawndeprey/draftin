@@ -1,8 +1,10 @@
 <div class="col-sm-12">
   <div class="well well-sm">
-    <a href="/users/<%= @session_user.id %>/my_cards.cod" class="export_button">
-      <button type="button" class="btn btn-sm btn-success">Export for Cockatrice</button>
-    </a>
+    <% if @draft.stage == END_STAGE %>
+      <a href="/users/<%= @session_user.id %>/my_cards.cod" class="export_button">
+        <button type="button" class="btn btn-sm btn-success">Export .cod</button>
+      </a>
+    <% end %>
     <h3>My Cards<span>(Always shows most recent draft's cards...)</span></h3>
     <div id="cards_loading_message" class="loading_message">Loading Cards...</div>
     <div id="cards_container" class="row">
