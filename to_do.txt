@@ -1,12 +1,27 @@
 --- Alpha Testing v0.1 ---
+--- Bugs ---
+- 2 Packs given on next pack with 3 players
+- Draft Host Permissions for starting, deleting and clicking next pack.
+- Need loading screen for start draft
+- Hide export button until draft is over
+- Password protected rooms
+- Make export buttin just say export
+- Draft Selections object which is specific to draft
+
 --- v0.2 Development ---
 - Create Admin Panel
+- If we keep the foils, we need to mark the gard as a foil
 - Add News Section on index (Use github markdown)
 - Add text chat infrastructure
 - Add Donation Page
 - Add Feedback model and form, add form to footer. To be used for bugs as well.
 - Create How To Video and put it on the home page
 - Add About page describing pack generation, current ignored sets, the future of draftin, etc.
+- Refine index and require email on signup
+-------------------------------
+-      Draftin | Video        -
+-       Login  | Create       -
+-------------------------------
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
