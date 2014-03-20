@@ -1,7 +1,33 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 
-body.v1 { 
+body.v1 {
+  div.load_container {
+    display: none;
+    z-index: 10000;
+    position: fixed;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    div.loading_screen {
+      height: 100%;
+      background-color: white;
+      opacity: 0.4;
+    }
+    div.message {
+      opacity: 0.75;
+      position: fixed;
+      height: 200px;
+      width: 300px;
+      top: 40%;
+      left: 50%;
+      margin: 0px 0px 0px -150px;
+      text-align: center;
+    }
+  }
+
   footer {
     margin-top: 50px;
   }

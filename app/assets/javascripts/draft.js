@@ -71,14 +71,28 @@ draftin.draft = {
       }
     },
     addSet: function(){
+      draftin.loading();
       setContainer = $('li#add_set_container');
       setId = $(setContainer).find('select').val();
-      $.ajax({type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json'});
+      $.ajax({
+        type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json', 
+        complete: function(data){
+          draftin.loading();
+        }
+      });
+
     },
     removeSet: function(setId){
-      $.ajax({type:"DELETE", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json'});
+      draftin.loading();
+      $.ajax({
+        type:"DELETE", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json', 
+        complete: function(data){
+          draftin.loading();
+        }
+      });
     },
     startDraft: function(){
+      draftin.loading();
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/start.json'});
     }
   },
@@ -107,7 +121,13 @@ draftin.draft = {
       });
     },
     nextPack: function(){
-      $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/next_pack.json'});
+      draftin.loading();
+      $.ajax({
+        type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/next_pack.json',
+        complete: function(result){
+          draftin.loading();
+        }
+      });
     },
     updateUserPackCounts: function(users, card_sets){
       allCountsZero = true;
@@ -178,6 +198,7 @@ draftin.draft = {
       }
     },
     selectMultiverseIdFromCurrentPack: function(card){
+      draftin.loading();
       $.ajax({type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/select_card.json?multiverse_id='+$(card).data('mid'),
         success: function(result){
           if(result && result.success){
@@ -186,6 +207,7 @@ draftin.draft = {
             draftin.draft.table.clearCurrentPack();
             $('div#cards_container').prepend(card);
           }
+          draftin.loading();
         }
       });
     }

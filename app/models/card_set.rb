@@ -28,8 +28,8 @@ class CardSet < ActiveRecord::Base
     end
 
     # Add foil with random chance
-    foil_card = self.get_foil_card
-    pack.add_card(foil_card) if foil_card
+    # foil_card = self.get_foil_card
+    # pack.add_card(foil_card) if foil_card
 
     user.add_pack!(pack)
     return pack

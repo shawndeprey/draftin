@@ -48,7 +48,7 @@ class DraftsController < ApplicationController
 
   # DELETE /drafts/:id/leave
   def remove_user
-    if @draft.stage == CREATE_STAGE
+    if @draft.stage != DRAFT_STAGE
       @draft.remove_user!(@session_user)
       MetricsHelper::track(MetricsHelper::LEAVE_DRAFT, {}, @session_user)
       redirect_to root_path, notice: "Successfully quit draft."

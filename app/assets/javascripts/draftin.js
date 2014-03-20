@@ -3,8 +3,8 @@
       init: function(){
         // Draftin Initialization
       },
-      toggleElement: function(element_class){
-        $(element_class).slideToggle(250);
+      loading: function(){
+        $("div.load_container").fadeToggle(250);
       }
     };
     global.draftin = draftin;

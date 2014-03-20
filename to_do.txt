@@ -1,6 +1,5 @@
 --- Alpha Testing v0.1 ---
 --- Bugs ---
-- Need loading screen for start draft
 - Password protected rooms
 - Draft specific card selections (Deck Object)
 
