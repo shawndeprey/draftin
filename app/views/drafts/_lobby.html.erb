@@ -1,6 +1,6 @@
 <div class="row">
 
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div id="draft_users">
       <ul class="list-group">
         <li class="list-group-item" style="background-color:#49515a;">
@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <div id="draft_sets">
       <ul class="list-group">
         <li class="list-group-item" style="background-color:#49515a;">
@@ -30,6 +30,38 @@
         </li>
       </ul>
     </div>
+  </div>
+
+  <div class="col-sm-4">
+    <ul class="list-group">
+      <li class="list-group-item" style="background-color:#49515a;">
+        Password
+      </li>
+      <li class="list-group-item">
+        Password: 
+        <% if @draft.password.blank? %>
+          <span class="label label-warning" style="float:right;">No Password</span>
+        <% else %>
+          <span class="label label-success" style="float:right;"><%= @draft.password %></span>
+        <% end %>
+      </li>
+      <li class="list-group-item">
+        <% if @draft.user.id == @session_user.id %>
+          <form class="bs-example form-horizontal" method="POST" action="<%= draft_path(@draft) %>">
+            <input name="_method" type="hidden" value="PUT" />
+            <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Draft Password" name="draft[password]">
+              <span class="input-group-btn">
+                <button class="btn btn-default btn-success" type="submit" onclick="draftin.loading();">Set Password</button>
+              </span>
+            </div>
+          </form>
+        <% else %>
+          Only the draft coordinator can set a password.
+        <% end %>
+      </li>
+    </ul>
   </div>
 
 </div>

@@ -1,7 +1,6 @@
 --- Alpha Testing v0.1 ---
 --- Bugs ---
 - Password protected rooms
-- Draft specific card selections (Deck Object)
 
 --- Alpha Testing v0.2.1 ---
 
@@ -40,6 +39,7 @@
 - Send email with metrics
 - Add account recovery
 - Global Chat Room
+- Draft specific card selections (DraftCardSelection Object)
 
 --- Closed Alpha Testers ---
 - Jon Su

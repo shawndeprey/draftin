@@ -1,6 +1,7 @@
 module MetricsHelper
   VIEW_INDEX    = "view index"
   CREATE_DRAFT  = "create draft"
+  UPDATE_DRAFT  = "update draft"
   JOIN_DRAFT    = "join draft"
   START_DRAFT   = "start draft"
   LEAVE_DRAFT   = "leave draft"

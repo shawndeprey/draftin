@@ -6,7 +6,7 @@
       <span class="list-group-item" style="background-color: #3e444c;">My Drafts</span>
       <% 5.times do |x| %>
         <% if @drafts[x] %>
-          <a href="<%= draft_path(@drafts[x]) %>" class="list-group-item">
+          <a href="<%= draft_path(@drafts[x]) %>?password=<%= @drafts[x].password %>" class="list-group-item">
             <%= @drafts[x].name %><span class="label label-<%= (@drafts[x].stage == CREATE_STAGE ? "info" : @drafts[x].stage == DRAFT_STAGE ? "success" : "danger" ) %>" style="float:right;"><%= @drafts[x].status %></span>
           </a>
         <% else %>
@@ -52,6 +52,7 @@
           <button class="btn btn-default btn-success" type="submit">Join</button>
         </span>
       </div>
+      <input type="text" class="form-control" placeholder="Draft Password" name="password" style="width:50%;margin-top:15px;">
     </form>
   </div>
 
