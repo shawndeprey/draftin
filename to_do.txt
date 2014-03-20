@@ -3,7 +3,6 @@
 --- Alpha Testing v0.2.1 Bugs ---
 --- v0.3 Development ---
 - Create Admin Panel
-- If we keep the foils, we need to mark the gard as a foil
 - Add News Section on index (Use github markdown)
 - Add text chat infrastructure
 - Add Donation Page
@@ -11,10 +10,9 @@
 - Create How To Video and put it on the home page
 - Add About page describing pack generation, current ignored sets, the future of draftin, etc.
 - Refine index and require email on signup
--------------------------------
--      Draftin | Video        -
--       Login  | Create       -
--------------------------------
+- Global Chat Room
+- Online Users
+- Draft specific card selections (DraftCardSelection Object)
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
@@ -30,13 +28,8 @@
 - Web Sockets
 - Official Draft Setups When Picking Packs
 - When scrolling over cards, pop-up a larger view
-- Online Users
 - Public Drafts
-- Add email to user accounts and signup
-- Send email with metrics
-- Add account recovery
-- Global Chat Room
-- Draft specific card selections (DraftCardSelection Object)
+- Add account recovery message pop-up
 
 --- Closed Alpha Testers ---
 - Jon Su
