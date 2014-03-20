@@ -2,7 +2,6 @@
 --- Bugs ---
 - Password protected rooms
 - Draft specific card selections (Deck Object)
-- meta keywords and description tags
 
 --- Alpha Testing v0.2.1 ---
 
