@@ -1,9 +1,6 @@
---- Alpha Testing v0.1 ---
---- Bugs ---
-- Password protected rooms
-
+--- Alpha Testing v0.1 (Finished) ---
 --- Alpha Testing v0.2.1 ---
-
+--- Alpha Testing v0.2.1 Bugs ---
 --- v0.3 Development ---
 - Create Admin Panel
 - If we keep the foils, we need to mark the gard as a foil
