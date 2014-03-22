@@ -1,5 +1,6 @@
 --- Alpha Testing v0.1 (Finished) ---
 - Add Feedback model and form, add form to footer. To be used for bugs as well.
+- Make leave draft button orange
 --- Alpha Testing v0.2.1 ---
 --- Alpha Testing v0.2.1 Bugs ---
 --- v0.3 Development ---

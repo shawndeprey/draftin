@@ -72,7 +72,7 @@ class DraftsController < ApplicationController
     if @draft.stage != DRAFT_STAGE
       @draft.remove_user!(@session_user)
       MetricsHelper::track(MetricsHelper::LEAVE_DRAFT, {}, @session_user)
-      redirect_to root_path, notice: "Successfully quit draft."
+      redirect_to root_path, notice: "You left all of your friends along. GG."
     else
       redirect_to root_path, alert: "Draft has already started. Stop trolling people."
     end
