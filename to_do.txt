@@ -1,8 +1,17 @@
 --- Alpha Testing v0.1 (Finished) ---
-- Add Feedback model and form, add form to footer. To be used for bugs as well.
-- Make leave draft button orange
 --- Alpha Testing v0.2.1 ---
 --- Alpha Testing v0.2.1 Bugs ---
+- Add Feedback model and form, add form to footer. To be used for bugs as well.
+- Make leave draft button orange
+- Make loading screen easier to read
+- Next sets on drafting view
+- Ding when you get a pack
+- Multiple export options
+- Color balance pack generation?
+- Metrics more info on picked cards
+- Instead of checking current pack as zero, check it as lowest order instead of zero.
+- Instead of using order received, use last_update on pack and sort oldest to newest
+- Upgrade to new COD format
 --- v0.3 Development ---
 - Create Admin Panel
 - Add News Section on index (Use github markdown)
@@ -31,6 +40,7 @@
 - When scrolling over cards, pop-up a larger view
 - Public Drafts
 - Add account recovery message pop-up
+- Junk Cards on export
 
 --- Closed Alpha Testers ---
 - Jon Su
