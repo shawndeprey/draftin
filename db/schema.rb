@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 20140322170808) do
     t.string   "email"
     t.boolean  "receive_emails", default: true
     t.string   "recovery_hash"
+    t.boolean  "verified",       default: false
   end
 
   add_index "users", ["admin"], name: "index_users_on_admin", using: :btree

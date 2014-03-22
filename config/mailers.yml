@@ -1,0 +1,14 @@
+default: &default
+  address:              smtp.mandrillapp.com
+  port:                 587
+  domain:               draftin.co
+  user_name:            app22612417@heroku.com
+  password:             EUW2B6jJFHZJWEPyW3OaFg
+  authentication:       login
+  enable_starttls_auto: true
+
+development:
+  <<: *default
+
+production:
+  <<: *default

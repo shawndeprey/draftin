@@ -1,0 +1,20 @@
+<center>
+  <%= image_tag "etc/alpha-ribbon.png", :width => "107" %>
+  <p class="title" style="font-size: 14px; text-align: center; font-weight: bold; margin: 15px 0px 50px 0px;">
+    Verify Your <%= APP_NAME %> Account
+  </p>
+</center>
+
+<p>Hi <%= @user.username %>,</p>
+
+<p>
+  To verify your account for <%= APP_NAME %>, simply open this link below:
+</p>
+
+<p>
+  <a href="<%= user_url(@user) %>/verify?recovery_hash=<%= @user.recovery_hash %>">
+    Verify My Account
+  </a>
+</p>
+
+<p>- <%= APP_NAME %></p>

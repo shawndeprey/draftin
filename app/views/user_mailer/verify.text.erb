@@ -1,0 +1,9 @@
+Verify Your <%= APP_NAME %> Account
+
+Hi <%= @user.username %>,
+
+To verify your account for <%= APP_NAME %>, simply open this link below:
+
+<%= user_url(@user) %>/verify?recovery_hash=<%= @user.recovery_hash %>
+
+- <%= APP_NAME %>

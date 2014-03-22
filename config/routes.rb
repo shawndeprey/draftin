@@ -27,6 +27,9 @@ Draftin::Application.routes.draw do
 
   # Users
   get '/users/:id/my_cards' => 'users#export_cards'
+  get '/users/reset_password_request' => 'users#reset_password_request'
+  get '/users/reset_password' => 'users#reset_password'
+  get '/users/:id/verify' => 'users#verify'
 
   # Admin
   admin_constraint = lambda { |request| request.env["rack.session"]["user_id"] && User.find(request.env["rack.session"]["user_id"]).admin }

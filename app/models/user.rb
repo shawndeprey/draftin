@@ -1,7 +1,7 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
   nilify_blanks
-  # attributes: email, username, password, position, admin, created_at, updated_at
+  # attributes: verified, email, receive_emails, recovery_hash, username, password, position, admin, created_at, updated_at
   has_many :draft_users
   has_many :drafts, :through => :draft_users
   has_many :user_cards
@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
         self.password = ApplicationHelper::md5(self.password)
       end
     end
+  end
+
+  def generate_recovery_hash!
+    self.recovery_hash = ApplicationHelper::md5("#{self.email}#{Random.rand(100000)}")
+    self.save
   end
 
   def can_join_draft?

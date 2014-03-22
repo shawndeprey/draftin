@@ -4,9 +4,13 @@ class SessionController < ApplicationController
   def create
     @user = User.find_by_username(params[:username]) || User.find_by_email(params[:email])
     if @user && @user.password == ApplicationHelper::md5(params[:password])
-      MetricsHelper::track(MetricsHelper::LOGIN, {}, @user)
-      login @user
-      redirect_to root_path
+      if @user.verified?
+        MetricsHelper::track(MetricsHelper::LOGIN, {}, @user)
+        login @user
+        redirect_to root_path
+      else
+        redirect_to root_path, alert: "Account not verified. Check your email for Draftin' verification email."
+      end
     else
       redirect_to root_path, alert: "Username, email and/or password incorrect."
     end
