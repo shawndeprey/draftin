@@ -1,7 +1,7 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
   nilify_blanks
-  # attributes: username, password, position, admin, created_at, updated_at
+  # attributes: email, username, password, position, admin, created_at, updated_at
   has_many :draft_users
   has_many :drafts, :through => :draft_users
   has_many :user_cards
@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   has_many :packs
 
   before_save :encrypt_password
+
+  validates :email, presence: true
+  validates :username, presence: true
+  validates :password, presence: true
 
   def encrypt_password
     unless self.password.blank?

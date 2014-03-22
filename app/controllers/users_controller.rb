@@ -7,8 +7,9 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.find_by_username(params[:user][:username]) || User.new(user_params)
-    return redirect_to root_path, alert: "Username '#{@user.username}' already exists." if @user.id
+    @user = User.find_by_username(params[:user][:username]) || User.find_by_email(params[:user][:email])
+    return redirect_to root_path, alert: "User with email #{params[:user][:email]} or username #{params[:user][:username]} already exists." if @user
+    @user = User.new(user_params)
     if @user.save
       MetricsHelper::track(MetricsHelper::CREATE_USER, {}, @user)
       MetricsHelper::send_user_to_mixpanel(@user)
@@ -26,6 +27,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:email, :username, :password)
   end
 end

@@ -32,8 +32,9 @@ module MetricsHelper
     return unless Rails.env.production?
     mp = MetricsHelper::mixpanel(user)
     mp.people.set("#{user.id}", {
-      "username" => user.username,
-      "$created" => user.created_at.to_date
+      "$email"    => user.email,
+      "$name"     => user.username,
+      "$created"  => user.created_at.to_date
     });
   end
 

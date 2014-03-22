@@ -32,9 +32,9 @@ Draftin::Application.routes.draw do
   admin_constraint = lambda { |request| request.env["rack.session"]["user_id"] && User.find(request.env["rack.session"]["user_id"]).admin }
   constraints admin_constraint do
     mount Sidekiq::Web => '/admin/sidekiq'
-    get '/example' => 'default#example'
     get '/admin' => 'default#admin'
   end
+  get '/example' => 'default#example'
 
   resources :users
   resources :drafts

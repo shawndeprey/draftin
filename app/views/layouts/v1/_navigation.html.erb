@@ -18,7 +18,7 @@
           <% if @session_user.admin? %>
             <li><%= link_to "Admin", "/admin", :style => "border: none;" %></li>
           <% end %>
-          <li><%= link_to @session_user.username, "/", :style => "border: none;" %></li>
+          <li><%= link_to @session_user.username, user_path(@session_user), :style => "border: none;" %></li>
           <li><%= link_to "Logout", "/session", method: :delete, :style => "border: none;" %></li>
         </ul>
       </div>

@@ -1,16 +1,17 @@
 --- Alpha Testing v0.1 (Finished) ---
 --- Alpha Testing v0.2.1(Finished) ---
 --- Alpha Testing v0.2.1 Bugs ---
+- Add emails to user accounts
+- Add account verification email and verified status to user accounts
+- Add Account recovery
 - Make loading screen easier to read
 - Next sets on drafting view
 - Ding when you get a pack
 - Multiple export options
-- Color balance pack generation?
 - Metrics more info on picked cards
 - Upgrade to new COD format
 --- Alpha Testing v0.2.2 ---
 --- v0.3 Development ---
-- Create Admin Panel
 - Add News Section on index (Use github markdown)
 - Add text chat infrastructure
 - Add Donation Page
@@ -20,9 +21,6 @@
 - Global Chat Room
 - Online Users
 - Draft specific card selections (DraftCardSelection Object)
-- Add emails to user accounts
-- Add account verification email and verified status to user accounts
-- Add Account recovery
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 

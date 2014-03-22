@@ -27,20 +27,22 @@
         <fieldset>
           <legend>Login</legend>
           <div class="form-group">
-            <label for="inputEmail" class="col-sm-3 control-label">Username</label>
-            <div class="col-sm-9">
+            <div class="col-sm-5">
               <input type="text" class="form-control" placeholder="Username" name="username">
             </div>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword" class="col-sm-3 control-label">Password</label>
-            <div class="col-sm-9">
-              <input type="password" class="form-control" placeholder="Password" name="password">
+            <div class="col-sm-2">
+              <center><label class="control-label">Or</label></center>
+            </div>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" placeholder="Email" name="email">
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-1">
-              <button type="submit" class="btn btn-primary btn-success">Login</button>
+            <div class="col-sm-5">
+              <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+            </div>
+            <div class="col-sm-7">
+              <button type="submit" class="btn btn-success btn-block">Login</button>
             </div>
           </div>
         </fieldset>
@@ -55,20 +57,22 @@
         <fieldset>
           <legend>Create Account</legend>
           <div class="form-group">
-            <label for="inputEmail" class="col-sm-3 control-label">Username</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" placeholder="Username" name="user[username]">
+            <div class="col-sm-5">
+              <input type="text" class="form-control" placeholder="Username" name="user[username]" required="required">
+            </div>
+            <div class="col-sm-2">
+              <center><label class="control-label">And</label></center>
+            </div>
+            <div class="col-sm-5">
+              <input type="text" class="form-control" placeholder="Email" name="user[email]" required="required">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputPassword" class="col-sm-3 control-label">Password</label>
-            <div class="col-sm-9">
-              <input type="password" class="form-control" placeholder="Password" name="user[password]">
+            <div class="col-sm-5">
+              <input type="password" class="form-control" placeholder="Password" name="user[password]" required="required">
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-9 col-sm-offset-1">
-              <button type="submit" class="btn btn-primary btn-success">Create</button>
+            <div class="col-sm-7">
+              <button type="submit" class="btn btn-success btn-block">Create Account</button>
             </div>
           </div>
         </fieldset>
