@@ -10,4 +10,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => @user.email, :subject => "Verify Draftin' Account")
   end
+
+  def new_feedback(user)
+    @user = user
+    mail(:to => @user.email, :subject => "New Feedback on Draftin'")
+  end
 end

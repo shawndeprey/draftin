@@ -15,6 +15,10 @@ class FeedbacksController < ApplicationController
     @feedback.user = @session_user
     if @feedback.save
       MetricsHelper::track(MetricsHelper::SUBMIT_FEEDBACK, {}, @session_user)
+
+      @admin = User.find_by_username('shawn')
+      UserMailer.new_feedback(@admin).deliver if @admin
+      
       redirect_to root_path, notice: "Your feedback is greatly appreciated. Thank you!"
     else
       render action: "new"
