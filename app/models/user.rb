@@ -73,13 +73,14 @@ class User < ActiveRecord::Base
   end
 
   def select_multiverseid_from_current_pack!(multiverseid)
+    card = Card.find_by_multiverseid(multiverseid)
+    pack = self.current_pack
+    return unless card && pack
     ActiveRecord::Base.transaction do
-      pack = self.current_pack
-      card = Card.find_by_multiverseid(multiverseid)
-      return unless card && pack
       pack.remove_card!(card)
       self.add_card!(card)
     end
+    return card
   end
 
   def cards_by_name

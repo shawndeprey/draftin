@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     if @user
       @user.verified = true
       @user.save
+      MetricsHelper::track(MetricsHelper::VERIFY_USER, {}, @user)
       login @user
       redirect_to root_path, notice: "Account verified. Start Draftin'!"
     else
@@ -54,6 +55,7 @@ class UsersController < ApplicationController
     if @user
       @user.generate_recovery_hash!
       UserMailer.password_reset(@user).deliver
+      MetricsHelper::track(MetricsHelper::PASSWORD_RESET_REQUEST, {}, @user)
       redirect_to root_path, notice: "Recovery email sent to #{@user.email}."
     else
       redirect_to root_path, alert: "Unable to find user with email #{params[:email]}. Please check the email and try again."
@@ -65,6 +67,7 @@ class UsersController < ApplicationController
     @user = User.find_by_recovery_hash(params[:recovery_hash])
     if @user
       login @user
+      MetricsHelper::track(MetricsHelper::PASSWORD_RESET, {}, @user)
       redirect_to user_path(@user), notice: "Temporary login successful. Reset your password below."
     else
       redirect_to root_path, alert: "Unable to find user with recovery code. Please try again."

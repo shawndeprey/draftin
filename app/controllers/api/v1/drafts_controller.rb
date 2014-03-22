@@ -34,10 +34,19 @@ class Api::V1::DraftsController < Api::V1::BaseController
   # GET /drafts/:id/select_card.json?multiverse_id=12345
   def select_card
     return not_found if params[:multiverse_id].blank? || params[:multiverse_id] == 'undefined'
-    @session_user.select_multiverseid_from_current_pack!(params[:multiverse_id])
+    @card = @session_user.select_multiverseid_from_current_pack!(params[:multiverse_id])
     next_user = @draft.next_user(@session_user)
     @session_user.give_current_pack_to_user!(next_user)
-    MetricsHelper::track(MetricsHelper::SELECT_CARD, {multiverse_id:params[:multiverse_id]}, @session_user)
+    if @card
+      MetricsHelper::track(MetricsHelper::SELECT_CARD, {
+        multiverse_id: @card.multiverseid,
+        name: @card.name,
+        converted_mana_cost: @card.cmc,
+        colors: @card.colors,
+        card_type: @card.card_type,
+        set: @card.card_set.short_name
+      }, @session_user)
+    end
     render json: {success:true}
   end
 
