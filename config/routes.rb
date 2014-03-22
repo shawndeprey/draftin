@@ -17,12 +17,6 @@ Draftin::Application.routes.draw do
     end
   end
 
-  get '/example' => 'default#example'
-  admin_constraint = lambda { |request| request.env["rack.session"]["user_id"] && User.find(request.env["rack.session"]["user_id"]).admin }
-  constraints admin_constraint do
-    mount Sidekiq::Web => '/admin/sidekiq'
-  end
-
   # Sessions
   post '/session' => 'session#create', as: :session
   delete '/session' => 'session#destroy'
@@ -34,6 +28,15 @@ Draftin::Application.routes.draw do
   # Users
   get '/users/:id/my_cards' => 'users#export_cards'
 
+  # Admin
+  admin_constraint = lambda { |request| request.env["rack.session"]["user_id"] && User.find(request.env["rack.session"]["user_id"]).admin }
+  constraints admin_constraint do
+    mount Sidekiq::Web => '/admin/sidekiq'
+    get '/example' => 'default#example'
+    get '/admin' => 'default#admin'
+  end
+
   resources :users
   resources :drafts
+  resources :feedbacks
 end

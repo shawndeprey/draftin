@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
   end
 
+  def permissions_check
+    return redirect_to root_path, alert: "Only admins can do that silly!" unless @session_user.admin?
+  end
+
   def render_not_found
     redirect_to root_path, alert: "Dude! We couldn't find the page you were looking for. Sorry about that!"
   end

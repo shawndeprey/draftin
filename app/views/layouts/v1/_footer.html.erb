@@ -16,7 +16,21 @@
     
     <div class="col-sm-4">
       <h4>Leave Feedback</h4>
-      <p class="text-muted">Found a bug? Want to say hi? Use the below form.</p>
+      <p class="text-muted">Found a bug? Want to say hi?
+      <% if @session_user %>
+        Use the below form.
+      <% else %>
+        Login to submit feedback.
+      <% end %>
+      </p>
+      <% if @session_user %>
+        <form class="bs-example form-horizontal" method="POST" action="<%= feedbacks_path %>">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+          <input type="text" class="form-control" placeholder="Title" name="feedback[title]" style="margin-bottom:10px;">
+          <textarea class="form-control" rows="3" name="feedback[content]" style="margin-bottom:10px;" placeholder="Feedback"></textarea>
+          <button type="submit" class="btn btn-primary btn-success">Submit Feedback</button>
+        </form>
+      <% end %>
     </div>
 
     <div class="col-sm-4">
