@@ -10,7 +10,7 @@ class CardSet < ActiveRecord::Base
     self.card_count = self.cards.length
   end
 
-  def generate_pack_for_user!(user)
+  def generate_pack!
     pack = Pack.new({card_set_id: self.id})
     self.pack_layout.each do |rarity|
       # Grab the possible choices for spot in pack
@@ -30,8 +30,7 @@ class CardSet < ActiveRecord::Base
     # Add foil with random chance
     # foil_card = self.get_foil_card
     # pack.add_card(foil_card) if foil_card
-
-    user.add_pack!(pack)
+    pack.save
     return pack
   end
 

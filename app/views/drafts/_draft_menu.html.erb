@@ -22,7 +22,7 @@
 
     <% if @draft.stage != DRAFT_STAGE %>
       <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?" style="float:right;">
-        <button type="button" class="btn btn-info">Leave Draft</button>
+        <button type="button" class="btn btn-warning">Leave Draft</button>
       </a>
     <% end %>
 

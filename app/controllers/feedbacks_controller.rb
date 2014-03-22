@@ -6,7 +6,7 @@ class FeedbacksController < ApplicationController
   def index
     @handled = params[:handled] == "1" ? "TRUE" : "FALSE"
     @feedbacks = Feedback.where('"feedbacks"."id" >= 0 AND "feedbacks"."handled" = ' + "#{@handled}")
-                         .order('"feedbacks"."updated_at" DESC').paginate(page: params[:page], per_page: 10)
+                         .order('"feedbacks"."updated_at" ASC').paginate(page: params[:page], per_page: 10)
   end
 
   # POST /feedbacks

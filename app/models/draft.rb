@@ -57,7 +57,7 @@ class Draft < ActiveRecord::Base
       return unless set
       self.users.each_with_index do |user,position|
         user.prepare_for_draft!(position)
-        set.generate_pack_for_user!(user)
+        user.add_pack!(set.generate_pack!)
       end
       self.remove_set!(set)
       self.stage = DRAFT_STAGE
