@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.where('id >= 0').order('updated_at DESC').paginate(page: params[:page], per_page: 3)
+    @articles = Article.latest_articles(params[:page], 9)
     if @session_user
       MetricsHelper::track(MetricsHelper::VIEW_ARTICLE_INDEX, {}, @session_user)
     end

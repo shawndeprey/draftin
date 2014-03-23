@@ -5,20 +5,21 @@
 
 <div class="row">
   <% @articles.each do |article| %>
-    <div class="col-sm-12" style="margin-bottom:10px;">
-      <h3 class="list-group-item-heading"><%= link_to article.title, article %></h3>
-      <p><%= article.updated_at.strftime("Published on %m/%d/%Y") %></p>
-      <p><%= markdown(article.content) %></p>
+    <div class="col-sm-4" style="margin-bottom:10px;">
+      <div class="well">
+        <h3 class="list-group-item-heading"><%= link_to article.title, article %></h3>
+        <p><%= article.updated_at.strftime("Published on %m/%d/%Y") %></p>
+        <p><%= markdown(truncate(article.content, length: 200)) %> <%= link_to "Continue...", article %></p>
 
-      <% if @session_user && @session_user.admin? %>
-        <a href="<%= edit_article_path(article) %>" rel="nofollow">
-          <button type="button" class="btn btn-info btn-xs">Edit</button>
-        </a>
-        <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(article) %>" rel="nofollow">
-          <button type="button" class="btn btn-danger btn-xs">Destroy</button>
-        </a>
-      <% end %>
-      <div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
+        <% if @session_user && @session_user.admin? %>
+          <a href="<%= edit_article_path(article) %>" rel="nofollow">
+            <button type="button" class="btn btn-info btn-xs">Edit</button>
+          </a>
+          <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(article) %>" rel="nofollow">
+            <button type="button" class="btn btn-danger btn-xs">Destroy</button>
+          </a>
+        <% end %>
+      </div>
     </div>
   <% end %>
   <div class="col-sm-12">

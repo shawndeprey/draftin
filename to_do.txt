@@ -3,11 +3,10 @@
 --- Alpha Testing v0.2.1 Bugs ---
 --- Alpha Testing v0.2.2 ---
 --- v0.3 Development ---
-- Add text chat infrastructure
 - Add Donation Page
 - Create How To Video and put it on the home page
 - Add About page describing pack generation, current ignored sets, the future of draftin, etc.
-- Refine index and require email on signup
+- Add text chat infrastructure
 - Global Chat Room
 - Online Users
 - Draft specific card selections (DraftCardSelection Object)

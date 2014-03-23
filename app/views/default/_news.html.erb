@@ -1,8 +1,9 @@
-<h2>Latest News</h2>
-<div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
-
-<div class="col-sm-12">
-  <h3 class="list-group-item-heading"><%= link_to @article.title, @article %></h3>
-  <p><%= @article.updated_at.strftime("Published on %m/%d/%Y") %></p>
-  <p><%= markdown(@article.content) %></p>
-</div>
+<% @articles.each do |article| %>
+  <div class="col-sm-4">
+    <div class="well">
+      <h3 class="list-group-item-heading"><%= link_to article.title, article %></h3>
+      <p><%= article.updated_at.strftime("Published on %m/%d/%Y") %></p>
+      <p><%= markdown(truncate(article.content, length: 200)) %> <%= link_to "Continue...", article %></p>
+    </div>
+  </div>
+<% end %>
