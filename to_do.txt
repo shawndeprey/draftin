@@ -4,7 +4,6 @@
 --- Alpha Testing v0.2.2 ---
 --- v0.3 Development ---
 - Create How To Video and put it on the home page
-- Add text chat infrastructure
 - Global Chat Room
 - Online Users
 - Draft specific card selections (DraftCardSelection Object)
