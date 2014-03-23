@@ -5,7 +5,6 @@
 --- v0.3 Development ---
 - Add Donation Page
 - Create How To Video and put it on the home page
-- Add About page describing pack generation, current ignored sets, the future of draftin, etc.
 - Add text chat infrastructure
 - Global Chat Room
 - Online Users

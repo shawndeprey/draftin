@@ -17,6 +17,9 @@ Draftin::Application.routes.draw do
     end
   end
 
+  # Pages
+  get '/about' => 'default#about', as: :about
+
   # Sessions
   post '/session' => 'session#create', as: :session
   delete '/session' => 'session#destroy'

@@ -15,6 +15,7 @@
     <div class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "News", articles_url, :style => "border: none;" %></li>
+        <li><%= link_to "About", about_url, :style => "border: none;" %></li>
         <% if @session_user %>
           <% if @session_user.admin? %>
             <li><%= link_to "Admin", "/admin", :style => "border: none;" %></li>
