@@ -19,6 +19,7 @@ Draftin::Application.routes.draw do
 
   # Pages
   get '/about' => 'default#about', as: :about
+  get '/support_development' => 'default#donate', as: :donate
 
   # Sessions
   post '/session' => 'session#create', as: :session

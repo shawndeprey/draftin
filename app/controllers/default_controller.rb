@@ -1,6 +1,6 @@
 class DefaultController < ApplicationController
-  skip_before_filter :require_session, only: [:index, :example, :about]
-  before_action :permissions_check, except: [:index, :example, :about]
+  skip_before_filter :require_session, only: [:index, :example, :about, :donate]
+  before_action :permissions_check, except: [:index, :example, :about, :donate]
   
   # GET /
   def index
@@ -23,6 +23,10 @@ class DefaultController < ApplicationController
 
   # GET /about
   def about
+  end
+
+  # GET /donate
+  def donate
   end
 
 end

@@ -3,7 +3,6 @@
 --- Alpha Testing v0.2.1 Bugs ---
 --- Alpha Testing v0.2.2 ---
 --- v0.3 Development ---
-- Add Donation Page
 - Create How To Video and put it on the home page
 - Add text chat infrastructure
 - Global Chat Room
