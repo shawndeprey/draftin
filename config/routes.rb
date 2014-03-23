@@ -32,6 +32,7 @@ Draftin::Application.routes.draw do
 
   # Users
   get '/users/:id/my_cards' => 'users#export_cards'
+  get '/users/:id/my_cards_list' => 'users#export_cards_list'
   get '/users/reset_password_request' => 'users#reset_password_request'
   get '/users/reset_password' => 'users#reset_password'
   get '/users/:id/verify' => 'users#verify'

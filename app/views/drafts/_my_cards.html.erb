@@ -2,7 +2,10 @@
   <div class="well well-sm">
     <% if @draft.stage == END_STAGE %>
       <a href="/users/<%= @session_user.id %>/my_cards.cod" class="export_button">
-        <button type="button" class="btn btn-sm btn-success">Export .cod</button>
+        <button type="button" class="btn btn-sm btn-success">Export xml.cod</button>
+      </a>
+      <a href="/users/<%= @session_user.id %>/my_cards_list.cod" class="export_button" style="margin-right:5px;">
+        <button type="button" class="btn btn-sm btn-success">Export list.cod</button>
       </a>
     <% end %>
     <h3>My Cards<span>(Always shows most recent draft's cards...)</span></h3>

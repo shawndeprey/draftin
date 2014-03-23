@@ -49,6 +49,10 @@ class UsersController < ApplicationController
   def export_cards
   end
 
+  # GET /users/:id/my_cards_list.cod
+  def export_cards_list
+  end
+
   # GET /users/reset_password_request?email=some@email.com
   def reset_password_request
     @user = User.find_by_email(params[:email])
