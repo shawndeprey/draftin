@@ -5,6 +5,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
+      MetricsHelper::track(MetricsHelper::POST_COMMENT, {}, @session_user)
       render json: @comment, root: :comment, serializer: CommentSerializer
     else
       render json: @comment.errors.full_messages, status: :unprocessable_entity
@@ -14,6 +15,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   # PUT /api/v1/comments/:id.json
   def update
     if @comment.update_attributes(comment_params)
+      MetricsHelper::track(MetricsHelper::UPDATE_COMMENT, {}, @session_user)
       render json: @comment, root: :comment, serializer: CommentSerializer
     else
       render json: @comment.errors.full_messages, status: :unprocessable_entity
@@ -22,6 +24,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
 
   # DELETE /api/v1/comments/:id.json
   def destroy
+    MetricsHelper::track(MetricsHelper::DELETE_COMMENT, {}, @session_user)
     @comment.destroy
     head :no_content
   end
