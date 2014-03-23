@@ -15,6 +15,8 @@ module MetricsHelper
   VERIFY_USER             = "verify user"
   PASSWORD_RESET_REQUEST  = "password reset request"
   PASSWORD_RESET          = "password reset"
+  VIEW_ARTICLE_INDEX      = "view article index"
+  VIEW_ARTICLE            = "view article"
 
   def self.track(event, properties, user)
     return if !Rails.env.production? || user.blank?

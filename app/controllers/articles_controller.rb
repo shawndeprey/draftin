@@ -6,10 +6,16 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.where('id >= 0').order('updated_at DESC').paginate(page: params[:page], per_page: 3)
+    if @session_user
+      MetricsHelper::track(MetricsHelper::VIEW_ARTICLE_INDEX, {}, @session_user)
+    end
   end
 
   # GET /articles/show
   def show
+    if @session_user
+      MetricsHelper::track(MetricsHelper::VIEW_ARTICLE, {title:@article.title}, @session_user)
+    end
   end
 
   # GET /articles/new
