@@ -2,8 +2,6 @@
 --- Alpha Testing v0.2.1(Finished) ---
 --- Alpha Testing v0.2.1 Bugs ---
 --- Alpha Testing v0.2.2 ---
-- Add News Section on index (Use github markdown)
-
 --- v0.3 Development ---
 - Add text chat infrastructure
 - Add Donation Page
