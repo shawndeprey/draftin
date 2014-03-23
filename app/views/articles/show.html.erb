@@ -1,0 +1,15 @@
+<h2><%= link_to @article.title, @article %></h2>
+<div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
+
+<div class="col-sm-12">
+  <p><%= @article.updated_at.strftime("Published on %m/%d/%Y") %></p>
+  <p><%= markdown(@article.content) %></p>
+  <% if @session_user && @session_user.admin? %>
+    <a href="<%= edit_article_path(@article) %>" rel="nofollow">
+      <button type="button" class="btn btn-info btn-xs">Edit</button>
+    </a>
+    <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(@article) %>" rel="nofollow">
+      <button type="button" class="btn btn-danger btn-xs">Destroy</button>
+    </a>
+  <% end %>
+</div>

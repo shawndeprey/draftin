@@ -1,0 +1,28 @@
+<h2>Latest News</h2>
+<div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
+
+<%= render 'new_article' %>
+
+<div class="row">
+  <% @articles.each do |article| %>
+    <div class="col-sm-12" style="margin-bottom:10px;">
+      <h3 class="list-group-item-heading"><%= link_to article.title, article %></h3>
+      <p><%= article.updated_at.strftime("Published on %m/%d/%Y") %></p>
+      <p><%= markdown(article.content) %></p>
+
+      <% if @session_user && @session_user.admin? %>
+        <a href="<%= edit_article_path(article) %>" rel="nofollow">
+          <button type="button" class="btn btn-info btn-xs">Edit</button>
+        </a>
+        <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(article) %>" rel="nofollow">
+          <button type="button" class="btn btn-danger btn-xs">Destroy</button>
+        </a>
+      <% end %>
+      <div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
+    </div>
+  <% end %>
+    <div class="col-sm-12">
+      <%= will_paginate @articles %>
+    </div>
+  </div>
+</div>

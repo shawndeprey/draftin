@@ -1,0 +1,21 @@
+<%= form_for(@article) do |f| %>
+  <fieldset>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <%= f.text_field :title, :placeholder => "Title", :class => "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <%= f.text_area(:content, :rows => 8, :placeholder => "Content", :class => "form-control") %>
+      </div>
+    </div>
+
+    <div class="form-group row" style="margin-top:15px;">
+      <div class="col-sm-6 col-sm-offset-3">
+        <button type="submit" class="btn btn-success btn-block">Save Article</button>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

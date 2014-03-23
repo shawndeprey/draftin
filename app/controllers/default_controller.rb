@@ -10,6 +10,7 @@ class DefaultController < ApplicationController
                                     .paginate(:page => params[:page] || 1, :per_page => 5)
       MetricsHelper::track(MetricsHelper::VIEW_INDEX, {}, @session_user)
     end
+    @article = Article.where('id >= 0').order('updated_at DESC').paginate(page: params[:page], per_page: 1).first
   end
 
   # GET /example

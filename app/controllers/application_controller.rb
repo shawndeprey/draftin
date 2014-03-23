@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :require_session
   before_filter :load_session_user
 
+  include ApplicationHelper
+
   def require_session
     unless session[:user_id]
       redirect_to root_path, alert: "You must login to do that."

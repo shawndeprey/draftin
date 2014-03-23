@@ -42,4 +42,5 @@ Draftin::Application.routes.draw do
   resources :users
   resources :drafts
   resources :feedbacks
+  resources :articles
 end

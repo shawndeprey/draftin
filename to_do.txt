@@ -1,12 +1,10 @@
 --- Alpha Testing v0.1 (Finished) ---
 --- Alpha Testing v0.2.1(Finished) ---
 --- Alpha Testing v0.2.1 Bugs ---
-- Ding when you get a pack
-- Multiple export options
-- Upgrade to new COD format
 --- Alpha Testing v0.2.2 ---
---- v0.3 Development ---
 - Add News Section on index (Use github markdown)
+
+--- v0.3 Development ---
 - Add text chat infrastructure
 - Add Donation Page
 - Create How To Video and put it on the home page
@@ -32,6 +30,7 @@
 - When scrolling over cards, pop-up a larger view
 - Public Drafts
 - Junk Cards on export
+- Ding when you get a pack
 
 --- Closed Alpha Testers ---
 - Jon Su

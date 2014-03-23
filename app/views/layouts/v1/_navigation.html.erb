@@ -12,16 +12,17 @@
       </button>
     </div>
 
-    <% if @session_user %>
-      <div class="navbar-collapse collapse" id="navbar-main">
-        <ul class="nav navbar-nav navbar-right">
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "News", articles_url, :style => "border: none;" %></li>
+        <% if @session_user %>
           <% if @session_user.admin? %>
             <li><%= link_to "Admin", "/admin", :style => "border: none;" %></li>
           <% end %>
           <li><%= link_to @session_user.username, user_path(@session_user), :style => "border: none;" %></li>
           <li><%= link_to "Logout", "/session", method: :delete, :style => "border: none;" %></li>
-        </ul>
-      </div>
-    <% end %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
