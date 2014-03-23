@@ -1,8 +1,6 @@
 --- Alpha Testing v0.1 (Finished) ---
 --- Alpha Testing v0.2.1(Finished) ---
 --- Alpha Testing v0.2.1 Bugs ---
-- Make loading screen easier to read
-- Next sets on drafting view
 - Ding when you get a pack
 - Multiple export options
 - Upgrade to new COD format
