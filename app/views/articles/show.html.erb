@@ -1,19 +1,64 @@
 <div class="row">
-    <h2><%= link_to @article.title, @article %></h2>
-    <div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
+  <h2><%= link_to @article.title, @article %></h2>
+  <div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
 
+  <div class="col-sm-12">
+    <div class="well text_content">
+      <p><span class="label label-default" style="font-size:14px;"><%= @article.updated_at.strftime("Published on %m/%d/%Y") %></span></p>
+      <p><%= markdown(@article.content) %></p>
+      <% if @session_user && @session_user.admin? %>
+        <a href="<%= edit_article_path(@article) %>" rel="nofollow">
+          <button type="button" class="btn btn-info btn-xs">Edit</button>
+        </a>
+        <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(@article) %>" rel="nofollow">
+          <button type="button" class="btn btn-danger btn-xs">Destroy</button>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <h2>Comments</h2>
+  <div class="special_hr" style="margin: 10px 0px 20px 0px;"></div>
+
+  <% @article.comments.order('"comments"."created_at" DESC').each do |comment| %>
     <div class="col-sm-12">
       <div class="well text_content">
-        <p><%= @article.updated_at.strftime("Published on %m/%d/%Y") %></p>
-        <p><%= markdown(@article.content) %></p>
-        <% if @session_user && @session_user.admin? %>
-          <a href="<%= edit_article_path(@article) %>" rel="nofollow">
-            <button type="button" class="btn btn-info btn-xs">Edit</button>
-          </a>
-          <a data-confirm="Are you sure?" data-method="delete" href="<%= article_path(@article) %>" rel="nofollow">
-            <button type="button" class="btn btn-danger btn-xs">Destroy</button>
+        <div id="comment_<%=comment.id%>_content">
+          <p><span class="label label-default" style="font-size:14px;"><%= comment.created_at.strftime("Posted on %m/%d/%Y") %> by <%= comment.user.username %></span></p>
+          <p><%= markdown(comment.content) %></p>
+        </div>
+
+        <% if @session_user && @session_user.id == comment.user.id %>
+          <div id="edit_comment_<%=comment.id%>" style="display:none;margin-bottom:15px;">
+            <textarea class="form-control" rows="4" placeholder="Comments..." id="comment_<%=comment.id%>"><%= comment.content %></textarea>
+            <br>
+            <button class="btn btn-primary btn-success" onclick="draftin.comment.updateArticleComment(<%=comment.id%>, 'textarea#comment_<%=comment.id%>');">Update Comment</button>
+            <button class="btn btn-primary btn-warning" onclick="$('div#comment_<%=comment.id%>_content').slideToggle(250);$('div#edit_comment_<%=comment.id%>').slideToggle(250);">Cancel</button>
+          </div>
+
+          <button type="button" class="btn btn-info btn-xs" onclick="$('div#comment_<%=comment.id%>_content').slideToggle(250);$('div#edit_comment_<%=comment.id%>').slideToggle(250);">Edit</button>
+          <a data-confirm="Are you sure?" data-method="delete" href="javascript:draftin.comment.destroyComment(<%=comment.id%>);" rel="nofollow">
+            <button type="button" class="btn btn-danger btn-xs">Remove</button>
           </a>
         <% end %>
+
       </div>
     </div>
+  <% end %>
+  <div class="col-sm-12">
+    <div class="well text_content">
+      <% if @session_user %>
+        <p>
+          <em>Draftin' uses github style markdown. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" rel="nofollow", target="_BLANK">Check out the cheatsheet</a> for text formatting options.</em>
+        </p>
+        <textarea class="form-control" rows="4" placeholder="Comments..." id="article_comment"></textarea>
+        <br>
+        <button class="btn btn-primary btn-success" onclick="draftin.comment.postArticleComment(<%=@session_user.id%>, <%=@article.id%>, 'textarea#article_comment');">Leave Comment</button>
+      <% else %>
+        <p><a href="/">Login</a> to leave a comment.</p>
+      <% end %>
+    </div>
+  </div>
 </div>

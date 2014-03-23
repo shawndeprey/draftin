@@ -14,6 +14,7 @@ Draftin::Application.routes.draw do
       get '/drafts/:id/next_pack' => 'drafts#next_pack'
       get '/drafts/:id/end_draft' => 'drafts#end_draft'
       resources :drafts
+      resources :comments
     end
   end
 

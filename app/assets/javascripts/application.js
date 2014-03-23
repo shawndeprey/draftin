@@ -15,3 +15,4 @@
 //= require draftin
 //= require bootstrap
 //= require draft
+//= require comment
