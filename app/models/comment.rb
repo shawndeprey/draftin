@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Comment < ActiveRecord::Base
+  nilify_blanks
   # attributes: content, user_id, chat_room_id, article_id, created_at, updated_at
   belongs_to :user
   belongs_to :chat_room

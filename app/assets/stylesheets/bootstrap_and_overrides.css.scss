@@ -32,6 +32,20 @@ body.v1 {
     }
   }
 
+  div.chat_room {
+    div#chat_room_content {
+      overflow-y: scroll;
+      max-height: 300px;
+      margin-bottom: -15px;
+    }
+    span.label-default {
+      disply: inline-block;
+    }
+    div.chat_room_input_area {
+      margin: 0px -16px -15px -15px;
+    }
+  }
+
   div.text_content p {
     font-size: 16px;
   }

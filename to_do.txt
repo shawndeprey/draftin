@@ -7,6 +7,8 @@
 - Global Chat Room
 - Draft Chat Room
 - Online Users
+- Metrics on view donate
+- Draft specific card selections (DraftCardSelection Object)
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
@@ -20,7 +22,6 @@
 
 --- Later Versions ---
 - Web Sockets
-- Draft specific card selections (DraftCardSelection Object)
 - Official Draft Setups When Picking Packs
 - When scrolling over cards, pop-up a larger view
 - Public Drafts

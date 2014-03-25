@@ -9,8 +9,11 @@ class DefaultController < ApplicationController
                                     .order('updated_at desc')
                                     .paginate(:page => params[:page] || 1, :per_page => 5)
       MetricsHelper::track(MetricsHelper::VIEW_INDEX, {}, @session_user)
+      @chat_room = ChatRoom.find_by_id(GLOBAL_CHAT_ROOM_ID)
+      @recent_comments = @chat_room.recent_comments.reverse
+    else
+      @articles = Article.latest_articles(1, 3)
     end
-    @articles = Article.latest_articles(1, 3)
   end
 
   # GET /example

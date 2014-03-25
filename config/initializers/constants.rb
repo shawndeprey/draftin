@@ -2,6 +2,7 @@
 APP_NAME = "Draftin'"
 HASH_SALT = "sfpmn3iuhrf349hfn40jf3qevmlnfui34hf933onkds"
 TAGLINE = "A draft simulator for Magic the Gathering."
+GLOBAL_CHAT_ROOM_ID = 1
 
 # Mixpanel
 METRIC_API_KEY = "82dd3cd08638523eeb782a12a3e33a1a"

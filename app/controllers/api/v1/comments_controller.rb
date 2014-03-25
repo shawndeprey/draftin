@@ -1,5 +1,21 @@
 class Api::V1::CommentsController < Api::V1::BaseController
-  before_filter :load_comment, :except => [:create]
+  before_filter :load_comment, :except => [:index, :create]
+
+  # GET /api/v1/comments.json
+  def index
+    return not_found unless params[:user_id] || params[:chat_room_id] || params[:article_id]
+    if params[:chat_room_id]
+      conditions = '"comments"."chat_room_id" = '+"#{params[:chat_room_id]}"
+    elsif params[:user_id]
+      conditions = '"comments"."user_id" = '+"#{params[:user_id]}"
+    elsif params[:article_id]
+      conditions = '"comments"."article_id" = '+"#{params[:article_id]}"
+    end
+    @comments = Comment.where(conditions || "id < 0")
+                       .order('"comments"."created_at" DESC')
+                       .paginate(page: params[:page], per_page: 20).reverse
+    render json: @comments, root: :comments, each_serializer: CommentSerializer
+  end
 
   # POST /api/v1/comments.json
   def create

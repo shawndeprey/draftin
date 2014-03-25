@@ -4,6 +4,10 @@ module ApplicationHelper
   end
 
   def markdown(text)
+    ApplicationHelper.static_markdown(text)
+  end
+
+  def self.static_markdown(text)
     options = [:hard_wrap, :filter_html, :autolink, :no_intraemphasis, :fenced_code, :gh_blockcode]
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
     #Redcarpet.new(text, *options).to_html

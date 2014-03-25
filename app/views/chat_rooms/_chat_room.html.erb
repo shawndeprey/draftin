@@ -1,0 +1,36 @@
+<% if @chat_room %>
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-sm-12">
+      <div class="panel panel-primary chat_room">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= @chat_room.title %></h3>
+        </div>
+
+        <div class="panel-body" id="chat_room_content">
+          <% @recent_comments.each do |comment| %>
+            <div class="user_comment">
+                <%= markdown("<span class=\"label label-default\">#{comment.user.username} @#{comment.created_at.strftime("%l:%M on %a").strip!}</span> #{comment.content}") %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="panel-body">
+          <div class="input-group chat_room_input_area">
+            <span class="input-group-addon"><%= @session_user.username %></span>
+            <input type="text" class="form-control" id="chat_room_input">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" id="chat_room_button" onclick="draftin.comment.postChatRoomComment(<%=@session_user.id%>, <%=@chat_room.id%>)">Submit</button>
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <% %>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      draftin.comment.initChatRoom(<%= @session_user.id %>, <%= @chat_room.id %>, <%= @recent_comments.last ? @recent_comments.last.id : 0 %>);
+    });
+  </script>
+<% end %>
