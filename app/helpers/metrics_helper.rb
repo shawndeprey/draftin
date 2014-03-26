@@ -21,6 +21,8 @@ module MetricsHelper
   UPDATE_COMMENT          = "update comment"
   DELETE_COMMENT          = "delete comment"
   VIEW_DONATE             = "view donate"
+  NEXT_PACK               = "next pack"
+  END_DRAFT               = "end draft"
 
   def self.track(event, properties, user)
     return if !Rails.env.production? || user.blank?

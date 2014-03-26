@@ -4,14 +4,11 @@
 --- Alpha Testing v0.3 (Finished)---
 --- Beta 1 Testing (Start: March 26, 2014 at 9:15AM) ---
 - Open Drafts (With section on user panel for open drafts.)
-- Notify me when people post replies in articles.
-- Typo: "You left all of your friends along. GG."
 - "MMA" - "Modern Masters" is ignored. It shouldn't be.
 - Explain on global chat that it uses github style markdown.
 - Provide a way to reply to feedback right on page and show the users email.
 - Cube and Standard Drafts Suggested
 - Take a look at the UI from MTGO as it was suggested as better. The person suggested a more "contained" UI
-- On view draft metric, add draft_id & draft_name
 - put on page for everybody who the draft coordinator is and make it so only the coordinator can add/remove packs.
 - Make draft ID stand out more and put a tooltip on it so everybody knows that's what you use to join a draft.
 
