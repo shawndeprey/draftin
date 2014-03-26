@@ -4,8 +4,6 @@
 --- Alpha Testing v0.2.2 ---
 --- v0.3 Development ---
 - Create How To Video and put it on the home page
-- Online Users
-- Draft specific card selections (DraftCardSelection Object)
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
 
@@ -25,6 +23,7 @@
 - Junk Cards on export
 - Ding when you get a pack
 - Draft Chat Room
+- Draft specific card selections (DraftCardSelection Object)
 
 --- Closed Alpha Testers ---
 - Jon Su
