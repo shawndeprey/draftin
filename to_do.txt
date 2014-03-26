@@ -1,15 +1,8 @@
 --- Alpha Testing v0.1 (Finished) ---
---- Alpha Testing v0.2.1(Finished) ---
---- Alpha Testing v0.2.1 Bugs ---
---- Alpha Testing v0.2.2 ---
---- v0.3 Development ---
-- Create How To Video and put it on the home page
-
---- Beta(1, 2, 3, 4, ...etc.) Testing ---
-
---- v0.3, 0.4, 0.5, ...etc. Development ---
-
---- Decision: Do we need a Beta 2, 3, 4? ---
+--- Alpha Testing v0.2.1 (Finished) ---
+--- Alpha Testing v0.2.2 (Finished)---
+--- Alpha Testing v0.3 (Finished)---
+--- Beta 1 Testing ---
 
 --- v1.0 Release ---
 - Advertise on Reddit
@@ -38,3 +31,5 @@
 --- Development Help ---
 - Drew Muller
 - Justin Hammond
+
+Release Message:
