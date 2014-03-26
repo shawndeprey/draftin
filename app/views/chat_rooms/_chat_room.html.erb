@@ -9,7 +9,7 @@
         <div class="panel-body" id="chat_room_content">
           <% @recent_comments.each do |comment| %>
             <div class="user_comment">
-                <%= markdown("<span class=\"label label-default\">#{comment.user.username} @#{comment.created_at.strftime("%l:%M on %a").strip!}</span> #{comment.content}") %>
+                <%= markdown("<span class=\"label label-default\">#{comment.user.username} @#{comment.created_at.strftime("%l:%M on %a").gsub(/^\s/,'')}</span> #{comment.content}") %>
             </div>
           <% end %>
         </div>

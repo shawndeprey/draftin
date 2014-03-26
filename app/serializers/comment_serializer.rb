@@ -6,7 +6,7 @@ class CommentSerializer < ActiveModel::Serializer
   end
 
   def created_at
-    object.created_at.strftime("%l:%M on %a").strip!
+    object.created_at.strftime("%l:%M on %a").gsub(/^\s/,'')
   end
 
   def content
