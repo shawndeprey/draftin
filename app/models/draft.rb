@@ -75,7 +75,7 @@ class Draft < ActiveRecord::Base
       set = self.card_sets.first
       return unless set
       self.users.each do |user|
-        set.generate_pack_for_user!(user)
+        user.add_pack!(set.generate_pack!)
       end
       self.remove_set!(set)
       self.save
