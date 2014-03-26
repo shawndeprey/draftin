@@ -30,6 +30,9 @@ class DefaultController < ApplicationController
 
   # GET /donate
   def donate
+    if @session_user
+      MetricsHelper::track(MetricsHelper::VIEW_DONATE, {}, @session_user)
+    end
   end
 
 end

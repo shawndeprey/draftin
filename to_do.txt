@@ -4,10 +4,7 @@
 --- Alpha Testing v0.2.2 ---
 --- v0.3 Development ---
 - Create How To Video and put it on the home page
-- Global Chat Room
-- Draft Chat Room
 - Online Users
-- Metrics on view donate
 - Draft specific card selections (DraftCardSelection Object)
 
 --- Beta(1, 2, 3, 4, ...etc.) Testing ---
@@ -27,6 +24,7 @@
 - Public Drafts
 - Junk Cards on export
 - Ding when you get a pack
+- Draft Chat Room
 
 --- Closed Alpha Testers ---
 - Jon Su
