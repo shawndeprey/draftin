@@ -53,11 +53,13 @@ class Api::V1::DraftsController < Api::V1::BaseController
   # GET /drafts/:id/next_pack.json
   def next_pack
     @draft.next_pack!
+    render json: {success:true}
   end
 
   # GET /drafts/:id/end_draft.json
   def end_draft
     @draft.end_draft! if @draft.stage != END_STAGE
+    render json: {success:true}
   end
 
   protected
