@@ -17,6 +17,7 @@ draftin.draft = {
       if(startButton.length > 0){
         $(startButton).parent().tooltip();
       }
+      draftin.draft.lobby.setMaxUsersCallback();
       setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
     },
     polling: function(){
@@ -32,6 +33,17 @@ draftin.draft = {
             location.reload();
           }
         }
+      });
+    },
+    setMaxUsersCallback: function(){
+      $('select#max_user_count').off('change').on('change', function(){
+        draftin.loading();
+        $.ajax({
+          type:"PUT", url:'/api/v1/drafts/'+draftin.draft.id+'.json?_method=PUT&draft[max_users]='+$(this).val(), 
+          complete: function(data){
+            draftin.loading();
+          }
+        });
       });
     },
     checkStartConditions: function(users){
@@ -80,7 +92,6 @@ draftin.draft = {
           draftin.loading();
         }
       });
-
     },
     removeSet: function(setId){
       draftin.loading();

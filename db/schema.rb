@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323224031) do
+ActiveRecord::Schema.define(version: 20140327003138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20140323224031) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "password"
+    t.integer  "max_users",  default: 1
   end
 
   add_index "drafts", ["name"], name: "index_drafts_on_name", using: :btree

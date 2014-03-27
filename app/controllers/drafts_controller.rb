@@ -11,18 +11,14 @@ class DraftsController < ApplicationController
 
   # POST /drafts
   def create
-    if @session_user.can_join_draft?
-      @draft = Draft.new(draft_params)
-      if @draft.save
-        @draft.add_user!(@session_user)
-        @draft.set_draft_organizer!(@session_user)
-        MetricsHelper::track(MetricsHelper::CREATE_DRAFT, {}, @session_user)
-        redirect_to @draft
-      else
-        redirect_to root_path, alert: "Error creating draft. Please try again."
-      end
+    @draft = Draft.new(draft_params)
+    if @draft.save
+      @draft.add_user!(@session_user)
+      @draft.set_draft_organizer!(@session_user)
+      MetricsHelper::track(MetricsHelper::CREATE_DRAFT, {}, @session_user)
+      redirect_to @draft
     else
-      redirect_to root_path, alert: "You are already in an active draft. Go finish it!"
+      redirect_to root_path, alert: "Error creating draft. Please try again."
     end
   end
 
@@ -50,18 +46,20 @@ class DraftsController < ApplicationController
   # POST /drafts/join
   def add_user
     if @draft.stage == CREATE_STAGE
-      if @session_user.can_join_draft?
-        # Ensure passwords are correct
-        if !@draft.password.blank? && @draft.password != params[:password] && @draft.user.id != @session_user.id
-          return redirect_to root_path, alert: "This draft requires a password to join." if params[:password].blank?
-          return redirect_to root_path, alert: "#{params[:password]} is not the password for #{@draft.name}"
-        end
-        @draft.add_user!(@session_user)
-        MetricsHelper::track(MetricsHelper::JOIN_DRAFT, {}, @session_user)
-        redirect_to @draft, password: params[:password]
-      else
-        redirect_to root_path, alert: "You are already in an active draft. Go finish it!"
+      MetricsHelper::track(MetricsHelper::JOIN_DRAFT, {}, @session_user)
+      # Ensure there is an open slot
+      unless @draft.open_user_slot?
+        return redirect_to root_path, alert: "Draft #{@draft.name} is full. Sorry about that!"
       end
+
+      # Ensure passwords are correct
+      if !@draft.password.blank? && @draft.password != params[:password] && @draft.user.id != @session_user.id
+        return redirect_to root_path, alert: "This draft requires a password to join." if params[:password].blank?
+        return redirect_to root_path, alert: "#{params[:password]} is not the password for #{@draft.name}"
+      end
+
+      @draft.add_user!(@session_user)
+      redirect_to @draft, password: params[:password]
     else
       redirect_to root_path, alert: "Draft is no longer available for newbies."
     end

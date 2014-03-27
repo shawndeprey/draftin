@@ -9,8 +9,11 @@
 - "MMA" - "Modern Masters" is ignored. It shouldn't be.
 - Make draft ID stand out more and put a tooltip on it so everybody knows that's what you use to join a draft.
 - put on page for everybody who the draft coordinator is and make it so only the coordinator can add/remove packs.
+- Allow draft coordinator to kick users
 --- Beta 2 Release List ---
+- Max Users for Drafts
 - Explain on global chat that it uses github style markdown.
+- Removed restriction of joining or creating a draft if you are in an in-progress draft.
 
 --- Backlog ---
 - Provide a way to reply to feedback right on page and show the users email.

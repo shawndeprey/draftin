@@ -7,6 +7,17 @@ class Api::V1::DraftsController < Api::V1::BaseController
     render json: @draft, root: :draft, serializer: DraftSerializer
   end
 
+  # PUT /api/v1/update/:draft_id.json
+  def update
+    return not_found unless @draft.user.id == @session_user.id
+    if @draft.update_attributes(draft_params)
+      MetricsHelper::track(MetricsHelper::UPDATE_DRAFT, {}, @session_user)
+      render nothing: true, status: :accepted
+    else
+      render nothing: true, status: :unprocessable_entity
+    end
+  end
+
   # POST /drafts/:id/card_sets.json?set_id=123
   def add_set
     @draft.add_set!(@set) if @draft.stage == CREATE_STAGE
@@ -71,5 +82,10 @@ class Api::V1::DraftsController < Api::V1::BaseController
 
   def load_set
     @set = CardSet.find_by_id(params[:set_id]) || not_found
+  end
+
+  private
+  def draft_params
+    params.require(:draft).permit(:name, :password, :max_users)
   end
 end

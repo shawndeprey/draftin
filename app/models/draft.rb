@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Draft < ActiveRecord::Base
   nilify_blanks
-  # attributes: user_id, password, name, user_count, stage, created_at, updated_at
+  # attributes: user_id, password, name, user_count, max_users, stage, created_at, updated_at
   belongs_to :user
   has_many :draft_users
   has_many :users, :through => :draft_users
@@ -12,6 +12,10 @@ class Draft < ActiveRecord::Base
 
   def denormalize_user_count
     self.user_count = self.users.length
+  end
+
+  def open_user_slot?
+    return (self.user_count < self.max_users)
   end
 
   def status

@@ -35,15 +35,32 @@
   <div class="col-sm-4">
     <ul class="list-group">
       <li class="list-group-item" style="background-color:#49515a;">
-        Password
+        Settings
       </li>
       <li class="list-group-item">
-        Password: 
-        <% if @draft.password.blank? %>
-          <span class="label label-warning" style="float:right;">No Password</span>
-        <% else %>
-          <span class="label label-success" style="float:right;"><%= @draft.password %></span>
-        <% end %>
+        <div class="row">
+          <div class="col-sm-12">
+            Max Users: 
+            <% if @draft.user.id == @session_user.id %>
+              <select id="max_user_count" style="float:right;">
+                <% (1..8).each do |x| %>
+                  <option value="<%= x %>"<%if x == @draft.max_users%>selected="selected"<%end%>><%= x %></option>
+                <% end %>
+              </select>
+            <% else %>
+              <span class="label label-success" style="float:right;"><%= @draft.max_users %></span>
+            <% end %>
+          </div>
+          <div class="col-sm-12" style="margin-top:10px;">
+            Password: 
+            <% if @draft.password.blank? %>
+              <span class="label label-warning" style="float:right;">No Password</span>
+            <% else %>
+              <span class="label label-success" style="float:right;"><%= @draft.password %></span>
+            <% end %>
+          </div>
+        </div>
+          
       </li>
       <li class="list-group-item">
         <% if @draft.user.id == @session_user.id %>
@@ -58,7 +75,7 @@
             </div>
           </form>
         <% else %>
-          Only the draft coordinator can set a password.
+          <em>Only the draft coordinator may change draft settings.</em>
         <% end %>
       </li>
     </ul>
