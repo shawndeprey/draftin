@@ -8,6 +8,12 @@
 --- Beta 2 Release List ---
 - Open Drafts (With section on user panel for open drafts.)
 - Draft Chat Room
+- In future section, put "mtg draft simulator" and "magic the gathering draft simulator"
+- User Admin panel
+- Track Drafts Completed on user
+- Track Cards Selected on user
+- Online Users Module
+- Show export buttons no matter what
 
 --- Backlog ---
 - Provide a way to reply to feedback right on page and show the users email.
@@ -33,5 +39,3 @@
 --- Development Help ---
 - Drew Muller
 - Justin Hammond
-
-Release Message:
