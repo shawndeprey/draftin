@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="panel panel-primary chat_room">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= @chat_room.title %></h3>
+          <h3 class="panel-title"><%= @chat_room.title %> - <em style="font-size:12px;text-shadow:none;">Draftin' uses github style markdown. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" rel="nofollow", target="_BLANK" style="color:#FFF0C7;">Check out the cheatsheet</a> for text formatting options.</em></h3>
         </div>
 
         <div class="panel-body" id="chat_room_content">
@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <% %>
+  
   <script type="text/javascript">
     $(document).ready(function(){
       draftin.comment.initChatRoom(<%= @session_user.id %>, <%= @chat_room.id %>, <%= @recent_comments.last ? @recent_comments.last.id : 0 %>);

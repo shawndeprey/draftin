@@ -2,29 +2,26 @@
 --- Alpha Testing v0.2.1 (Finished) ---
 --- Alpha Testing v0.2.2 (Finished)---
 --- Alpha Testing v0.3 (Finished)---
---- Beta 1 Testing (Start: March 26, 2014 at 9:15AM) ---
+--- Beta 1 (Start: March 26, 2014 at 9:15AM) (Finished) ---
+--- Beta 2 Testing ---
 - Open Drafts (With section on user panel for open drafts.)
+- Draft Chat Room
 - "MMA" - "Modern Masters" is ignored. It shouldn't be.
-- Explain on global chat that it uses github style markdown.
-- Provide a way to reply to feedback right on page and show the users email.
-- Cube and Standard Drafts Suggested
-- Take a look at the UI from MTGO as it was suggested as better. The person suggested a more "contained" UI
-- put on page for everybody who the draft coordinator is and make it so only the coordinator can add/remove packs.
 - Make draft ID stand out more and put a tooltip on it so everybody knows that's what you use to join a draft.
+- put on page for everybody who the draft coordinator is and make it so only the coordinator can add/remove packs.
+--- Beta 2 Release List ---
+- Explain on global chat that it uses github style markdown.
 
---- v1.0 Release ---
-- Advertise on Reddit
-- Advertise on Hacker News
-
---- Later Versions ---
+--- Backlog ---
+- Provide a way to reply to feedback right on page and show the users email.
 - Web Sockets
 - Official Draft Setups When Picking Packs
 - When scrolling over cards, pop-up a larger view
-- Public Drafts
+- Cube and Standard Drafts Suggested
 - Junk Cards on export
 - Ding when you get a pack
-- Draft Chat Room
 - Draft specific card selections (DraftCardSelection Object)
+- Take a look at the UI from MTGO as it was suggested as better. The person suggested a more "contained" UI
 
 --- Closed Alpha Testers ---
 - Jon Su
