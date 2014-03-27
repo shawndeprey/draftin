@@ -23,6 +23,7 @@ module MetricsHelper
   VIEW_DONATE             = "view donate"
   NEXT_PACK               = "next pack"
   END_DRAFT               = "end draft"
+  KICK_USER               = "kick user"
 
   def self.track(event, properties, user)
     return if !Rails.env.production? || user.blank?

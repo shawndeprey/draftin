@@ -7,7 +7,11 @@
           Users
         </li>
         <% @draft.users.each do |user| %>
-          <li class="list-group-item user"><%= user.username %></li>
+          <li class="list-group-item user"><%= user.username %>
+            <% if @draft.user.id == @session_user.id %>
+              <button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.kickUser(<%= user.id %>);">Kick</button>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </div>
@@ -21,12 +25,20 @@
         </li>
         <div id="set_container">
           <% @draft.card_sets.each do |set| %>
-            <li class="list-group-item"><%= set.name %><button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet(<%= set.id %>);">Remove</button></li>
+            <li class="list-group-item"><%= set.name %>
+              <% if @draft.user.id == @session_user.id %>
+                <button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet(<%= set.id %>);">Remove</button>
+              <% end %>
+            </li>
           <% end %>
         </div>
         <li class="list-group-item" id="add_set_container">
-          <%= select_tag :set_id, options_for_select(CardSet.allowed_sets) %>
-          <button type="button" class="btn btn-info btn-xs" style="float:right;" onclick="draftin.draft.lobby.addSet();">Add Set</button>
+          <% if @draft.user.id == @session_user.id %>
+            <%= select_tag :set_id, options_for_select(CardSet.allowed_sets) %>
+            <button type="button" class="btn btn-info btn-xs" style="float:right;" onclick="draftin.draft.lobby.addSet();">Add Set</button>
+          <% else %>
+            <em>Only the draft coordinator may add or remove sets.</em>
+          <% end %>
         </li>
       </ul>
     </div>

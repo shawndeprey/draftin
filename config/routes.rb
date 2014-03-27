@@ -6,6 +6,7 @@ Draftin::Application.routes.draw do
   # The API. Only JSON is allowed here.
   namespace :api, :constraints => {:format => 'json'} do
     namespace :v1 do
+      get '/drafts/:id/users/:user_id/kick' => 'drafts#kick_user'
       post '/drafts/:id/card_sets/:set_id' => 'drafts#add_set'
       delete '/drafts/:id/card_sets/:set_id' => 'drafts#remove_set'
       get '/drafts/:id/start' => 'drafts#start'

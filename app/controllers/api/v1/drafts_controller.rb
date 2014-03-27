@@ -18,6 +18,18 @@ class Api::V1::DraftsController < Api::V1::BaseController
     end
   end
 
+  # GET /drafts/:id/users/:user_id/kick
+  def kick_user
+    return not_found unless @draft.user.id == @session_user.id
+    @kicked_user = User.find_by_id(params[:user_id])
+    @draft.remove_user!(@kicked_user)
+    MetricsHelper::track(MetricsHelper::KICK_USER, {
+      kicked_user_id: @kick_user.id,
+      kicked_username: @kick_user.username
+    }, @session_user)
+    render nothing: true, status: :success
+  end
+
   # POST /drafts/:id/card_sets.json?set_id=123
   def add_set
     @draft.add_set!(@set) if @draft.stage == CREATE_STAGE

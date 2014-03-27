@@ -1,7 +1,8 @@
 draftin.draft = {
-  init: function(draftId, draftStage, sessionUserId){
+  init: function(draftId, draftStage, sessionUserId, coordinatorId){
     draftin.draft.id = draftId;
     draftin.draft.user_id = sessionUserId;
+    draftin.draft.coordinator_id = coordinatorId;
     if(draftStage == 0){ // Lobby/Setup Stage
       draftin.draft.lobby.init();
     } else
@@ -12,7 +13,9 @@ draftin.draft = {
   lobby: {
     init: function(){
       draftin.draft.userTemplate = '<li class="list-group-item user">{{username}}</li>';
-      draftin.draft.setTemplate = '<li class="list-group-item">{{name}}<button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet({{id}});">Remove</button></li>';
+      draftin.draft.userAdminTemplate = '<li class="list-group-item user">{{username}}<button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.kickUser({{id}});">Kick</button></li>';
+      draftin.draft.setTemplate = '<li class="list-group-item">{{name}}</li>';
+      draftin.draft.setTemplateAdmin = '<li class="list-group-item">{{name}}<button type="button" class="btn btn-danger btn-xs" style="float:right;" onclick="draftin.draft.lobby.removeSet({{id}});">Remove</button></li>';
       startButton = $('button.start_button');
       if(startButton.length > 0){
         $(startButton).parent().tooltip();
@@ -46,6 +49,15 @@ draftin.draft = {
         });
       });
     },
+    kickUser: function(user_id){
+      draftin.loading();
+      $.ajax({
+        type:"GET", url:'/api/v1/drafts/'+draftin.draft.id+'/users/'+user_id+'/kick.json', 
+        complete: function(data){
+          draftin.loading();
+        }
+      });
+    },
     checkStartConditions: function(users){
       startButton = $('button.start_button');
       if(startButton.length > 0){
@@ -65,11 +77,25 @@ draftin.draft = {
     checkUsers: function(users){
       userContainer = $('div#draft_users ul.list-group');
       userCount = userContainer.children().length - 1;
+      containsSessionUser = false;
       if(users.length != userCount){
         $(userContainer).find('li.user').remove();
         $.each(users, function(){
-          $(userContainer).append(draftin.draft.userTemplate.replace(/\{\{username\}\}/i,this.username));
+          if(this.id == draftin.draft.user_id){
+            containsSessionUser = true;
+          }
+          if(draftin.draft.user_id == draftin.draft.coordinator_id) {
+            $(userContainer).append(draftin.draft.userAdminTemplate
+              .replace(/\{\{username\}\}/ig,this.username)
+              .replace(/\{\{id\}\}/ig,this.id)
+            );
+          } else {
+            $(userContainer).append(draftin.draft.userTemplate.replace(/\{\{username\}\}/i,this.username));
+          }
         });
+        if(!containsSessionUser){
+          location.reload();
+        }
       }
     },
     checkSets: function(sets){
@@ -78,7 +104,11 @@ draftin.draft = {
       if(sets.length != setCount){
         $(setContainer).find('li').remove();
         $.each(sets, function(){
-          $(setContainer).append(draftin.draft.setTemplate.replace(/\{\{name\}\}/i,this.name).replace(/\{\{id\}\}/i,this.id));
+          if(draftin.draft.user_id == draftin.draft.coordinator_id) {
+            $(setContainer).append(draftin.draft.setTemplateAdmin.replace(/\{\{name\}\}/i,this.name).replace(/\{\{id\}\}/i,this.id));
+          } else {
+            $(setContainer).append(draftin.draft.setTemplate.replace(/\{\{name\}\}/i,this.name));
+          }
         });
       }
     },

@@ -8,6 +8,6 @@
 <% end %>
 <script type="text/javascript">
 $(document).ready(function(){
-  draftin.draft.init(<%= @draft.id %>, <%= @draft.stage %>, <%= @session_user.id %>);
+  draftin.draft.init(<%= @draft.id %>, <%= @draft.stage %>, <%= @session_user.id %>, <%= @draft.user.id %>);
 });
 </script>
