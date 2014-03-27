@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20140327003138) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.string   "password"
-    t.integer  "max_users",  default: 1
+    t.integer  "max_users",  default: 8
   end
 
   add_index "drafts", ["name"], name: "index_drafts_on_name", using: :btree
