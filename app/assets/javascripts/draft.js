@@ -3,6 +3,10 @@ draftin.draft = {
     draftin.draft.id = draftId;
     draftin.draft.user_id = sessionUserId;
     draftin.draft.coordinator_id = coordinatorId;
+    draftId = $('span#draft_id');
+    if(draftId.length > 0){
+      $(draftId).tooltip();
+    }
     if(draftStage == 0){ // Lobby/Setup Stage
       draftin.draft.lobby.init();
     } else

@@ -21,7 +21,7 @@ END_STAGE = 2
 
 # Sets, Packs & Cards
 IGNORED_SETS = ["DDC","DDF","EVG","DDD","DDL","DDJ","DD2","DDG","DDE","DDK","DDI","DDH","PD2","PD3","H09","PPR","HHO","DRB","V09",
-                "V10","V11","V13","ARC","C13","CMA","CMD","MED","ME2","ME3","ME4","MMA","HOP","PC2","V12","VAN"]
+                "V10","V11","V13","ARC","C13","CMA","CMD","MED","ME2","ME3","ME4","HOP","PC2","V12","VAN"]
 
 SETS_WITH_FOILS = ["ULG","6ED","UDS","PTK","S99","MMQ","BRB","NMS","S00","PCY","INV","BTD","PLS","APC","ODY","TOR","JUD","ONS","LGN",
                    "SCG","MRD","DST","5DN","CHK","UNH","BOK","SOK","RAV","DIS","CSP","7ED","8ED","9ED","TSB","PLC","FUT","10E","LRW",

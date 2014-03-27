@@ -67,13 +67,9 @@ class DraftsController < ApplicationController
 
   # DELETE /drafts/:id/leave
   def remove_user
-    if @draft.stage != DRAFT_STAGE
-      @draft.remove_user!(@session_user)
-      MetricsHelper::track(MetricsHelper::LEAVE_DRAFT, {}, @session_user)
-      redirect_to root_path, notice: "You left all of your friends alone. GG."
-    else
-      redirect_to root_path, alert: "Draft has already started. Stop trolling people."
-    end
+    @draft.remove_user!(@session_user)
+    MetricsHelper::track(MetricsHelper::LEAVE_DRAFT, {}, @session_user)
+    redirect_to root_path, notice: "You left all of your friends alone. GG."
   end
 
   protected
