@@ -95,9 +95,6 @@ class User < ActiveRecord::Base
   def see
     if self.last_seen.blank? || Time.now - self.last_seen > Time.now - 10.seconds.ago
       self.touch(:last_seen)
-      return true
-    else
-      return false
     end
   end
 
