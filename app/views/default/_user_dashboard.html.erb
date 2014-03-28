@@ -1,13 +1,12 @@
 <div class="row">
 
   <div class="col-sm-6">
-
     <div class="list-group">
       <span class="list-group-item" style="background-color: #3e444c;">My Drafts</span>
       <% 5.times do |x| %>
         <% if @drafts[x] %>
           <a href="<%= draft_path(@drafts[x]) %>?password=<%= @drafts[x].password %>" class="list-group-item">
-            <%= @drafts[x].name %><span class="label label-<%= (@drafts[x].stage == CREATE_STAGE ? "info" : @drafts[x].stage == DRAFT_STAGE ? "success" : "danger" ) %>" style="float:right;"><%= @drafts[x].status %></span>
+            <%= @drafts[x].name %><span class="label label-<%= (@drafts[x].stage == CREATE_STAGE ? "success" : @drafts[x].stage == DRAFT_STAGE ? "warning" : "danger" ) %>" style="float:right;"><%= @drafts[x].status %></span>
           </a>
         <% else %>
           <span class="list-group-item" style="min-height:42px;"></span>
@@ -24,6 +23,7 @@
             <li><a href="/?page=<%=@drafts.current_page + 1%>"><%=@drafts.current_page + 1%></a></li>
           <% end %>
           <li <%if !@drafts.next_page%>class="disabled"<%end%>><a href="<%=@drafts.next_page ? "/?page=#{@drafts.next_page}" : "#"%>">»</a></li>
+        </ul>
       </span>
     </div>
   </div>
@@ -55,7 +55,68 @@
       <input type="text" class="form-control" placeholder="Draft Password" name="password" style="width:50%;margin-top:15px;">
     </form>
   </div>
+  
+</div>
 
+<div class="row">
+
+  <div class="col-sm-6">
+    <div class="list-group scrollable_list">
+      <span class="list-group-item" style="background-color: #3e444c;">
+        Recent Drafts
+        <button class="btn btn-xs btn-success" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+      </span>
+      <div class="inner_list_group">
+        <% @recent_drafts.each do |draft| %>
+          <span class="list-group-item">
+            <span class="label label-primary start_label">
+              #<%= draft.id %>
+            </span>
+            <%= draft.name %>
+
+            <% if draft.open_user_slot? %>
+              <% if Float(Float(draft.user_count) / Float(draft.max_users)) >= 0.5 %>
+                <span class="label label-warning" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+              <% else %>
+                <span class="label label-success" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+              <% end %>
+              <% if !draft.password.blank? %>
+                <span class="label label-danger" style="float:right; margin-right:5px;">Has Password</span>
+              <% end %>
+            <% else %>
+              <span class="label label-danger" style="float:right;">Room Full</span>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <span class="label label-primary"><%= @recent_drafts.length %></span> drafts in the last <span class="label label-primary">20</span> minutes.
+      </span>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="list-group scrollable_list">
+      <span class="list-group-item" style="background-color: #3e444c;">
+        Online Users
+        <button class="btn btn-xs btn-success" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+      </span>
+      <div class="inner_list_group">
+        <% @online_users.each do |user| %>
+          <span class="list-group-item">
+            <%= user.username %>
+            <span class="label label-primary" style="float:right;">
+              Last Seen: <%= user.last_seen.strftime("%l:%M on %a").gsub(/^\s/,'') %>
+            </span>
+          </span>
+        <% end %>
+      </div>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <span class="label label-primary"><%= @online_users.length %></span> users online in the last <span class="label label-primary">2</span> minutes.
+      </span>
+    </div>
+  </div>
+  
 </div>
 
 <%= render "chat_rooms/chat_room" %>

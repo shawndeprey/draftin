@@ -3,15 +3,30 @@ class Draft < ActiveRecord::Base
   nilify_blanks
   # attributes: user_id, password, name, user_count, max_users, stage, created_at, updated_at
   belongs_to :user
+  has_one :chat_room
   has_many :draft_users
   has_many :users, :through => :draft_users
   has_many :draft_card_sets
   has_many :card_sets, :through => :draft_card_sets
 
+  validates :name, presence: true
+
   before_save :denormalize_user_count
+  before_create :create_chat_room
+  after_destroy :clean_dependents
+
+  def clean_dependents
+    self.draft_users.each{ |draft_user| draft_user.destroy }
+    self.draft_card_sets.each{ |draft_card_set| draft_card_set.destroy }
+    self.chat_room.destroy
+  end
 
   def denormalize_user_count
     self.user_count = self.users.length
+  end
+
+  def create_chat_room
+    self.chat_room = ChatRoom.new({title: self.name})
   end
 
   def open_user_slot?
@@ -84,5 +99,15 @@ class Draft < ActiveRecord::Base
       self.remove_set!(set)
       self.save
     end
+  end
+
+  def see
+    if self.updated_at.blank? || Time.now - self.updated_at > Time.now - 30.seconds.ago
+      self.touch(:updated_at)
+    end
+  end
+
+  def self.recent_drafts
+    Draft.where(:updated_at => (Time.now - 20.minutes)..Time.now).order("updated_at DESC")
   end
 end

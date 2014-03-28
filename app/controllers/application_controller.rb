@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   def load_session_user
     if session[:user_id]
       @session_user = User.find_by_id(session[:user_id])
+      @session_user.see if @session_user
     end
   end
 

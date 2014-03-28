@@ -1,7 +1,7 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
   nilify_blanks
-  # attributes: verified, email, receive_emails, recovery_hash, username, password, position, admin, created_at, updated_at
+  # attributes: last_seen, verified, email, receive_emails, recovery_hash, username, password, position, admin, created_at, updated_at
   has_many :draft_users
   has_many :drafts, :through => :draft_users
   has_many :user_cards
@@ -90,5 +90,15 @@ class User < ActiveRecord::Base
       cards[card.name] += 1
     end
     return cards
+  end
+
+  def see
+    if self.last_seen.blank? || Time.now - self.last_seen > Time.now - 10.seconds.ago
+      self.touch(:last_seen)
+    end
+  end
+
+  def self.online_users
+    User.where(:last_seen => (Time.now - 2.minutes)..Time.now).order("last_seen DESC")
   end
 end
