@@ -101,6 +101,12 @@ class Draft < ActiveRecord::Base
     end
   end
 
+  def see
+    if self.updated_at.blank? || Time.now - self.updated_at > Time.now - 30.seconds.ago
+      self.touch(:updated_at)
+    end
+  end
+
   def self.recent_drafts
     Draft.where(:updated_at => (Time.now - 20.minutes)..Time.now).order("updated_at DESC")
   end
