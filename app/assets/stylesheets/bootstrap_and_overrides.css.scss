@@ -33,9 +33,14 @@ body.v1 {
   }
 
   div.chat_room {
+    div.panel-heading {
+      height: 30px;
+      padding: 4px 15px;
+    }
     div#chat_room_content {
       overflow-y: scroll;
-      max-height: 300px;
+      max-height: 150px;
+      min-height: 150px;
       margin-bottom: -15px;
     }
     span.label-default {

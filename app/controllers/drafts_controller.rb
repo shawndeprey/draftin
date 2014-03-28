@@ -6,6 +6,8 @@ class DraftsController < ApplicationController
     # Ensure user is in draft
     return redirect_to root_path, alert: "You aren't even in that draft!" unless @draft.users.include?(@session_user)
     @current_pack = @session_user.current_pack
+    @chat_room = @draft.chat_room
+    @recent_comments = @chat_room.recent_comments.reverse
     MetricsHelper::track(MetricsHelper::VIEW_DRAFT, {draft_id:@draft.id,name:@draft.name}, @session_user)
   end
 
