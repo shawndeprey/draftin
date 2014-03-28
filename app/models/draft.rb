@@ -100,4 +100,8 @@ class Draft < ActiveRecord::Base
       self.save
     end
   end
+
+  def self.recent_drafts
+    Draft.where(:updated_at => (Time.now - 20.minutes)..Time.now).order("updated_at DESC")
+  end
 end

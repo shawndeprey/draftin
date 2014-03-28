@@ -64,28 +64,33 @@
     <div class="list-group scrollable_list">
       <span class="list-group-item" style="background-color: #3e444c;">
         Recent Drafts
-        <button class="btn btn-xs btn-info" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+        <button class="btn btn-xs btn-success" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
       </span>
       <div class="inner_list_group">
-        <a href="#" class="list-group-item">Fun Times
-          <span class="label label-info" style="float:right;">In Lobby</span>
-        </a>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
+        <% @recent_drafts.each do |draft| %>
+          <span class="list-group-item">
+            <span class="label label-primary start_label">
+              #<%= draft.id %>
+            </span>
+            <%= draft.name %>
+
+            <% if draft.open_user_slot? %>
+              <% if Float(Float(draft.user_count) / Float(draft.max_users)) >= 0.5 %>
+                <span class="label label-warning" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+              <% else %>
+                <span class="label label-success" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+              <% end %>
+              <% if !draft.password.blank? %>
+                <span class="label label-danger" style="float:right; margin-right:5px;">Has Password</span>
+              <% end %>
+            <% else %>
+              <span class="label label-danger" style="float:right;">Room Full</span>
+            <% end %>
+          </span>
+        <% end %>
       </div>
       <span class="list-group-item" style="background-color: #3e444c;">
-        <span class="label label-primary">65</span> drafts in the last <span class="label label-primary">2</span> hours.
+        <span class="label label-primary"><%= @recent_drafts.length %></span> drafts in the last <span class="label label-primary">20</span> minutes.
       </span>
     </div>
   </div>
@@ -94,7 +99,7 @@
     <div class="list-group scrollable_list">
       <span class="list-group-item" style="background-color: #3e444c;">
         Online Users
-        <button class="btn btn-xs btn-info" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+        <button class="btn btn-xs btn-success" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
       </span>
       <div class="inner_list_group">
         <% @online_users.each do |user| %>

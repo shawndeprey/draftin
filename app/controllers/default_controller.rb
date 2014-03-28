@@ -12,6 +12,7 @@ class DefaultController < ApplicationController
       @chat_room = ChatRoom.find_by_id(GLOBAL_CHAT_ROOM_ID)
       @recent_comments = @chat_room.recent_comments.reverse
       @online_users = User.online_users
+      @recent_drafts = Draft.recent_drafts
     else
       @articles = Article.latest_articles(1, 3)
     end

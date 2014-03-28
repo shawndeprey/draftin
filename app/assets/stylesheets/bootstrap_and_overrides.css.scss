@@ -44,6 +44,12 @@ body.v1 {
   }
 
   div.scrollable_list {
+    span.start_label {
+      font-size: 12px;
+      margin: 0px 10px 0px -10px;
+      position: relative;
+      top: -2px;
+    }
     div.inner_list_group {
       max-height: 145px;
       mix-height: 145px;
