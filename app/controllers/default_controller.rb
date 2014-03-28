@@ -11,6 +11,7 @@ class DefaultController < ApplicationController
       MetricsHelper::track(MetricsHelper::VIEW_INDEX, {}, @session_user)
       @chat_room = ChatRoom.find_by_id(GLOBAL_CHAT_ROOM_ID)
       @recent_comments = @chat_room.recent_comments.reverse
+      @online_users = User.online_users
     else
       @articles = Article.latest_articles(1, 3)
     end

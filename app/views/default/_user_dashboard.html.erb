@@ -64,7 +64,7 @@
     <div class="list-group scrollable_list">
       <span class="list-group-item" style="background-color: #3e444c;">
         Recent Drafts
-        <button class="btn btn-xs btn-primary" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+        <button class="btn btn-xs btn-info" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
       </span>
       <div class="inner_list_group">
         <a href="#" class="list-group-item">Fun Times
@@ -93,29 +93,21 @@
   <div class="col-sm-6">
     <div class="list-group scrollable_list">
       <span class="list-group-item" style="background-color: #3e444c;">
-        Recent Users
-        <button class="btn btn-xs btn-primary" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+        Online Users
+        <button class="btn btn-xs btn-info" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
       </span>
       <div class="inner_list_group">
-        <a href="#" class="list-group-item">Potato
-          <span class="label label-info" style="float:right;">Logged In Time</span>
-        </a>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
-        <span class="list-group-item">Hello World</span>
+        <% @online_users.each do |user| %>
+          <span class="list-group-item">
+            <%= user.username %>
+            <span class="label label-primary" style="float:right;">
+              Last Seen: <%= user.last_seen.strftime("%l:%M on %a").gsub(/^\s/,'') %>
+            </span>
+          </span>
+        <% end %>
       </div>
       <span class="list-group-item" style="background-color: #3e444c;">
-        <span class="label label-primary">24</span> user logins in the last <span class="label label-primary">2</span> hours.
+        <span class="label label-primary"><%= @online_users.length %></span> users online in the last <span class="label label-primary">2</span> minutes.
       </span>
     </div>
   </div>
