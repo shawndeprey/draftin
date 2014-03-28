@@ -13,6 +13,13 @@ class Draft < ActiveRecord::Base
 
   before_save :denormalize_user_count
   before_create :create_chat_room
+  after_destroy :clean_dependents
+
+  def clean_dependents
+    self.draft_users.each{ |draft_user| draft_user.destroy }
+    self.draft_card_sets.each{ |draft_card_set| draft_card_set.destroy }
+    self.chat_room.destroy
+  end
 
   def denormalize_user_count
     self.user_count = self.users.length

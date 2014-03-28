@@ -32,6 +32,29 @@ body.v1 {
     }
   }
 
+  div.list-group {
+    div.inner_list_group {
+      span.list-group-item, a.list-group-item {
+        border-radius: 0px;
+        &:last-child {
+          margin-bottom: -1px;
+        }
+      }
+    }
+  }
+
+  div.scrollable_list {
+    div.inner_list_group {
+      max-height: 145px;
+      mix-height: 145px;
+      overflow-y: scroll;
+      span.list-group-item, a.list-group-item {
+        height: 30px;
+        padding: 4px 15px;
+      }
+    }
+  }
+
   div.chat_room {
     div.panel-heading {
       height: 30px;

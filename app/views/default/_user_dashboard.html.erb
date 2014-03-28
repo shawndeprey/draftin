@@ -1,13 +1,12 @@
 <div class="row">
 
   <div class="col-sm-6">
-
     <div class="list-group">
       <span class="list-group-item" style="background-color: #3e444c;">My Drafts</span>
       <% 5.times do |x| %>
         <% if @drafts[x] %>
           <a href="<%= draft_path(@drafts[x]) %>?password=<%= @drafts[x].password %>" class="list-group-item">
-            <%= @drafts[x].name %><span class="label label-<%= (@drafts[x].stage == CREATE_STAGE ? "info" : @drafts[x].stage == DRAFT_STAGE ? "success" : "danger" ) %>" style="float:right;"><%= @drafts[x].status %></span>
+            <%= @drafts[x].name %><span class="label label-<%= (@drafts[x].stage == CREATE_STAGE ? "success" : @drafts[x].stage == DRAFT_STAGE ? "warning" : "danger" ) %>" style="float:right;"><%= @drafts[x].status %></span>
           </a>
         <% else %>
           <span class="list-group-item" style="min-height:42px;"></span>
@@ -24,6 +23,7 @@
             <li><a href="/?page=<%=@drafts.current_page + 1%>"><%=@drafts.current_page + 1%></a></li>
           <% end %>
           <li <%if !@drafts.next_page%>class="disabled"<%end%>><a href="<%=@drafts.next_page ? "/?page=#{@drafts.next_page}" : "#"%>">»</a></li>
+        </ul>
       </span>
     </div>
   </div>
@@ -55,7 +55,65 @@
       <input type="text" class="form-control" placeholder="Draft Password" name="password" style="width:50%;margin-top:15px;">
     </form>
   </div>
+  
+</div>
 
+<div class="row">
+
+  <div class="col-sm-6">
+    <div class="list-group scrollable_list">
+      <span class="list-group-item" style="background-color: #3e444c;">Recent Drafts</span>
+      <div class="inner_list_group">
+        <a href="#" class="list-group-item">Fun Times
+          <span class="label label-info" style="float:right;">In Lobby</span>
+        </a>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+      </div>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <span class="label label-primary">65</span> drafts in the last <span class="label label-primary">2</span> hours.
+      </span>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="list-group scrollable_list">
+      <span class="list-group-item" style="background-color: #3e444c;">Recent Users</span>
+      <div class="inner_list_group">
+        <a href="#" class="list-group-item">Potato
+          <span class="label label-info" style="float:right;">Logged In Time</span>
+        </a>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+        <span class="list-group-item">Hello World</span>
+      </div>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <span class="label label-primary">24</span> user logins in the last <span class="label label-primary">2</span> hours.
+      </span>
+    </div>
+  </div>
+  
 </div>
 
 <%= render "chat_rooms/chat_room" %>
