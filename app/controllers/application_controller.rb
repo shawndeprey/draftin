@@ -21,6 +21,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_admin_session
+    unless @session_user && @session_user.admin?
+      return redirect_to root_path, alert: "You must be an admin to do that."
+    end
+  end
+
   def login(user)
     session[:user_id] = user.id
   end

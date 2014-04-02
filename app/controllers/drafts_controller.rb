@@ -1,5 +1,11 @@
 class DraftsController < ApplicationController
-  before_filter :load_draft, :except => [:create]
+  before_filter :load_draft, :except => [:index, :create]
+  before_filter :require_admin_session, :only => [:index]
+
+  # GET /drafts
+  def index
+    @drafts = Draft.where('id >= 0').order('updated_at DESC').paginate(page: params[:page])
+  end
 
   # GET /drafts/:id
   def show

@@ -1,0 +1,43 @@
+<div class="row">
+
+  <div class="col-sm-12">
+    <div class="list-group scrollable_list">
+      <span class="list-group-item" style="background-color: #3e444c;">
+        Drafts
+        <button class="btn btn-xs btn-success" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+      </span>
+      <% @drafts.each do |draft| %>
+        <span class="list-group-item">
+          <span class="label label-primary start_label">
+            #<%= draft.id %>
+          </span>
+          <%= draft.name %>
+
+          <span class="label label-primary" style="float:right;">
+            Updated At: <%= draft.updated_at.strftime("%l:%M on %a").gsub(/^\s/,'') %>
+          </span>
+          <span class="label label-primary" style="float:right;margin-right:5px;">
+            Created At: <%= draft.created_at.strftime("%l:%M on %a").gsub(/^\s/,'') %>
+          </span>
+
+          <% if draft.open_user_slot? %>
+            <% if Float(Float(draft.user_count) / Float(draft.max_users)) >= 0.5 %>
+              <span class="label label-warning" style="float:right;margin-right:5px;"><%= draft.user_count %> / <%= draft.max_users %></span>
+            <% else %>
+              <span class="label label-success" style="float:right;margin-right:5px;"><%= draft.user_count %> / <%= draft.max_users %></span>
+            <% end %>
+            <% if !draft.password.blank? %>
+              <span class="label label-danger" style="float:right;margin-right:5px;">Has Password</span>
+            <% end %>
+          <% else %>
+            <span class="label label-danger" style="float:right;margin-right:5px;">Room Full</span>
+          <% end %>
+        </span>
+      <% end %>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <span class="label label-primary"><%= @drafts.total_entries %></span> drafts found.
+      </span>
+    </div>
+    <%= will_paginate @drafts %>
+  </div>
+</div>
