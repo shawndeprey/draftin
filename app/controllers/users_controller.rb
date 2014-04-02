@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   skip_before_filter :require_session, :only => [:verify, :create, :reset_password_request, :reset_password]
+  before_filter :require_admin_session, :only => [:index]
+
+  # GET /users
+  def index
+    @users = User.where('id >= 0').order('created_at DESC').paginate(page: params[:page])
+  end
 
   # GET /users/:id
   def show

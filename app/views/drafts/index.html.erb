@@ -1,5 +1,4 @@
 <div class="row">
-
   <div class="col-sm-12">
     <div class="list-group scrollable_list">
       <span class="list-group-item" style="background-color: #3e444c;">
@@ -14,10 +13,10 @@
           <%= draft.name %>
 
           <span class="label label-primary" style="float:right;">
-            Updated At: <%= draft.updated_at.strftime("%l:%M on %a").gsub(/^\s/,'') %>
+            Updated: <%= draft.updated_at.strftime("%l:%M on %a").gsub(/^\s/,'') %>
           </span>
           <span class="label label-primary" style="float:right;margin-right:5px;">
-            Created At: <%= draft.created_at.strftime("%l:%M on %a").gsub(/^\s/,'') %>
+            Created: <%= draft.created_at.strftime("%l:%M on %a").gsub(/^\s/,'') %>
           </span>
 
           <% if draft.open_user_slot? %>
