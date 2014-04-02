@@ -49,6 +49,12 @@ draftin.comment = {
                 .replace(/\{\{created_at\}\}/ig, this.created_at)
                 .replace(/\{\{content\}\}/ig, this.content.replace(/<p>/i,''))
               );
+              if(this.user_id != draftin.comment.user_id){
+                if(!draftin.hasFocus){
+                  draftin.ding.play();
+                  $.titleAlert('New Messages...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+                }
+              }
             }
           });
           if(new_results){

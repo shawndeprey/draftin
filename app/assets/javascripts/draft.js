@@ -216,6 +216,10 @@ draftin.draft = {
           $(currentPackContainer).append(draftin.draft.cardTemplate.replace(/\{\{mid\}\}/i,this.multiverseid).replace(/\{\{image_url\}\}/i,this.image_url));
         });
         draftin.draft.table.setClickEvents();
+        if(!draftin.hasFocus){
+          draftin.ding.play();
+          $.titleAlert('New Pack...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+        }
       } else {
         if($(currentPackContainer).children().length == 0 && !$(loadingMessage).is(":visible")){
           $(loadingMessage).show();
