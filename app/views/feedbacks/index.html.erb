@@ -18,6 +18,7 @@
       <% @feedbacks.each do |feedback| %>
         <span class="list-group-item">
           <h4 class="list-group-item-heading"><%= feedback.title %> - <%= feedback.user.username %></h4>
+          <p class="list-group-item-text"><em><%= feedback.user.email %></em></p>
           <p class="list-group-item-text"><%= feedback.content %></p>
           <a data-confirm="Are you sure?" data-method="put" href="<%= feedback_path(feedback) %>?feedback[handled]=1" rel="nofollow">
             <button type="button" class="btn btn-success btn-xs">handle</button>
