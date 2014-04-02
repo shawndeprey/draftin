@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="list-group scrollable_list">
+      <span class="list-group-item" style="background-color: #3e444c;">
+        Users
+        <button class="btn btn-xs btn-success" onclick="location.reload();" style="float:right;">Refresh &#x21bb;</button>
+      </span>
+      <% @users.each do |user| %>
+        <span class="list-group-item">
+          <span class="label label-primary start_label">
+            #<%= user.id %>
+          </span>
+          <%= user.username %> <em>(<%= user.email %>)</em>
+
+          <span class="label label-<%=user.admin ? "warning" : "success"%>" style="float:right;">
+            Admin: <%= user.admin %>
+          </span>
+          <span class="label label-<%=user.verified ? "success" : "warning"%>" style="float:right;margin-right:5px;">
+            Verified: <%= user.verified %>
+          </span>
+          <span class="label label-<%=user.receive_emails ? "success" : "danger"%>" style="float:right;margin-right:5px;">
+            Receive Emails: <%= user.receive_emails %>
+          </span>
+          <span class="label label-success" style="float:right;margin-right:5px;">
+            Created: <%= user.created_at %>
+          </span>
+        </span>
+      <% end %>
+      <span class="list-group-item" style="background-color: #3e444c;">
+        <span class="label label-primary"><%= @users.total_entries %></span> users found.
+      </span>
+    </div>
+    <%= will_paginate @users %>
+  </div>
+</div>

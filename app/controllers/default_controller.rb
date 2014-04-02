@@ -1,6 +1,7 @@
 class DefaultController < ApplicationController
   skip_before_filter :require_session, only: [:index, :example, :about, :donate]
   before_action :permissions_check, except: [:index, :example, :about, :donate]
+  before_filter :require_admin_session, :only => [:admin]
   
   # GET /
   def index
