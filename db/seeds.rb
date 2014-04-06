@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+User.new({username:"shawn",email:"shawn@draftin.co",verified:true,admin:true,password:"neverforget"}).save
+User.new({username:"admin",email:"admin@draftin.co",verified:true,admin:true,password:"neverforget"}).save
+ChatRoom.new({title:"Draftin' Global Chat"}).save

@@ -37,6 +37,10 @@ draftin.draft = {
             draftin.draft.lobby.checkStartConditions(result.draft.users);
             setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
           } else {
+            if(!draftin.hasFocus){
+              draftin.ding.play();
+              $.titleAlert('Draft Starting...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+            }
             location.reload();
           }
         }
@@ -83,6 +87,10 @@ draftin.draft = {
       userCount = userContainer.children().length - 1;
       containsSessionUser = false;
       if(users.length != userCount){
+        if(!draftin.hasFocus){
+          draftin.ding.play();
+          $.titleAlert('Users Updated...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+        }
         $(userContainer).find('li.user').remove();
         $.each(users, function(){
           if(this.id == draftin.draft.user_id){
@@ -106,6 +114,10 @@ draftin.draft = {
       setContainer = $('div#set_container');
       setCount = setContainer.children().length;
       if(sets.length != setCount){
+        if(!draftin.hasFocus){
+          draftin.ding.play();
+          $.titleAlert('Sets Updated...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+        }
         $(setContainer).find('li').remove();
         $.each(sets, function(){
           if(draftin.draft.user_id == draftin.draft.coordinator_id) {
@@ -160,6 +172,10 @@ draftin.draft = {
             draftin.draft.table.updateCurrentPack(result.draft.current_pack);
             setTimeout(function(){ draftin.draft.table.polling(); }, 750);
           } else {
+            if(!draftin.hasFocus){
+              draftin.ding.play();
+              $.titleAlert('Draft Ending...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+            }
             location.reload();
           }
         }
@@ -252,7 +268,7 @@ draftin.draft = {
         success: function(result){
           if(result && result.success){
             draftin.draft.table.removeSelectedStatusFromAll();
-            $(card).off('click').removeClass('card_box');
+            $(card).off('click').removeClass('card_box').addClass('card_container');
             draftin.draft.table.clearCurrentPack();
             $('div#cards_container').prepend(card);
           }
