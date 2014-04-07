@@ -37,10 +37,7 @@ draftin.draft = {
             draftin.draft.lobby.checkStartConditions(result.draft.users);
             setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
           } else {
-            if(!window_has_focus){
-              draftin.ding.play();
-              $.titleAlert('Draft Starting...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
-            }
+            draftin.alert("Draft Starting...");
             location.reload();
           }
         }
@@ -87,10 +84,7 @@ draftin.draft = {
       userCount = userContainer.children().length - 1;
       containsSessionUser = false;
       if(users.length != userCount){
-        if(!window_has_focus){
-          draftin.ding.play();
-          $.titleAlert('Users Updated...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
-        }
+        draftin.alert("Users Updated...");
         $(userContainer).find('li.user').remove();
         $.each(users, function(){
           if(this.id == draftin.draft.user_id){
@@ -114,10 +108,7 @@ draftin.draft = {
       setContainer = $('div#set_container');
       setCount = setContainer.children().length;
       if(sets.length != setCount){
-        if(!window_has_focus){
-          draftin.ding.play();
-          $.titleAlert('Sets Updated...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
-        }
+        draftin.alert("Sets Updated...");
         $(setContainer).find('li').remove();
         $.each(sets, function(){
           if(draftin.draft.user_id == draftin.draft.coordinator_id) {
@@ -174,10 +165,7 @@ draftin.draft = {
             draftin.draft.table.updateCurrentPack(result.draft.current_pack);
             setTimeout(function(){ draftin.draft.table.polling(); }, 750);
           } else {
-            if(!window_has_focus){
-              draftin.ding.play();
-              $.titleAlert('Draft Ending...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
-            }
+            draftin.alert("Draft Ending...");
             location.reload();
           }
         }
@@ -234,10 +222,7 @@ draftin.draft = {
           $(currentPackContainer).append(draftin.draft.cardTemplate.replace(/\{\{mid\}\}/i,this.multiverseid).replace(/\{\{image_url\}\}/i,this.image_url));
         });
         draftin.draft.table.setClickEvents();
-        if(!window_has_focus){
-          draftin.ding.play();
-          $.titleAlert('New Pack...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
-        }
+        draftin.alert("New Pack...");
       } else {
         if($(currentPackContainer).children().length == 0 && !$(loadingMessage).is(":visible")){
           $(loadingMessage).show();

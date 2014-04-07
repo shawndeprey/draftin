@@ -50,10 +50,7 @@ draftin.comment = {
                 .replace(/\{\{content\}\}/ig, this.content.replace(/<p>/i,''))
               );
               if(this.user_id != draftin.comment.user_id){
-                if(!window_has_focus){
-                  draftin.ding.play();
-                  $.titleAlert('New Messages...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
-                }
+                draftin.alert("New Messages...");
               }
             }
           });

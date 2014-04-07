@@ -16,6 +16,12 @@ var window_has_focus = true;
       },
       loading: function(){
         $("div.load_container").fadeToggle(250);
+      },
+      alert: function(message){
+        if(!window_has_focus){
+          draftin.ding.play();
+          $.titleAlert(message, {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
+        }
       }
     };
     global.draftin = draftin;
