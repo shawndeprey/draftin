@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require titlealert
 //= require draftin
 //= require bootstrap
+//= require bootstrap-select
 //= require draft
 //= require comment

@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :username, :content, :created_at
+  attributes :id, :username, :user_id, :content, :created_at
 
   def username
     object.user.username

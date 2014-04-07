@@ -49,6 +49,9 @@ draftin.comment = {
                 .replace(/\{\{created_at\}\}/ig, this.created_at)
                 .replace(/\{\{content\}\}/ig, this.content.replace(/<p>/i,''))
               );
+              if(this.user_id != draftin.comment.user_id){
+                draftin.alert("New Messages...");
+              }
             }
           });
           if(new_results){

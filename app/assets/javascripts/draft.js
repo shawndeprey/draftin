@@ -37,6 +37,7 @@ draftin.draft = {
             draftin.draft.lobby.checkStartConditions(result.draft.users);
             setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
           } else {
+            draftin.alert("Draft Starting...");
             location.reload();
           }
         }
@@ -83,6 +84,7 @@ draftin.draft = {
       userCount = userContainer.children().length - 1;
       containsSessionUser = false;
       if(users.length != userCount){
+        draftin.alert("Users Updated...");
         $(userContainer).find('li.user').remove();
         $.each(users, function(){
           if(this.id == draftin.draft.user_id){
@@ -106,6 +108,7 @@ draftin.draft = {
       setContainer = $('div#set_container');
       setCount = setContainer.children().length;
       if(sets.length != setCount){
+        draftin.alert("Sets Updated...");
         $(setContainer).find('li').remove();
         $.each(sets, function(){
           if(draftin.draft.user_id == draftin.draft.coordinator_id) {
@@ -117,15 +120,17 @@ draftin.draft = {
       }
     },
     addSet: function(){
-      draftin.loading();
       setContainer = $('li#add_set_container');
       setId = $(setContainer).find('select').val();
-      $.ajax({
-        type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json', 
-        complete: function(data){
-          draftin.loading();
-        }
-      });
+      if(setId != ""){
+        draftin.loading();
+        $.ajax({
+          type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json', 
+          complete: function(data){
+            draftin.loading();
+          }
+        });
+      }
     },
     removeSet: function(setId){
       draftin.loading();
@@ -160,6 +165,7 @@ draftin.draft = {
             draftin.draft.table.updateCurrentPack(result.draft.current_pack);
             setTimeout(function(){ draftin.draft.table.polling(); }, 750);
           } else {
+            draftin.alert("Draft Ending...");
             location.reload();
           }
         }
@@ -216,6 +222,7 @@ draftin.draft = {
           $(currentPackContainer).append(draftin.draft.cardTemplate.replace(/\{\{mid\}\}/i,this.multiverseid).replace(/\{\{image_url\}\}/i,this.image_url));
         });
         draftin.draft.table.setClickEvents();
+        draftin.alert("New Pack...");
       } else {
         if($(currentPackContainer).children().length == 0 && !$(loadingMessage).is(":visible")){
           $(loadingMessage).show();
@@ -248,7 +255,7 @@ draftin.draft = {
         success: function(result){
           if(result && result.success){
             draftin.draft.table.removeSelectedStatusFromAll();
-            $(card).off('click').removeClass('card_box');
+            $(card).off('click').removeClass('card_box').addClass('card_container');
             draftin.draft.table.clearCurrentPack();
             $('div#cards_container').prepend(card);
           }
