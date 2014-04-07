@@ -37,7 +37,7 @@ draftin.draft = {
             draftin.draft.lobby.checkStartConditions(result.draft.users);
             setTimeout(function(){ draftin.draft.lobby.polling(); }, 750);
           } else {
-            if(!draftin.hasFocus){
+            if(!window_has_focus){
               draftin.ding.play();
               $.titleAlert('Draft Starting...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
             }
@@ -87,7 +87,7 @@ draftin.draft = {
       userCount = userContainer.children().length - 1;
       containsSessionUser = false;
       if(users.length != userCount){
-        if(!draftin.hasFocus){
+        if(!window_has_focus){
           draftin.ding.play();
           $.titleAlert('Users Updated...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
         }
@@ -114,7 +114,7 @@ draftin.draft = {
       setContainer = $('div#set_container');
       setCount = setContainer.children().length;
       if(sets.length != setCount){
-        if(!draftin.hasFocus){
+        if(!window_has_focus){
           draftin.ding.play();
           $.titleAlert('Sets Updated...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
         }
@@ -172,7 +172,7 @@ draftin.draft = {
             draftin.draft.table.updateCurrentPack(result.draft.current_pack);
             setTimeout(function(){ draftin.draft.table.polling(); }, 750);
           } else {
-            if(!draftin.hasFocus){
+            if(!window_has_focus){
               draftin.ding.play();
               $.titleAlert('Draft Ending...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
             }
@@ -232,7 +232,7 @@ draftin.draft = {
           $(currentPackContainer).append(draftin.draft.cardTemplate.replace(/\{\{mid\}\}/i,this.multiverseid).replace(/\{\{image_url\}\}/i,this.image_url));
         });
         draftin.draft.table.setClickEvents();
-        if(!draftin.hasFocus){
+        if(!window_has_focus){
           draftin.ding.play();
           $.titleAlert('New Pack...', {stopOnMouseMove:true, stopOnFocus:true, interval:1250});
         }

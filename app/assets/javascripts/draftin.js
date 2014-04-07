@@ -1,13 +1,12 @@
+var window_has_focus = true;
 (function($, window, document, navigator, global) {
     var draftin = draftin ? draftin : {
       init: function(){
         draftin.loadAudio();
-        var window_focus;
-
         $(window).focus(function() {
-          draftin.hasFocus = true;
+          window_has_focus = true;
         }).blur(function() {
-          draftin.hasFocus = false;
+          window_has_focus = false;
         });
       },
       loadAudio: function(){
