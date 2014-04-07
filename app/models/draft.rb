@@ -45,6 +45,7 @@ class Draft < ActiveRecord::Base
   end
 
   def add_user!(user)
+    return if self.users.include?(user)
     self.users << user
     self.save
   end
