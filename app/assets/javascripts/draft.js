@@ -129,15 +129,17 @@ draftin.draft = {
       }
     },
     addSet: function(){
-      draftin.loading();
       setContainer = $('li#add_set_container');
       setId = $(setContainer).find('select').val();
-      $.ajax({
-        type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json', 
-        complete: function(data){
-          draftin.loading();
-        }
-      });
+      if(setId != ""){
+        draftin.loading();
+        $.ajax({
+          type:"POST", url:'/api/v1/drafts/'+draftin.draft.id+'/card_sets/'+setId+'.json', 
+          complete: function(data){
+            draftin.loading();
+          }
+        });
+      }
     },
     removeSet: function(setId){
       draftin.loading();

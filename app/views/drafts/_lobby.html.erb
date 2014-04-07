@@ -34,7 +34,7 @@
         </div>
         <li class="list-group-item" id="add_set_container">
           <% if @draft.user.id == @session_user.id %>
-            <%= select_tag :set_id, options_for_select(CardSet.allowed_sets), :class => "selectpicker" %>
+            <%= select_tag :set_id, options_for_select(CardSet.allowed_sets), :class => "selectpicker", :"data-live-search" => true %>
             <button type="button" class="btn btn-info btn-xs" style="float:right;" onclick="draftin.draft.lobby.addSet();">Add Set</button>
           <% else %>
             <em>Only the draft coordinator may add or remove sets.</em>
@@ -101,7 +101,8 @@
 $(document).ready(function(){
   $('.selectpicker').selectpicker({
     style: 'btn-info btn-sm',
-    size: 10
+    size: 10,
+    dropupAuto: false
   });
 });
 </script>
