@@ -11,7 +11,6 @@ class DraftsController < ApplicationController
   def show
     # Ensure user is in draft
     return redirect_to root_path, alert: "You are not in that draft. Please join it using the form below." unless @draft.users.include?(@session_user)
-    @draft.see
     @current_pack = @session_user.current_pack
     @chat_room = @draft.chat_room
     @recent_comments = @chat_room.recent_comments.reverse
@@ -85,6 +84,7 @@ class DraftsController < ApplicationController
   def load_draft
     @draft = Draft.find_by_id(params[:id])
     return redirect_to root_path, alert: "Draft does not exist. Sorry about that!" unless @draft
+    @draft.see
   end
 
   private

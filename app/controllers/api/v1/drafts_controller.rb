@@ -92,6 +92,7 @@ class Api::V1::DraftsController < Api::V1::BaseController
   protected
   def load_draft
     @draft = Draft.find_by_id(params[:id]) || not_found
+    @draft.see
   end
 
   def load_set
