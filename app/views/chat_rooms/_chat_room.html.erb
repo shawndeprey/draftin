@@ -3,6 +3,13 @@
     <div class="col-sm-12">
       <div class="panel panel-primary chat_room">
         <div class="panel-heading">
+          <button type="button" class="btn btn-default btn-xs" onclick="draftin.comment.increaseViewArea();" style="float:right;">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+          <button type="button" class="btn btn-default btn-xs" onclick="draftin.comment.decreaseViewArea();" style="float:right;margin-right:2px;">
+            <span class="glyphicon glyphicon-minus"></span>
+          </button>
+
           <h3 class="panel-title"><%= @chat_room.title %> - <em style="font-size:12px;text-shadow:none;">Draftin' uses github style markdown. <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" rel="nofollow", target="_BLANK" style="color:#FFF0C7;">Check out the cheatsheet</a> for text formatting options.</em></h3>
         </div>
 
