@@ -29,6 +29,9 @@ class DefaultController < ApplicationController
 
   # GET /about
   def about
+    if @session_user
+      MetricsHelper::track(MetricsHelper::VIEW_ABOUT, {}, @session_user)
+    end
   end
 
   # GET /donate
