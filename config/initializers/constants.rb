@@ -1,7 +1,7 @@
 # General
 APP_NAME = "Draftin'"
 HASH_SALT = "sfpmn3iuhrf349hfn40jf3qevmlnfui34hf933onkds"
-TAGLINE = "A draft simulator for Magic the Gathering."
+TAGLINE = "A draft simulator."
 GLOBAL_CHAT_ROOM_ID = 1
 
 # Mixpanel
