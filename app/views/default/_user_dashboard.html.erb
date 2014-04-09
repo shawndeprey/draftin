@@ -74,18 +74,32 @@
             </span>
             <%= draft.name %>
 
-            <% if draft.open_user_slot? %>
-              <% if Float(Float(draft.user_count) / Float(draft.max_users)) >= 0.5 %>
-                <span class="label label-warning" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+            <% if draft.stage == CREATE_STAGE %>
+
+              <% if draft.open_user_slot? %>
+                <% if !draft.password.blank? %>
+                  <span class="label label-<%= Float(Float(draft.user_count) / Float(draft.max_users)) >= 0.5 ? "warning" : "success" %>" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+                  <span class="label label-danger" style="float:right; margin-right:5px;">Password</span>
+                <% else %>
+                  <form method="POST" action="<%= join_draft_path %>" style="float:right;">
+                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+                    <input name="id" type="hidden" value="<%= draft.id %>" />
+                    <button type="submit" class="btn btn-<%= Float(Float(draft.user_count) / Float(draft.max_users)) >= 0.5 ? "warning" : "success" %> btn-xs">
+                      <span class="glyphicon glyphicon-log-in"></span> Join <%= draft.user_count %> / <%= draft.max_users %>
+                    </button>
+                  </form>
+                <% end %>
               <% else %>
-                <span class="label label-success" style="float:right;"><%= draft.user_count %> / <%= draft.max_users %></span>
+                <span class="label label-danger" style="float:right;">Room Full</span>
               <% end %>
-              <% if !draft.password.blank? %>
-                <span class="label label-danger" style="float:right; margin-right:5px;">Has Password</span>
-              <% end %>
-            <% else %>
-              <span class="label label-danger" style="float:right;">Room Full</span>
+
+            <% elsif draft.stage == DRAFT_STAGE %>
+              <span class="label label-warning" style="float:right;">In Progress</span>
+            <% elsif draft.stage == END_STAGE %>
+              <span class="label label-danger" style="float:right;">Ended</span>
             <% end %>
+
+              
           </span>
         <% end %>
       </div>
