@@ -10,8 +10,7 @@ class DraftsController < ApplicationController
   # GET /drafts/:id
   def show
     # Ensure user is in draft
-    return redirect_to root_path, alert: "You aren't even in that draft!" unless @draft.users.include?(@session_user)
-    @draft.see
+    return redirect_to root_path, alert: "You are not in that draft. Please join it using the form below." unless @draft.users.include?(@session_user)
     @current_pack = @session_user.current_pack
     @chat_room = @draft.chat_room
     @recent_comments = @chat_room.recent_comments.reverse
@@ -27,7 +26,7 @@ class DraftsController < ApplicationController
       MetricsHelper::track(MetricsHelper::CREATE_DRAFT, {}, @session_user)
       redirect_to @draft
     else
-      redirect_to root_path, alert: "Error creating draft. Please try again."
+      redirect_to root_path, alert: "Error creating draft: #{@draft.errors.full_messages.join(" ")}"
     end
   end
 
@@ -41,7 +40,7 @@ class DraftsController < ApplicationController
         redirect_to root_path, alert: "Error updating draft."
       end
     else
-      redirect_to root_path, alert: "You aren't the draft coordinator."
+      redirect_to root_path, alert: "Only the draft coordinator may do that."
     end
   end
 
@@ -70,7 +69,7 @@ class DraftsController < ApplicationController
       @draft.add_user!(@session_user)
       redirect_to @draft, password: params[:password]
     else
-      redirect_to root_path, alert: "Draft is no longer available for newbies."
+      redirect_to root_path, alert: "Draft has already started. Sorry about that!"
     end
   end
 
@@ -78,13 +77,14 @@ class DraftsController < ApplicationController
   def remove_user
     @draft.remove_user!(@session_user)
     MetricsHelper::track(MetricsHelper::LEAVE_DRAFT, {}, @session_user)
-    redirect_to root_path, notice: "You left all of your friends alone. GG."
+    redirect_to root_path, notice: "You left the draft."
   end
 
   protected
   def load_draft
     @draft = Draft.find_by_id(params[:id])
     return redirect_to root_path, alert: "Draft does not exist. Sorry about that!" unless @draft
+    @draft.see
   end
 
   private

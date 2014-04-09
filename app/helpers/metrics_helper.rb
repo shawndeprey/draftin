@@ -21,6 +21,7 @@ module MetricsHelper
   UPDATE_COMMENT          = "update comment"
   DELETE_COMMENT          = "delete comment"
   VIEW_DONATE             = "view donate"
+  VIEW_ABOUT              = "view about"
   NEXT_PACK               = "next pack"
   END_DRAFT               = "end draft"
   KICK_USER               = "kick user"

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-6">
     <h3>
-      <span data-toggle="tooltip" data-placement="top" title="ID needed to join this draft." class="label label-info" id="draft_id">#<%= @draft.id %></span>
+      <span data-toggle="tooltip" data-placement="top" title="ID needed to join this draft." class="label label-info" id="draft_id"><%= @draft.id %></span>
       <%= @draft.name %>
     </h3>
   </div>
@@ -18,9 +18,11 @@
           <button type="button" class="btn btn-success next_button disabled" onclick="$('button.next_button').addClass('disabled');draftin.draft.table.nextPack();" style="float:right;">Next Pack</button>
         </div>
       <% end %>
-      <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?" style="float:right; padding:0px 5px;">
-        <button type="button" class="btn btn-danger">Destroy Draft</button>
-      </a>
+      <% if @draft.stage != END_STAGE %>
+        <a data-method="delete" href="<%= draft_path(@draft) %>" rel="nofollow" data-confirm="Are you sure?" style="float:right; padding:0px 5px;">
+          <button type="button" class="btn btn-danger">Destroy Draft</button>
+        </a>
+      <% end %>
     <% end %>
 
     <a data-method="delete" href="<%= draft_path(@draft) %>/leave" rel="nofollow" data-confirm="Are you sure?" style="float:right;">

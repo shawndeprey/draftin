@@ -71,7 +71,6 @@ draftin.comment = {
     });
   },
   postChatRoomComment: function(user_id, chat_room_id){
-    draftin.loading();
     chat_room_button = $('button#chat_room_button');
     chat_room_input = $('input#chat_room_input');
     content = encodeURIComponent($(chat_room_input).val());
@@ -81,16 +80,29 @@ draftin.comment = {
         success: function(result){
           $(chat_room_input).val(null);
           $(chat_room_button).removeClass('disabled');
-          draftin.loading();
         }
       });
-    } else {
-      draftin.loading();
     }
   },
   scrollToBottomOfChatWindow: function(){
     posts = $('div#chat_room_content')[0];
     posts.scrollTop = posts.scrollHeight;
+  },
+  increaseViewArea: function(){
+    posts = $('div#chat_room_content');
+    maxHeight = parseInt($(posts).css("max-height")) + 50;
+    minHeight = parseInt($(posts).css("min-height")) + 50;
+    $(posts).css("max-height", maxHeight+'px').css("min-height", minHeight+'px');
+    draftin.comment.scrollToBottomOfChatWindow();
+  },
+  decreaseViewArea: function(){
+    posts = $('div#chat_room_content');
+    maxHeight = parseInt($(posts).css("max-height")) - 50;
+    minHeight = parseInt($(posts).css("min-height")) - 50;
+    maxHeight = maxHeight < 150 ? 150 : maxHeight; // Ensure minimum value
+    minHeight = minHeight < 150 ? 150 : minHeight; // Ensure minimum value
+    $(posts).css("max-height", maxHeight+'px').css("min-height", minHeight+'px');
+    draftin.comment.scrollToBottomOfChatWindow();
   }
 }
 
