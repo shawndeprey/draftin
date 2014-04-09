@@ -71,7 +71,6 @@ draftin.comment = {
     });
   },
   postChatRoomComment: function(user_id, chat_room_id){
-    draftin.loading();
     chat_room_button = $('button#chat_room_button');
     chat_room_input = $('input#chat_room_input');
     content = encodeURIComponent($(chat_room_input).val());
@@ -81,11 +80,8 @@ draftin.comment = {
         success: function(result){
           $(chat_room_input).val(null);
           $(chat_room_button).removeClass('disabled');
-          draftin.loading();
         }
       });
-    } else {
-      draftin.loading();
     }
   },
   scrollToBottomOfChatWindow: function(){
