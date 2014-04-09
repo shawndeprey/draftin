@@ -36,14 +36,14 @@ class ApplicationController < ActionController::Base
   end
 
   def permissions_check
-    return redirect_to root_path, alert: "Only admins can do that silly!" unless @session_user.admin?
+    return redirect_to root_path, alert: "Only admins can do that." unless @session_user.admin?
   end
 
   def render_not_found
-    redirect_to root_path, alert: "Dude! We couldn't find the page you were looking for. Sorry about that!"
+    redirect_to root_path, alert: "We couldn't find the page you were looking for. Sorry about that!"
   end
 
   def not_found
-    raise ActionController::RoutingError.new("Dude! We couldn't find the page you were looking for. Sorry about that!")
+    raise ActionController::RoutingError.new("We couldn't find the page you were looking for. Sorry about that!")
   end
 end
