@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Draftin::Application.config.secret_key_base = '9e2a1e33eec8c1fb6640b8f3c869980367d9af5c8912ce1250a683c0514f44fc25fff8cc6b9b5e10cfc98e35ef4300315d733896f7292b8acb28d106fd3a8716'
+Draftin::Application.config.secret_key_base = '9e2a1e33eec8c1fb6640b8f3c869980367d9af5c8912ce1250a683c0514f44fc25fff8cc6b9b5e10cfc98e35ef4300315d733896f7292b8acb28d106fd3a8717'
