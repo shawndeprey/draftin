@@ -2,12 +2,14 @@
   <div class="col-sm-12">
     <div class="jumbotron">
       <div class="row">
-        <div class="col-sm-6 col-sm-offset-3" style="padding-top:20px;">
+        <div class="col-sm-12" style="padding-top:20px;">
           <div style="display:none;"><h1>Draftin'</h1></div>
           <center><%= image_tag "logo-large.png", :class => "large_logo" %></center>
           <div style="margin: 35px 0px 35px 0px;"></div>
-          <p style="text-align:center;"><%= TAGLINE %></p>
-          <p style="text-align:center;">Login or create an account below to start Draftin'.</p>
+          <!--<p style="text-align:center;"><%= TAGLINE %></p>-->
+          <!--<p style="text-align:center;">Login or create an account below to start Draftin'.</p>-->
+          <p style="text-align:center;">Cease & Desist</p>
+          <p style="text-align:center;">Forced by WotC, this website is permanently closed.</p>
         </div>
         <!--<div class="col-sm-6">
           <center>
@@ -19,85 +21,14 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="well">
-
-      <div id="forgot_password" style="display:none;">
-        <form class="bs-example form-horizontal" method="GET" action="<%= users_url %>/reset_password_request">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Email" name="email">
-            <span class="input-group-btn">
-              <button class="btn btn-default btn-success" onclick="draftin.loading;" type="submit">Reset Password</button>
-            </span>
-          </div>
-        </form>
-        <br>
-      </div>
-
-      <form class="bs-example form-horizontal" method="POST" action="<%= session_path %>">
-        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-        <fieldset>
-          <legend>Login <a href="javascript:$('div#forgot_password').slideToggle(250);" style="font-size:12px;">Forgot Password?</a></legend>
-          <div class="form-group">
-            <div class="col-sm-5">
-              <input type="text" class="form-control" placeholder="Username" name="username">
-            </div>
-            <div class="col-sm-2">
-              <center><label class="control-label">Or</label></center>
-            </div>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" pattern="[^ @]*@[^ @]*" placeholder="Email" name="email" title="example@draftin.co">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-5">
-              <input type="password" class="form-control" placeholder="Password" name="password" required="required">
-            </div>
-            <div class="col-sm-7">
-              <button type="submit" class="btn btn-success btn-block">Login</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-
-  <div class="col-sm-6">
-    <div class="well">
-      <form class="bs-example form-horizontal" method="POST" action="<%= users_path %>">
-        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
-        <fieldset>
-          <legend>Create Account</legend>
-          <div class="form-group">
-            <div class="col-sm-5">
-              <input type="text" class="form-control" placeholder="Username" name="user[username]" required="required">
-            </div>
-            <div class="col-sm-2">
-              <center><label class="control-label">And</label></center>
-            </div>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" pattern="[^ @]*@[^ @]*" placeholder="Email" name="user[email]" required="required" title="example@draftin.co">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-5">
-              <input type="password" class="form-control" placeholder="Password" name="user[password]" required="required">
-            </div>
-            <div class="col-sm-7">
-              <button type="submit" class="btn btn-success btn-block">Create Account</button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
-    </div>
-  </div>
-</div>
-
-<% if @articles %>
-  <div class="row">
-    <%= render "news" %>
-  </div>
+<% if @thisistheonlywayintotheapplicationandnobodywillknow && @thisisanothervariablethatwillbeveryhardtoguess %>
+  <%= render 'login' %>
 <% end %>
 
-<%= render "default/future" %>
+<%# if @articles %>
+  <!--<div class="row">
+    <%#= render "news" %>
+  </div>-->
+<%# end %>
+
+<%#= render "default/future" %>

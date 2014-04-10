@@ -5,6 +5,13 @@ class DefaultController < ApplicationController
   
   # GET /
   def index
+    if params[:thisistheonlywayintotheapplicationandnobodywillknow]
+      @thisistheonlywayintotheapplicationandnobodywillknow = true
+    end
+    if params[:thisisanothervariablethatwillbeveryhardtoguess]
+      @thisisanothervariablethatwillbeveryhardtoguess = true
+    end
+
     if @session_user
       @drafts = Draft.joins(:users).where('"users"."id" = :user_id', :user_id => @session_user.id)
                                     .order('updated_at desc')
